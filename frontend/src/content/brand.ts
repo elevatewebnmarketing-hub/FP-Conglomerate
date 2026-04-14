@@ -269,7 +269,8 @@ export const defaultSiteContent: SiteContent = {
         {
           slug: "humanitarian-programs",
           title: "Humanitarian Programs",
-          summary: "Sincere aid for urgent and long-term community needs.",
+          summary:
+            "Measured relief and community-first programs that restore dignity—field outreach, awareness, and accountable delivery.",
           content:
             "Programs are designed to meet urgent realities while restoring long-term hope through education, shelter support, and community-centered assistance.",
           image:
