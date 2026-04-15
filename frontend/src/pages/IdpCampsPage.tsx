@@ -88,7 +88,7 @@ export default function IdpCampsPage() {
               Field perspectives
             </h2>
             <p className="mt-3 text-sm text-muted-foreground max-w-2xl">
-              Documentary imagery from settlements and camps—shared without sensational framing.
+              Documentary imagery from settlements and camps, shared without sensational framing.
             </p>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {gallery.map((item) => (

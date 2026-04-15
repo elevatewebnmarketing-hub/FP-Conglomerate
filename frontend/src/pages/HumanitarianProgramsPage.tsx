@@ -54,7 +54,7 @@ export default function HumanitarianProgramsPage() {
           </div>
         </section>
 
-        {/* IDP camps — link to standalone page (id kept for old #idp-camps links) */}
+        {/* IDP camps: link to standalone page (id kept for old #idp-camps links) */}
         <section
           id="idp-camps"
           aria-labelledby="idp-teaser-title"
@@ -146,7 +146,7 @@ export default function HumanitarianProgramsPage() {
                 Moments From Our Outreach
               </h2>
               <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-                Documentary snapshots from field programs—shared with respect for the people we serve.
+                Documentary snapshots from field programs, shared with respect for the people we serve.
               </p>
             </div>
             <div className="mt-10 pl-6 md:pl-12 lg:px-12 max-w-[1400px] mx-auto">

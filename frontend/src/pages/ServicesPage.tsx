@@ -16,8 +16,9 @@ export default function ServicesPage() {
             Practical capabilities across high-impact sectors.
           </h1>
           <p className="mt-8 text-lg text-muted-foreground max-w-2xl">
-            Our service portfolio combines commercial execution, ministry impact, and
-            humanitarian response under one coordinated group structure.
+            We combine commercial delivery, ministry impact, and humanitarian response
+            under one group, so you get coordinated support instead of scattered
+            promises.
           </p>
         </section>
 

@@ -5,63 +5,63 @@ import { Link } from "react-router-dom";
 const faqs = [
   {
     q: "What is FP Conglomerate?",
-    a: "FP Conglomerate is a parent group that coordinates multiple business units across faith, commerce, media, hospitality, and humanitarian impact under one trust framework.",
+    a: "We are a parent group that brings several business units together under one standard. Our work spans faith, commerce, media, hospitality, and humanitarian impact, with trustworthy service as the through line.",
   },
   {
     q: "How do I engage a specific business unit?",
-    a: "Visit the Business Units page, open the unit profile, and submit your request through the Contact page. Your enquiry is routed to the appropriate team.",
+    a: "Open Business Units, pick the unit that fits your need, then send a message through Contact. We pass your note to the team that can actually help.",
   },
   {
     q: "Do you support partnerships?",
-    a: "Yes. We consider partnership requests that align with our standards for integrity, service quality, and long-term value creation.",
+    a: "Yes. If your goals line up with how we work (integrity, solid delivery, and long-term value), we are happy to talk.",
   },
   {
     q: "Where do updates and announcements appear?",
-    a: "We publish updates, insights, and group news through the Blog and News section.",
+    a: "We share news and longer reads on the Blog and News page. That is the best place to watch what is happening across the group.",
   },
   {
     q: "How can I apply for roles in the group?",
-    a: "Open the Careers page to review current opportunities and follow the application instructions provided for each role.",
+    a: "Head to Careers, choose a role that fits, and follow the steps listed there. Each listing explains what we need and how to apply.",
   },
   {
     q: "What sectors does FP Conglomerate operate in?",
-    a: "Our group operates across ministry, general construction and maintenance, electronics and appliances, real estate and hospitality, media and entertainment, brand promotion, and humanitarian initiatives.",
+    a: "We touch ministry, general construction and maintenance, electronics and appliances, real estate and hospitality, media and entertainment, brand promotion, and humanitarian initiatives.",
   },
   {
     q: "Can I request a custom service package for my organization?",
-    a: "Yes. Share your goals through the Contact page and our team will review how the most suitable unit can structure support for your needs.",
+    a: "Yes. Tell us what you are trying to achieve on Contact and we will see which unit can shape support around your situation.",
   },
   {
     q: "How quickly do you respond to enquiries?",
-    a: "We review submissions during business hours and route each request to the relevant team for response as promptly as possible.",
+    a: "We read messages during business hours and send each one to the right team. You should hear back as soon as they can reply properly.",
   },
   {
     q: "Do you work with clients outside Nigeria?",
-    a: "Yes. Our ambition is Africa-focused, and we evaluate opportunities across regions based on delivery capacity, fit, and long-term value.",
+    a: "Yes. Africa is our focus, and we look at each opportunity on whether we can deliver well, whether it fits, and whether it makes sense over time.",
   },
   {
     q: "How do you ensure quality across different business units?",
-    a: "Each unit has operating independence but follows shared group expectations on integrity, service discipline, accountability, and delivery standards.",
+    a: "Units run day to day in their own way, but we share the same expectations: integrity, discipline, accountability, and delivery you can feel on the ground.",
   },
   {
     q: "Can I collaborate with your NGO initiatives as a partner or donor?",
-    a: "Yes. We welcome responsible collaborations for humanitarian and social-impact programs that align with our mission and operating values.",
+    a: "Yes. We are open to partners and donors who want to support humanitarian and social impact work in a responsible way that matches how we operate.",
   },
   {
     q: "Where can I learn more about each business unit in detail?",
-    a: "Visit the Business Units page and open any unit profile to view its focus areas, offerings, and dedicated subpages.",
+    a: "Go to Business Units and open any profile. You will see focus areas, what they offer, and extra pages where we go deeper.",
   },
   {
     q: "Do you provide media interviews or brand communications support?",
-    a: "Media and communications requests can be submitted through the Contact page under the relevant topic for proper routing.",
+    a: "For interviews or brand and communications requests, use Contact and pick the topic that matches. That helps your message reach the right people.",
   },
   {
     q: "How can I stay updated on group activities and announcements?",
-    a: "Follow the Blog and News page regularly for updates, strategic insights, and selected announcements from across the group.",
+    a: "Check Blog and News from time to time. We post updates, perspective pieces, and selected announcements from across the group.",
   },
   {
     q: "Is my information secure when I submit the contact form?",
-    a: "Your submission is handled through our website workflow and reviewed for business communication purposes only. For sensitive requests, indicate confidentiality in your message.",
+    a: "Your form goes through our site and we use it for normal business follow-up. If something is sensitive, say so in your message and we will treat it accordingly.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function FAQPage() {
         <section className="section-shell">
           <p className="eyebrow mb-5">Frequently Asked Questions</p>
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">
-            Clear answers for partners, clients, and stakeholders.
+            Straight answers for partners, clients, and anyone curious.
           </h1>
         </section>
 
@@ -93,7 +93,7 @@ export default function FAQPage() {
           <div className="border border-border bg-secondary/25 p-8 md:p-10">
             <p className="eyebrow mb-3">Need more help?</p>
             <p className="text-muted-foreground leading-relaxed">
-              If your question is not covered here, contact us directly and we will guide you to the right team.
+              If you do not see your question here, reach out directly and we will point you to the right team.
             </p>
             <Link to="/contact" className="inline-block mt-6 text-sm text-accent">
               Ask a question →

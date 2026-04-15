@@ -18,8 +18,8 @@ export default function CTASection() {
           </h2>
           <div className="brand-divider w-24 mt-7" />
           <p className="mt-8 text-muted-foreground max-w-2xl leading-relaxed text-lg">
-            Planning a partnership, project, or long-term collaboration? Tell us your
-            priorities and we will route your request to the right unit.
+            Thinking about a partnership, a project, or something longer term? Share
+            what matters most to you and we will connect you with the right team.
           </p>
           <div className="mt-12">
             <Link

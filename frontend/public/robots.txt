@@ -1,4 +1,4 @@
-# FP Conglomerate — allow search engines and common AI crawlers
+# FP Conglomerate: allow search engines and common AI crawlers
 
 User-agent: *
 Allow: /

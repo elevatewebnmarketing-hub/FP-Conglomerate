@@ -116,8 +116,9 @@ export default function ContactPage() {
               Start a trusted business conversation.
             </h1>
             <p className="text-muted-foreground leading-relaxed mb-12 max-w-md">
-              Have a partnership idea, media request, career inquiry, or general
-              question? Use the form or contact us directly.
+              Whether it is a partnership idea, a media request, a career question, or
+              something else, send a note through the form or reach us directly. We read
+              what you send.
             </p>
 
             <div className="space-y-8 border-t border-border pt-8">

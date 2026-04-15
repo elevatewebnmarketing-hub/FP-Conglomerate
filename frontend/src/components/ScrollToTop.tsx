@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 /**
- * Scrolls to top on route changes, unless the URL includes a hash—then we scroll to that element.
+ * Scrolls to top on route changes. If the URL includes a hash, we scroll to that element instead.
  * Retries briefly so lazy-loaded routes (suspended pages) still find `#id` in the DOM.
  */
 export default function ScrollToTop() {

@@ -14,8 +14,8 @@ export default function About() {
         >
           <p className="eyebrow mb-8">About FP Conglomerate</p>
           <blockquote className="font-editorial text-3xl md:text-4xl text-foreground leading-[1.2]">
-            "We do not just make promises.
-            <span className="text-accent"> We deliver with trust and audacity."</span>
+            "We do not stop at good intentions.
+            <span className="text-accent"> We follow through with trust and courage."</span>
           </blockquote>
         </div>
 
@@ -26,18 +26,18 @@ export default function About() {
         >
           <div className="space-y-8 text-muted-foreground text-[1.03rem] leading-[1.85]">
             <p>
-              FP Conglomerate is a parent group created to bridge the trust gap in
-              service delivery. Our institutions serve different markets, but they
-              operate with one group standard for accountability and quality.
+              FP Conglomerate exists because people deserve services they can actually
+              rely on. Our units serve different markets, but we hold one bar for
+              accountability and quality.
             </p>
             <p>
-              From ministry and humanitarian response to electronics, media, real
-              estate, and hospitality, we focus on practical solutions that improve
-              lives and strengthen confidence in what we deliver.
+              From ministry and humanitarian work to electronics, media, real estate,
+              and hospitality, we stay focused on practical solutions that make life
+              better and rebuild confidence, one engagement at a time.
             </p>
             <p>
-              Trust, Excellence, Integrity, and Service are more than values to us.
-              They are daily operating requirements across every business unit.
+              Trust, excellence, integrity, and service are not posters on a wall for
+              us. They are how we expect teams to show up, every day, in every unit.
             </p>
           </div>
           <Link to="/about" className="inline-block mt-10 text-sm text-accent">

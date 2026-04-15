@@ -1,5 +1,5 @@
 /**
- * Copy and image paths for the Mogadishu Initiative — Humanitarian Programs page.
+ * Copy and image paths for the Mogadishu Initiative Humanitarian Programs page.
  * Replace `/images/mia/humanitarian/*.jpg` files in public/ with owner-provided photos anytime.
  */
 
@@ -11,7 +11,7 @@ export const humanitarianProgramsContent = {
   hero: {
     headline: "Humanitarian Programs That Restore Dignity",
     subtext:
-      "Measured relief, transparent field engagement, and community-first delivery across Nigeria—aligned with FP Conglomerate standards for trust and accountability.",
+      "Honest relief work in the field, open communication with communities, and delivery that keeps people at the center. We aim to meet real needs across Nigeria in line with FP Conglomerate standards for trust and accountability.",
     imageSrc: `${base}/hero.jpg`,
     imageAlt:
       "Humanitarian field context: community support and coordinated outreach in Nigeria.",
@@ -22,10 +22,10 @@ export const humanitarianProgramsContent = {
     sectionEyebrow: "IDP camp awareness",
     title: "Supporting displaced communities across Nigeria",
     sectionIntro:
-      "Focus on internally displaced persons (IDP) camps and informal settlements—credible information and practical relief without sensational framing.",
+      "We focus on people in IDP camps and informal settlements: clear information, practical help, and no sensational headlines.",
     paragraphs: [
-      "Millions of Nigerians live with displacement—often with limited infrastructure, interrupted schooling, and day-to-day uncertainty. Mogadishu Initiative Response focuses on awareness and practical support that respects dignity.",
-      "Our aim is not sensational storytelling. We document realities responsibly, partner where it helps, and channel resources toward shelter, essentials, and pathways to stability.",
+      "Millions of Nigerians live with displacement. That often means fragile infrastructure, interrupted school, and daily uncertainty. Mogadishu Initiative Response meets people with awareness and practical support that respects dignity.",
+      "We are not here for shock value. We document what is real, partner where it helps, and put resources toward shelter, essentials, and steps toward stability.",
     ],
     /** Featured image for the two-column awareness block (wide, documentary tone). */
     featureImageSrc: `${base}/idp-04.jpg`,
@@ -41,7 +41,7 @@ export const humanitarianProgramsContent = {
   idpTeaser: {
     title: "IDP camp awareness",
     body:
-      "Learn how we approach displacement in camps and informal settlements—factual context, dignity-first messaging, and practical support.",
+      "See how we talk about displacement in camps and informal settlements: grounded facts, messaging that honors people, and help that shows up where it is needed.",
     href: "/business-units/mogadishu-initiative/idp-camps",
     linkLabel: "Open the IDP camp page",
   },
@@ -50,7 +50,7 @@ export const humanitarianProgramsContent = {
     title: "Kogi Special Arms Blanket Outreach",
     subtitle: "Field distribution focused on warmth, essentials, and respectful engagement with vulnerable households.",
     body:
-      "This outreach brings blankets and core supplies directly to communities in Kogi State. Distribution is coordinated with local contacts, recorded for accountability, and executed to minimize disruption while maximizing reach.",
+      "This outreach brings blankets and core supplies directly to communities in Kogi State. We coordinate with local contacts, keep records for accountability, and run distributions so people get help with as little disruption as possible.",
     gallery: [
       { src: `${base}/kogi-01.jpg`, alt: "Team members coordinating supply bags during a community distribution." },
       { src: `${base}/kogi-02.jpg`, alt: "Volunteers preparing essentials for handoff to residents." },
@@ -75,15 +75,15 @@ export const humanitarianProgramsContent = {
       },
       {
         title: "Awareness Initiatives",
-        description: "Clear, factual communication on displacement and justice—without exploitation or noise.",
+        description: "Straight talk on displacement and justice, without exploitation or noise.",
       },
       {
         title: "Collaborative Efforts",
-        description: "Structured partnerships with aligned organizations to extend reach and maintain standards.",
+        description: "Partnerships with aligned organizations so we can reach further and keep standards high.",
       },
     ],
   },
-  /** Horizontal strip — mix of field moments (IDs reference documentary tone). */
+  /** Horizontal strip of field moments (documentary tone). */
   moments: [
     { src: `${base}/idp-02.jpg`, alt: "Settlement pathways between temporary shelters in an IDP context." },
     { src: `${base}/idp-06.jpg`, alt: "Community interaction during a humanitarian visit." },
@@ -95,7 +95,7 @@ export const humanitarianProgramsContent = {
   cta: {
     title: "Be Part of the Impact",
     paragraph:
-      "Whether you represent an organization or want to explore responsible collaboration, our team will respond with clarity and care.",
+      "Whether you represent an organization or want to explore a responsible collaboration, reach out. We will respond with clarity and care.",
     partnerHref: "/contact?intent=partnership",
     contactHref: "/contact",
   },

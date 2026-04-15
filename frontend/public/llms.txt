@@ -4,25 +4,25 @@ FP Conglomerate is a multi-sector parent group focused on trusted service delive
 
 ## Business units
 
-- Ordained Believers Army (OBA) — faith, ministry, and outreach
-- Anate Grand Empire Solutions (AGE) — movie production, construction, transport, devices, and general appliances
-- Boys Sterling Company Limited (BSC) — real estate, hospitality, counseling, construction, and building maintenance
-- Mogadishu Initiative Response (MIA) — humanitarian programs, shelter, education, and social justice support
+- Ordained Believers Army (OBA): faith, ministry, and outreach
+- Anate Grand Empire Solutions (AGE): movie production, construction, transport, brand promotion, devices, and general appliances
+- Boys Sterling Company Limited (BSC): real estate, hospitality, counseling, construction, building maintenance, and brand promotion
+- Mogadishu Initiative Response (MIA): humanitarian programs, shelter, education, and social justice support
 
 ## Main site paths (same origin)
 
-- / — Home
-- /about — About the group
-- /business-units — All business units
-- /services — Service areas overview
-- /gallery — Gallery
-- /blog — Blog and news
-- /careers — Careers
-- /faq — Frequently asked questions
-- /contact — Contact
-- /idp-camps — Mogadishu Initiative: IDP camp awareness (standalone page)
-- /business-units/mogadishu-initiative/humanitarian-programs — Mogadishu Initiative: humanitarian programs hub
-- /business-units/mogadishu-initiative/idp-camps — Same IDP page under business-units URL
+- /: Home
+- /about: About the group
+- /business-units: All business units
+- /services: Service areas overview
+- /gallery: Gallery
+- /blog: Blog and news
+- /careers: Careers
+- /faq: Frequently asked questions
+- /contact: Contact
+- /idp-camps: Mogadishu Initiative, IDP camp awareness (standalone page)
+- /business-units/mogadishu-initiative/humanitarian-programs: Mogadishu Initiative humanitarian programs hub
+- /business-units/mogadishu-initiative/idp-camps: Same IDP page under business-units URL
 
 ## Admin (separate app)
 

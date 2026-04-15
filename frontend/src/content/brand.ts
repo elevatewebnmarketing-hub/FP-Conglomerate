@@ -92,7 +92,7 @@ export const defaultSiteContent: SiteContent = {
     headline: "One Group.",
     highlightedText: "Many Institutions. One Standard.",
     subtext:
-      "FP Conglomerate unites faith, commerce, media, hospitality, and humanitarian service under a shared operating promise: trusted delivery, responsible leadership, and value that lasts.",
+      "We bring faith, commerce, media, hospitality, and humanitarian work together under one promise: show up with honesty, lead with care, and build value that lasts.",
     cta: "Start a Conversation",
   },
   businessUnits: [
@@ -269,7 +269,7 @@ export const defaultSiteContent: SiteContent = {
           slug: "humanitarian-programs",
           title: "Humanitarian Programs",
           summary:
-            "Measured relief and community-first programs that restore dignity—field outreach, awareness, and accountable delivery.",
+            "Relief that puts people first: outreach in the field, honest awareness, and delivery we can stand behind.",
           content:
             "Programs are designed to meet urgent realities while restoring long-term hope through education, shelter support, and community-centered assistance.",
           image: "/images/mia/humanitarian/kogi-01.jpg",
@@ -278,7 +278,7 @@ export const defaultSiteContent: SiteContent = {
           slug: "idp-camps",
           title: "IDP Camp Awareness",
           summary:
-            "Factual context on displacement in camps and informal settlements—dignity-first awareness and support.",
+            "Straightforward context on life in camps and informal settlements, with support that always respects dignity.",
           content:
             "Mogadishu Initiative Response documents realities responsibly and channels resources toward shelter, essentials, and stability for displaced communities.",
           image: "/images/mia/humanitarian/idp-03.jpg",
@@ -373,7 +373,7 @@ export const defaultSiteContent: SiteContent = {
       date: "April 11, 2026",
       title: "Building Trust in African Businesses Through Measurable Service Delivery",
       excerpt:
-        "How the FP group frames trust as an operating system, not a slogan, across commerce, ministry, and social impact work.",
+        "Why we treat trust like a system you can run on, not a line on a slide, across commerce, ministry, and social impact.",
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80",
     },
@@ -381,7 +381,7 @@ export const defaultSiteContent: SiteContent = {
       date: "March 28, 2026",
       title: "One Group, Many Missions: Coordinating Diverse Units with One Standard",
       excerpt:
-        "A look at how independent units stay aligned through shared principles of integrity, excellence, and disciplined execution.",
+        "How different teams stay in step when everyone agrees on integrity, excellence, and showing up with discipline.",
       image:
         "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80",
     },
@@ -389,7 +389,7 @@ export const defaultSiteContent: SiteContent = {
       date: "March 15, 2026",
       title: "Service Integration in Action: The AGE Operating Approach",
       excerpt:
-        "How Anate Grand Empire Solutions (AGE) combines movie production, construction, transport, and appliance services under one trust-first model.",
+        "Inside AGE: production, construction, transport, and appliances in one place, with trust as the default setting.",
       image:
         "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80",
     },
@@ -397,7 +397,7 @@ export const defaultSiteContent: SiteContent = {
       date: "February 25, 2026",
       title: "Creative Excellence in Real Estate, Hospitality, and Media",
       excerpt:
-        "How Boys Sterling turns ingenuity into dependable delivery across property, entertainment, and media work.",
+        "How Boys Sterling turns good ideas into dependable delivery across property, entertainment, and media.",
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80",
     },
@@ -405,7 +405,7 @@ export const defaultSiteContent: SiteContent = {
   hiring: {
     heading: "Build Institutions with Us",
     summary:
-      "We are looking for builders, operators, creatives, and community leaders who can carry trust, integrity, and excellence into daily execution.",
+      "If you are a builder, operator, creative, or community leader who cares about doing things the right way, we would love to hear from you.",
     heroImage:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80",
     roles: [

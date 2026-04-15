@@ -1,5 +1,5 @@
 /**
- * Standalone IDP camp awareness page — shares narrative cards with humanitarianProgramsContent.idp.
+ * Standalone IDP camp awareness page. Shares narrative cards with humanitarianProgramsContent.idp.
  */
 
 import { humanitarianProgramsContent, MIA_UNIT_ID } from "./humanitarianProgramsContent";
@@ -15,7 +15,7 @@ export const idpCampsPageContent = {
   hero: {
     headline: "IDP Camp Awareness Across Nigeria",
     subtext:
-      "A calm, credible view of displacement in camps and informal settlements—what communities face, and how we respond with respect.",
+      "A calm, honest look at displacement in camps and informal settlements: what communities face, and how we respond with respect.",
     imageSrc: `${base}/idp-03.jpg`,
     imageAlt:
       "Documentary view of temporary shelters and settlement conditions relevant to internally displaced persons in Nigeria.",

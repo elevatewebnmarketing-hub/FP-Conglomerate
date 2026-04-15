@@ -64,7 +64,7 @@ function seoPlugin(): Plugin {
         "@type": "WebSite",
         name: "FP Conglomerate",
         description:
-          "Official site for FP Conglomerate — business units, services, careers, and contact.",
+          "Official site for FP Conglomerate: business units, services, careers, and contact.",
         publisher: { "@type": "Organization", name: "FP Conglomerate" },
         inLanguage: "en",
       },
