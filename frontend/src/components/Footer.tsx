@@ -3,6 +3,7 @@ import { useSiteContent } from "@/content/SiteContentContext";
 
 const sectors = [
   "Faith and Ministry",
+  "General Construction and Maintenance",
   "Electronics and Appliances",
   "Real Estate, Media and Hospitality",
   "NGO and Humanitarian Action",

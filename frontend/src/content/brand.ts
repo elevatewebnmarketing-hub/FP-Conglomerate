@@ -178,9 +178,9 @@ export const defaultSiteContent: SiteContent = {
       shortLabel: "Movie, Construction, Transport, Devices",
       focus: "Multi-Sector Solutions Across Production, Infrastructure, Mobility, and Appliances",
       statement:
-        "AGE delivers practical value across movie production, construction, transport, devices, and general appliances.",
+        "AGE delivers practical value across movie production, construction, transport, brand promotion, devices, and general appliances.",
       details:
-        "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable production support, construction services, transport coordination, and durable appliances under one service umbrella.",
+        "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable production support, construction services, transport coordination, brand promotion support, and durable appliances under one service umbrella.",
       heroImage:
         "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=1400&q=80",
       gallery: [
@@ -194,7 +194,7 @@ export const defaultSiteContent: SiteContent = {
           title: "Service Portfolio",
           summary: "Core operating areas across media, construction, mobility, and appliances.",
           content:
-            "AGE operates across movie production services, construction support, transport-linked execution, and technology and appliance supply. This blend allows clients to access both creative and practical delivery through one coordinated team.",
+            "AGE operates across movie production services, construction support, transport-linked execution, brand promotion, and technology and appliance supply. This blend allows clients to access both creative and practical delivery through one coordinated team.",
           image:
             "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80",
         },
@@ -216,7 +216,7 @@ export const defaultSiteContent: SiteContent = {
       shortLabel: "Real Estate, Hospitality, Counseling, Construction",
       focus: "Built Environment and People-Centered Service Delivery",
       statement:
-        "BSC delivers practical value across real estate, hospitality, counseling, construction, and building maintenance.",
+        "BSC delivers practical value across real estate, hospitality, counseling, construction, building maintenance, and brand promotion.",
       details:
         "Boys Sterling Company Limited (BSC) was established in 2020 with a service promise built on dependable execution. The unit is designed to help clients feel secure in every engagement by combining care, technical delivery, and maintenance discipline.",
       heroImage:
@@ -241,7 +241,7 @@ export const defaultSiteContent: SiteContent = {
           title: "Counseling, Construction, and Maintenance",
           summary: "People support and technical services for stable operations.",
           content:
-            "Beyond property and hospitality, BSC delivers counseling support, construction execution, and building maintenance services. This integrated model helps clients maintain both functional spaces and healthy service outcomes over time.",
+            "Beyond property and hospitality, BSC delivers counseling support, construction execution, building maintenance, and brand promotion services. This integrated model helps clients maintain both functional spaces and healthy service outcomes over time.",
           image:
             "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80",
         },
@@ -298,14 +298,14 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "AGE Multi-Sector Services",
       summary:
-        "Movie production, construction, transport, devices, and general appliance services delivered through Anate Grand Empire Solutions (AGE).",
+        "Movie production, construction, transport, brand promotion, devices, and general appliance services delivered through Anate Grand Empire Solutions (AGE).",
       image:
         "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80",
     },
     {
       title: "BSC Real Estate and Support Services",
       summary:
-        "Real estate, hospitality, counseling, construction, and building maintenance services delivered through Boys Sterling Company Limited (BSC).",
+        "Real estate, hospitality, counseling, construction, building maintenance, and brand promotion services delivered through Boys Sterling Company Limited (BSC).",
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80",
     },

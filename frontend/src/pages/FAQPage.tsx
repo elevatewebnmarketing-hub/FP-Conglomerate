@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "What sectors does FP Conglomerate operate in?",
-    a: "Our group operates across ministry, electronics and appliances, real estate and hospitality, media and entertainment, and humanitarian initiatives.",
+    a: "Our group operates across ministry, general construction and maintenance, electronics and appliances, real estate and hospitality, media and entertainment, brand promotion, and humanitarian initiatives.",
   },
   {
     q: "Can I request a custom service package for my organization?",
