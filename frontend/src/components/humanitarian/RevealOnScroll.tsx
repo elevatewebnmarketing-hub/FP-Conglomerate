@@ -8,7 +8,7 @@ type RevealOnScrollProps = {
 };
 
 export default function RevealOnScroll({ children, className }: RevealOnScrollProps) {
-  const { ref, isVisible } = useScrollReveal(0.12);
+  const { ref, isVisible } = useScrollReveal(0, { rootMargin: "100px 0px 80px 0px" });
 
   return (
     <div

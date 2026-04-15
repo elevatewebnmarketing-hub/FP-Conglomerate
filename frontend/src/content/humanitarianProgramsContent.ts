@@ -19,7 +19,10 @@ export const humanitarianProgramsContent = {
     partnerHref: "/contact?intent=partnership",
   },
   idp: {
-    title: "Supporting Displaced Communities Across Nigeria",
+    sectionEyebrow: "IDP camp awareness",
+    title: "Supporting displaced communities across Nigeria",
+    sectionIntro:
+      "Focus on internally displaced persons (IDP) camps and informal settlements—credible information and practical relief without sensational framing.",
     paragraphs: [
       "Millions of Nigerians live with displacement—often with limited infrastructure, interrupted schooling, and day-to-day uncertainty. Mogadishu Initiative Response focuses on awareness and practical support that respects dignity.",
       "Our aim is not sensational storytelling. We document realities responsibly, partner where it helps, and channel resources toward shelter, essentials, and pathways to stability.",

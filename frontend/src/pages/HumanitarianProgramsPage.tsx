@@ -54,14 +54,21 @@ export default function HumanitarianProgramsPage() {
           </div>
         </section>
 
-        {/* IDP awareness */}
-        <RevealOnScroll>
-          <section aria-labelledby="idp-title" className="section-shell py-16 md:py-24 border-b border-border/60">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:items-center">
-              <div>
-                <h2 id="idp-title" className="font-editorial text-3xl md:text-4xl lg:text-5xl max-w-xl">
-                  {idp.title}
-                </h2>
+        {/* IDP camps — awareness layer (always visible; not wrapped in scroll-reveal) */}
+        <section
+          id="idp-camps"
+          aria-labelledby="idp-title"
+          className="section-shell py-16 md:py-24 border-b border-border/60 scroll-mt-28"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:items-center">
+            <div>
+              <p className="eyebrow mb-4">{idp.sectionEyebrow}</p>
+              <h2 id="idp-title" className="font-editorial text-3xl md:text-4xl lg:text-5xl max-w-xl">
+                {idp.title}
+              </h2>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-prose leading-relaxed">
+                {idp.sectionIntro}
+              </p>
                 <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed max-w-prose">
                   {idp.paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
@@ -87,8 +94,7 @@ export default function HumanitarianProgramsPage() {
                 />
               </div>
             </div>
-          </section>
-        </RevealOnScroll>
+        </section>
 
         {/* Kogi project */}
         <RevealOnScroll>
