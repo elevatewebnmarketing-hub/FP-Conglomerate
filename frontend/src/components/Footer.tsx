@@ -101,7 +101,7 @@ export default function Footer() {
             rel="noreferrer"
             className="text-xs text-muted-foreground creator-link transition-colors"
           >
-            Created by elevatewebandmarketing.com
+            Created by Ufuoma at elevatewebandmarketing.com
           </a>
         </div>
       </div>
