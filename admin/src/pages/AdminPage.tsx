@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useSiteContent } from "@/content/SiteContentContext";
 import { defaultSiteContent, type SiteContent } from "@/content/brand";
 import PageBackButton from "@/components/PageBackButton";
+import AdminNav from "../components/AdminNav.tsx";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -86,6 +87,7 @@ export default function AdminPage({ publicSiteFallback = "http://localhost:8080"
   return (
     <>
       <Navbar />
+      <AdminNav />
       <main className="min-h-screen bg-muted/35 pb-24">
         <div className="section-shell pt-28 md:pt-32">
           <PageBackButton className="mb-6" fallbackTo={publicSiteFallback} />

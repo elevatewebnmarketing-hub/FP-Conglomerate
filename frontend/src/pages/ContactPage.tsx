@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { useSiteContent } from "@/content/SiteContentContext";
 import MediaAsset from "@/components/MediaAsset";
 import { cn } from "@/lib/utils";
+import { isElevateConfigured, submitPublicLead } from "@/lib/elevateApi";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(2, "Enter your full name"),
@@ -63,6 +64,31 @@ function telHref(phone: string) {
   return digits ? `tel:${digits}` : undefined;
 }
 
+function buildLeadPayload(values: ContactFormValues): Record<string, unknown> {
+  const industryVertical =
+    import.meta.env.VITE_PUBLIC_LEAD_INDUSTRY_VERTICAL?.trim() || "construction";
+  const sourceSystem = import.meta.env.VITE_PUBLIC_LEAD_SOURCE_SYSTEM?.trim() || "marketing-site";
+  const formId = import.meta.env.VITE_PUBLIC_LEAD_FORM_ID?.trim() || "contact-main";
+
+  const extras = [
+    `Topic: ${topicLabels[values.topic]}`,
+    values.phone?.trim() && `Phone: ${values.phone.trim()}`,
+    values.organization?.trim() && `Organization: ${values.organization.trim()}`,
+  ].filter(Boolean) as string[];
+
+  const fullMessage =
+    extras.length > 0 ? `${values.message}\n\n---\n${extras.join("\n")}` : values.message;
+
+  return {
+    industryVertical,
+    sourceSystem,
+    formId,
+    email: values.email.trim(),
+    fullName: values.name.trim(),
+    message: fullMessage,
+  };
+}
+
 export default function ContactPage() {
   const { ref, isVisible } = useScrollReveal(0.1);
   const { content } = useSiteContent();
@@ -82,19 +108,31 @@ export default function ContactPage() {
   const messageLen = form.watch("message")?.length ?? 0;
   const phoneLink = telHref(content.brand.phone);
 
-  const onSubmit = async () => {
-    await new Promise((r) => setTimeout(r, 900));
-    toast.success("Thank you. Your message has been received.", {
-      description: "We will respond as soon as we can.",
-    });
-    form.reset({
-      name: "",
-      email: "",
-      phone: "",
-      organization: "",
-      topic: "general",
-      message: "",
-    });
+  const onSubmit = async (values: ContactFormValues) => {
+    if (!isElevateConfigured()) {
+      toast.error("Contact form is not configured", {
+        description: "Set VITE_PUBLIC_API_BASE_URL and VITE_PUBLIC_SITE_KEY for this site.",
+      });
+      return;
+    }
+    try {
+      await submitPublicLead(buildLeadPayload(values));
+      toast.success("Thank you. Your message has been received.", {
+        description: "We will respond as soon as we can.",
+      });
+      form.reset({
+        name: "",
+        email: "",
+        phone: "",
+        organization: "",
+        topic: "general",
+        message: "",
+      });
+    } catch (err) {
+      toast.error("Could not send your message", {
+        description: err instanceof Error ? err.message : "Please try again later.",
+      });
+    }
   };
 
   const inputClass =
@@ -358,9 +396,8 @@ export default function ContactPage() {
                         )}
                       </Button>
                       <p className="text-xs text-muted-foreground max-w-xs leading-snug">
-                        This demo currently stores submissions locally only. In
-                        production, connect the form to your preferred backend or
-                        form service.
+                        Submissions are sent securely to our lead system when the site is
+                        configured with the Elevate API URL and site key.
                       </p>
                     </div>
                   </form>
