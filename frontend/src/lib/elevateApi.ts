@@ -81,12 +81,41 @@ export type StaffLoginResponse = {
   access_token: string;
 };
 
+/** User-facing hint when fetch() fails with no response (CORS, DNS, TLS, mixed content, etc.). */
+export function describeFetchFailure(cause: unknown): string {
+  const raw = cause instanceof Error ? cause.message : String(cause);
+  const isNetwork =
+    raw === "Failed to fetch" ||
+    /networkerror|load failed|fetch.*abort/i.test(raw) ||
+    (cause instanceof TypeError && /fetch/i.test(raw));
+  if (!isNetwork) return raw;
+
+  const pageHttps =
+    typeof window !== "undefined" && window.location.protocol === "https:";
+  const apiUrl = getPublicApiBaseUrl();
+  const apiHttp = apiUrl.startsWith("http://");
+
+  const parts = [
+    "No response from the API.",
+    pageHttps && apiHttp
+      ? "This page is HTTPS but the API URL is HTTP (mixed content is blocked). Use an https:// API URL."
+      : "Check the API is running, VITE_PUBLIC_API_BASE_URL is correct, and CORS_ORIGINS on the API includes this origin.",
+    `Current API base: ${apiUrl || "(empty)"}.`,
+  ].filter(Boolean) as string[];
+  return parts.join(" ");
+}
+
 /** POST /v1/public/leads — body must match OpenAPI (industryVertical, sourceSystem, formId, email, fullName, message, …). */
 export async function submitPublicLead(body: Record<string, unknown>): Promise<void> {
-  const res = await publicFetch("/v1/public/leads", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  let res: Response;
+  try {
+    res = await publicFetch("/v1/public/leads", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    throw new Error(describeFetchFailure(e));
+  }
   if (res.ok) return;
   let detail = res.statusText || "Request failed";
   try {
