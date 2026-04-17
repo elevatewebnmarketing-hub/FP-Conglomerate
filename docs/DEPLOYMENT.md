@@ -34,7 +34,9 @@ Set these in **`frontend/.env`** locally and in **hosting “Environment variabl
 
 | Variable | Required | Meaning |
 |----------|----------|---------|
-| `VITE_PUBLIC_API_BASE_URL` | Yes | Same API URL as in section A (HTTPS in production). |
+| `VITE_PUBLIC_API_BASE_URL` | Yes, unless using relative proxy | Full API URL (HTTPS in production). Omit or leave empty when using `VITE_PUBLIC_API_RELATIVE=true`. |
+| `VITE_PUBLIC_API_RELATIVE` | Optional | Set to `true` on **Vercel** (marketing) to call same-origin `/v1/...`; [`frontend/vercel.json`](../frontend/vercel.json) rewrites `/v1` to your Render API so the **browser does not need cross-origin CORS** for the contact form. |
+| `VITE_ELEVATE_DEV_PROXY_URL` | Optional | Local dev only: when `RELATIVE=true`, Vite proxies `/v1` to this URL (defaults to the Render service in `vite.config.ts`). |
 | `VITE_PUBLIC_SITE_KEY` | Yes (marketing) | Publishable site key from seed/ops. |
 | `VITE_PUBLIC_LEAD_INDUSTRY_VERTICAL` | Recommended | Must be one of: `construction`, `real_estate`, `ngo`, `hospital`, `marketing`, `other`. |
 | `VITE_PUBLIC_LEAD_SOURCE_SYSTEM` | Optional | Default `marketing-site` if unset. |
@@ -55,10 +57,21 @@ For **`admin/`**, set at least:
 
 ## API-side checklist (CORS + optional origin allowlist)
 
-1. **`CORS_ORIGINS`** on the API must include every origin that will call the API:
+1. **`CORS_ORIGINS`** on the API must include every origin that will call the API **directly** (full URL in `VITE_PUBLIC_API_BASE_URL`):
    - Production marketing: `https://www.yourdomain.com`
    - Production admin: `https://admin.yourdomain.com`
 2. If the API **site** row has **`allowed_origins`** set, the browser **`Origin`** for `POST /v1/public/leads` must match. Easiest first-time setup: leave allowed origins empty for the site, or set them to the same HTTPS marketing origin.
+
+### Marketing site on Vercel without fixing CORS (recommended for Render)
+
+If the contact form shows **“No response from the API”** / **Failed to fetch** because **Render’s `CORS_ORIGINS`** does not list your Vercel preview or production URL:
+
+1. In **Vercel** (marketing project), set **`VITE_PUBLIC_API_RELATIVE=true`** and keep **`VITE_PUBLIC_SITE_KEY`** set.
+2. Do **not** set `VITE_PUBLIC_API_BASE_URL` (or leave it empty) for that build.
+3. Ensure [`frontend/vercel.json`](../frontend/vercel.json) includes a rewrite from `/v1/:path*` to your Render service (`https://…onrender.com/v1/:path*`). Update the hostname there if you change API host.
+4. Redeploy. The browser only talks to your **marketing origin**; Vercel forwards `/v1` to Render, so **no browser CORS** to Render for the marketing app.
+
+**Admin** still calls the API by full URL unless you add a similar rewrite on the admin project; easiest is to keep **`VITE_PUBLIC_API_BASE_URL=https://…onrender.com`** for admin and add your **admin origin** to **`CORS_ORIGINS`** on Render.
 
 ---
 

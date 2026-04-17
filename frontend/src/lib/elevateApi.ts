@@ -2,28 +2,42 @@
 
 const STAFF_TOKEN_KEY = "elevate_v1_access_token";
 
+/** When true, API calls use same-origin paths like `/v1/...` (use with Vercel rewrite to your Render API — avoids browser CORS). */
+export function useRelativeApiBase(): boolean {
+  const v = import.meta.env.VITE_PUBLIC_API_RELATIVE?.trim().toLowerCase();
+  return v === "true" || v === "1" || v === "yes";
+}
+
 export function getPublicApiBaseUrl(): string {
+  if (useRelativeApiBase()) return "";
   const raw = import.meta.env.VITE_PUBLIC_API_BASE_URL?.trim();
   if (!raw) return "";
   return raw.replace(/\/$/, "");
 }
 
 export function isElevateConfigured(): boolean {
-  return Boolean(getPublicApiBaseUrl() && import.meta.env.VITE_PUBLIC_SITE_KEY?.trim());
+  const key = import.meta.env.VITE_PUBLIC_SITE_KEY?.trim();
+  if (!key) return false;
+  return useRelativeApiBase() || Boolean(getPublicApiBaseUrl());
 }
 
 export function apiUrl(path: string): string {
-  const base = getPublicApiBaseUrl();
-  if (!base) throw new Error("VITE_PUBLIC_API_BASE_URL is not set");
   const p = path.startsWith("/") ? path : `/${path}`;
+  if (useRelativeApiBase()) return p;
+  const base = getPublicApiBaseUrl();
+  if (!base) {
+    throw new Error(
+      "Set VITE_PUBLIC_API_BASE_URL, or VITE_PUBLIC_API_RELATIVE=true with a same-origin /v1 proxy (see frontend/vercel.json).",
+    );
+  }
   return `${base}${p}`;
 }
 
 /** Public marketing / lead capture — requires site key (never JWT). */
 export async function publicFetch(path: string, init?: RequestInit): Promise<Response> {
   const siteKey = import.meta.env.VITE_PUBLIC_SITE_KEY?.trim();
-  if (!getPublicApiBaseUrl() || !siteKey) {
-    throw new Error("Missing VITE_PUBLIC_API_BASE_URL or VITE_PUBLIC_SITE_KEY");
+  if (!siteKey || (!useRelativeApiBase() && !getPublicApiBaseUrl())) {
+    throw new Error("Missing VITE_PUBLIC_SITE_KEY or API base (VITE_PUBLIC_API_BASE_URL or VITE_PUBLIC_API_RELATIVE).");
   }
   return fetch(apiUrl(path), {
     ...init,
@@ -54,14 +68,19 @@ export async function staffFetch(path: string, init?: RequestInit): Promise<Resp
   if (!token) {
     throw new Error("Not authenticated");
   }
-  const res = await fetch(apiUrl(path), {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...init?.headers,
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  let res: Response;
+  try {
+    res = await fetch(apiUrl(path), {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...init?.headers,
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (e) {
+    throw new Error(describeFetchFailure(e));
+  }
   if (res.status === 401) {
     clearStaffToken();
     if (typeof window !== "undefined" && !window.location.pathname.endsWith("/login")) {
@@ -92,15 +111,19 @@ export function describeFetchFailure(cause: unknown): string {
 
   const pageHttps =
     typeof window !== "undefined" && window.location.protocol === "https:";
-  const apiUrl = getPublicApiBaseUrl();
-  const apiHttp = apiUrl.startsWith("http://");
+  const baseStr = getPublicApiBaseUrl();
+  const apiHttp = baseStr.startsWith("http://");
 
   const parts = [
     "No response from the API.",
-    pageHttps && apiHttp
-      ? "This page is HTTPS but the API URL is HTTP (mixed content is blocked). Use an https:// API URL."
-      : "Check the API is running, VITE_PUBLIC_API_BASE_URL is correct, and CORS_ORIGINS on the API includes this origin.",
-    `Current API base: ${apiUrl || "(empty)"}.`,
+    useRelativeApiBase()
+      ? "Same-origin /v1 proxy failed — confirm Vercel rewrites /v1 to your Render service and redeploy."
+      : pageHttps && apiHttp
+        ? "This page is HTTPS but the API URL is HTTP (mixed content is blocked). Use an https:// API URL."
+        : "Check the API is running, VITE_PUBLIC_API_BASE_URL is correct, and CORS_ORIGINS on the API includes this origin.",
+    useRelativeApiBase()
+      ? "Mode: VITE_PUBLIC_API_RELATIVE=true (paths under /v1 on this host)."
+      : `Current API base: ${baseStr || "(empty)"}.`,
   ].filter(Boolean) as string[];
   return parts.join(" ");
 }
@@ -129,11 +152,16 @@ export async function submitPublicLead(body: Record<string, unknown>): Promise<v
 }
 
 export async function postStaffLogin(body: StaffLoginBody): Promise<StaffLoginResponse> {
-  const res = await fetch(apiUrl("/v1/auth/login"), {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  let res: Response;
+  try {
+    res = await fetch(apiUrl("/v1/auth/login"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    throw new Error(describeFetchFailure(e));
+  }
   const data = (await res.json().catch(() => ({}))) as StaffLoginResponse & { message?: string; error?: string };
   if (!res.ok) {
     const msg = typeof data.message === "string" ? data.message : res.statusText || "Login failed";

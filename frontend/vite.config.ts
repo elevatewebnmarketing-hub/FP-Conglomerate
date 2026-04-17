@@ -136,6 +136,11 @@ function seoPlugin(): Plugin {
   };
 }
 
+/** Dev-only proxy target when using VITE_PUBLIC_API_RELATIVE=true (same-origin /v1 → Render, avoids CORS in local dev). */
+const elevateDevProxyTarget =
+  process.env.VITE_ELEVATE_DEV_PROXY_URL?.trim().replace(/\/$/, "") ||
+  "https://elevate-backend-vpo3.onrender.com";
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   server: {
@@ -143,6 +148,13 @@ export default defineConfig(() => ({
     port: 8080,
     hmr: {
       overlay: false,
+    },
+    proxy: {
+      "/v1": {
+        target: elevateDevProxyTarget,
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
   plugins: [react(), seoPlugin()],
