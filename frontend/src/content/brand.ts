@@ -59,9 +59,20 @@ export type HiringRole = {
   image: string;
 };
 
+export type AboutLeadership = {
+  name: string;
+  title: string;
+  tagline: string;
+  bio: string[];
+  highlights: string[];
+  portraitSrc: string;
+  portraitAlt: string;
+};
+
 export type SiteContent = {
   brand: Brand;
   hero: HeroContent;
+  aboutLeadership: AboutLeadership;
   businessUnits: BusinessUnit[];
   serviceAreas: ServiceArea[];
   galleryItems: GalleryItem[];
@@ -94,6 +105,25 @@ export const defaultSiteContent: SiteContent = {
     subtext:
       "We bring faith, commerce, media, hospitality, and humanitarian work together under one promise: show up with honesty, lead with care, and build value that lasts.",
     cta: "Start a Conversation",
+  },
+  aboutLeadership: {
+    name: "Anuhi Victor Anate",
+    title: "Founder & Group Principal",
+    tagline: "Stewarding a multi-sector group with one standard—from Lagos outward.",
+    bio: [
+      "FP Conglomerate is held under the ownership and direction of Anuhi Victor Anate, who sets the tone for how the group shows up: clear accountability, disciplined execution, and care for the communities we serve.",
+      "From faith expression and media to electronics, hospitality, and humanitarian programs, the intent is the same—close the trust gap with service people can feel. That mandate runs from the parent group through each operating unit.",
+      "Alongside commercial work, the group invests in humanitarian and community-facing initiatives—supporting people and institutions where durability matters as much as headlines. The aim is institution-building, not one-off gestures.",
+      "Based in Lagos, Nigeria, the group’s footprint is anchored in local relationships and regional ambition: trusted delivery today, and structures that can scale responsibly across Africa.",
+    ],
+    highlights: [
+      "Sole ownership and group-wide governance standard",
+      "Multi-sector stewardship: ministry, commerce, media, hospitality, programs",
+      "Humanitarian and community investment as part of group purpose",
+      "Lagos, Nigeria operational anchor with an Africa-facing vision",
+    ],
+    portraitSrc: "/images/about/anuhi-victor-anate.png",
+    portraitAlt: "Anuhi Victor Anate, Founder and Group Principal, FP Conglomerate",
   },
   businessUnits: [
     {

@@ -246,6 +246,121 @@ export default function AdminPage({ publicSiteFallback = "http://localhost:8080"
                   </CardContent>
                 </Card>
               </div>
+
+              <Card className="border-border/80 shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-editorial text-xl">About / Leadership</CardTitle>
+                  <CardDescription>
+                    Founder story and portrait on the About page. Separate bio paragraphs with a blank
+                    line; use one line per highlight.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="about-lead-name">Name</Label>
+                      <Input
+                        id="about-lead-name"
+                        value={draft.aboutLeadership.name}
+                        onChange={(e) =>
+                          setDraft({
+                            ...draft,
+                            aboutLeadership: { ...draft.aboutLeadership, name: e.target.value },
+                          })
+                        }
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="about-lead-title">Title</Label>
+                      <Input
+                        id="about-lead-title"
+                        value={draft.aboutLeadership.title}
+                        onChange={(e) =>
+                          setDraft({
+                            ...draft,
+                            aboutLeadership: { ...draft.aboutLeadership, title: e.target.value },
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="about-lead-tagline">Tagline</Label>
+                    <Input
+                      id="about-lead-tagline"
+                      value={draft.aboutLeadership.tagline}
+                      onChange={(e) =>
+                        setDraft({
+                          ...draft,
+                          aboutLeadership: { ...draft.aboutLeadership, tagline: e.target.value },
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="about-lead-bio">Bio (paragraphs)</Label>
+                    <Textarea
+                      id="about-lead-bio"
+                      value={draft.aboutLeadership.bio.join("\n\n")}
+                      onChange={(e) => {
+                        const paras = e.target.value
+                          .split(/\n\n+/)
+                          .map((p) => p.trim())
+                          .filter(Boolean);
+                        setDraft({
+                          ...draft,
+                          aboutLeadership: { ...draft.aboutLeadership, bio: paras },
+                        });
+                      }}
+                      className="min-h-[180px] font-mono text-xs md:text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="about-lead-highlights">Highlights (one per line)</Label>
+                    <Textarea
+                      id="about-lead-highlights"
+                      value={draft.aboutLeadership.highlights.join("\n")}
+                      onChange={(e) => {
+                        const lines = e.target.value
+                          .split("\n")
+                          .map((l) => l.trim())
+                          .filter(Boolean);
+                        setDraft({
+                          ...draft,
+                          aboutLeadership: { ...draft.aboutLeadership, highlights: lines },
+                        });
+                      }}
+                      className="min-h-[120px] font-mono text-xs md:text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="about-lead-portrait-alt">Portrait alt text</Label>
+                    <Input
+                      id="about-lead-portrait-alt"
+                      value={draft.aboutLeadership.portraitAlt}
+                      onChange={(e) =>
+                        setDraft({
+                          ...draft,
+                          aboutLeadership: { ...draft.aboutLeadership, portraitAlt: e.target.value },
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Portrait</Label>
+                    <MediaField
+                      value={draft.aboutLeadership.portraitSrc}
+                      onChange={(value) =>
+                        setDraft({
+                          ...draft,
+                          aboutLeadership: { ...draft.aboutLeadership, portraitSrc: value },
+                        })
+                      }
+                      placeholder="/images/about/anuhi-victor-anate.png"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
 
             <TabsContent value="units" className="mt-0 space-y-6 focus-visible:outline-none">

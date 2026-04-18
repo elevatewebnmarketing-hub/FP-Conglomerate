@@ -14,6 +14,12 @@ function normalizeContent(raw: Partial<SiteContent>): SiteContent {
     ...raw,
     brand: { ...base.brand, ...raw.brand },
     hero: { ...base.hero, ...raw.hero },
+    aboutLeadership: {
+      ...base.aboutLeadership,
+      ...raw.aboutLeadership,
+      bio: raw.aboutLeadership?.bio ?? base.aboutLeadership.bio,
+      highlights: raw.aboutLeadership?.highlights ?? base.aboutLeadership.highlights,
+    },
     pageImages: { ...base.pageImages, ...raw.pageImages },
     hiring: {
       ...base.hiring,
