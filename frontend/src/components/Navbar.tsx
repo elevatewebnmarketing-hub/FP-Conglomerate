@@ -27,7 +27,7 @@ const endLinks = [{ label: "FAQ", href: "/faq" }];
 
 function linkClass(active: boolean) {
   return cn(
-    "text-sm tracking-wide transition-colors duration-300 ease-out",
+    "whitespace-nowrap text-[0.8125rem] xl:text-sm tracking-wide transition-colors duration-300 ease-out",
     active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
   );
 }
@@ -75,10 +75,10 @@ export default function Navbar() {
           : "bg-background/70",
       )}
     >
-      <div className="section-shell flex items-center justify-between min-h-[4.5rem] sm:min-h-20 py-2 sm:py-0">
+      <div className="section-shell flex min-h-[4.5rem] sm:min-h-20 items-center justify-between gap-3 py-2 sm:gap-4 sm:py-0 min-w-0">
         <Link
           to="/"
-          className="text-foreground text-base sm:text-lg md:text-xl tracking-[-0.04em] font-editorial flex items-center gap-2 min-w-0 transition-opacity duration-300 hover:opacity-90"
+          className="text-foreground flex min-w-0 max-w-[min(100%,11rem)] shrink items-center gap-1.5 text-base transition-opacity duration-300 hover:opacity-90 sm:max-w-[min(100%,14rem)] sm:gap-2 sm:text-lg md:max-w-none md:text-xl tracking-[-0.04em] font-editorial"
         >
           <span className="truncate">{content.brand.name}</span>
           <span className="inline-flex shrink-0 items-center gap-1">
@@ -88,114 +88,119 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden lg:flex flex-wrap items-center justify-end gap-x-3 xl:gap-x-5 2xl:gap-x-6 gap-y-2 max-w-[min(100%,52rem)]">
-          <Link to="/" className={linkClass(path === "/" || path === "")}>
-            Home
-          </Link>
-
-          {companyLinks.map((link) => (
-            <Link key={link.href} to={link.href} className={linkClass(path === link.href)}>
-              {link.label}
+        <div className="hidden min-w-0 flex-1 items-center justify-end overflow-visible lg:flex">
+          <div className="flex max-w-full min-w-0 flex-nowrap items-center justify-end gap-x-1 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden min-[1080px]:gap-x-2 xl:gap-x-3 2xl:gap-x-5">
+            <Link to="/" className={linkClass(path === "/" || path === "")}>
+              Home
             </Link>
-          ))}
 
-          <DropdownMenu
-            open={buDropdownOpen}
-            onOpenChange={(open) => {
-              setBuDropdownOpen(open);
-              setExpandedBuId(null);
-            }}
-          >
-            <DropdownMenuTrigger
+            {companyLinks.map((link) => (
+              <Link key={link.href} to={link.href} className={linkClass(path === link.href)}>
+                {link.label}
+              </Link>
+            ))}
+
+            <DropdownMenu
+              open={buDropdownOpen}
+              onOpenChange={(open) => {
+                setBuDropdownOpen(open);
+                setExpandedBuId(null);
+              }}
+            >
+              <DropdownMenuTrigger
+                className={cn(
+                  "inline-flex shrink-0 items-center gap-0.5 rounded-sm outline-none ring-offset-background transition-transform duration-200 ease-out data-[state=open]:scale-[0.98] focus-visible:ring-2 focus-visible:ring-ring xl:gap-1",
+                  linkClass(buActive),
+                )}
+              >
+                Business Units
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 opacity-70 transition-transform duration-300 ease-out",
+                    buDropdownOpen && "rotate-180",
+                  )}
+                  aria-hidden
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="z-[60] w-[min(100vw-2rem,20rem)] max-h-[min(70vh,480px)] overflow-y-auto overscroll-contain p-1"
+              >
+                <DropdownMenuItem asChild>
+                  <Link to="/business-units">All divisions</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                {content.businessUnits.map((unit) => (
+                  <div key={unit.id} className="py-0.5">
+                    <DropdownMenuItem
+                      onSelect={(e) => {
+                        e.preventDefault();
+                        setExpandedBuId((cur) => toggleExclusive(cur, unit.id));
+                      }}
+                      className="flex cursor-pointer items-center justify-between gap-2 rounded-sm transition-colors duration-200"
+                    >
+                      <span className="truncate text-left">{unit.name}</span>
+                      <ChevronRight
+                        className={cn(
+                          "h-4 w-4 shrink-0 opacity-60 transition-transform duration-300 ease-out",
+                          expandedBuId === unit.id && "rotate-90",
+                        )}
+                        aria-hidden
+                      />
+                    </DropdownMenuItem>
+                    {expandedBuId === unit.id ? (
+                      <div
+                        className="border-l border-border ml-2 pl-2 space-y-0.5 pb-1 mt-0.5 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-200 ease-out motion-reduce:animate-none"
+                        role="group"
+                        aria-label={`${unit.name} pages`}
+                      >
+                        <DropdownMenuItem asChild className="pl-2">
+                          <Link to={`/business-units/${unit.id}`}>Unit overview</Link>
+                        </DropdownMenuItem>
+                        {(unit.subPages ?? []).map((sp) => (
+                          <DropdownMenuItem key={sp.slug} asChild className="pl-2">
+                            <Link to={businessUnitSubPageHref(unit.id, sp.slug)}>{sp.title}</Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {tailLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                className={linkClass(path === link.href || path.startsWith(`${link.href}/`))}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            {endLinks.map((link) => (
+              <Link key={link.href} to={link.href} className={linkClass(path === link.href)}>
+                {link.label}
+              </Link>
+            ))}
+
+            <Link
+              to="/contact"
               className={cn(
-                "inline-flex items-center gap-1 rounded-sm outline-none ring-offset-background transition-transform duration-200 ease-out data-[state=open]:scale-[0.98] focus-visible:ring-2 focus-visible:ring-ring",
-                linkClass(buActive),
+                "inline-flex shrink-0 items-center rounded-sm border border-accent bg-accent px-2 py-1.5 text-[0.8125rem] font-medium text-accent-foreground xl:px-3.5 xl:py-2 xl:text-sm",
+                "transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5",
+                path === "/contact" && "ring-2 ring-accent/40 ring-offset-2 ring-offset-background",
               )}
             >
-              Business Units
-              <ChevronDown
-                className={cn(
-                  "h-3.5 w-3.5 opacity-70 transition-transform duration-300 ease-out",
-                  buDropdownOpen && "rotate-180",
-                )}
-                aria-hidden
-              />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="start"
-              className="z-[60] w-[min(100vw-2rem,20rem)] max-h-[min(70vh,480px)] overflow-y-auto overscroll-contain p-1"
-            >
-              <DropdownMenuItem asChild>
-                <Link to="/business-units">All divisions</Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {content.businessUnits.map((unit) => (
-                <div key={unit.id} className="py-0.5">
-                  <DropdownMenuItem
-                    onSelect={(e) => {
-                      e.preventDefault();
-                      setExpandedBuId((cur) => toggleExclusive(cur, unit.id));
-                    }}
-                    className="flex cursor-pointer items-center justify-between gap-2 rounded-sm transition-colors duration-200"
-                  >
-                    <span className="truncate text-left">{unit.name}</span>
-                    <ChevronRight
-                      className={cn(
-                        "h-4 w-4 shrink-0 opacity-60 transition-transform duration-300 ease-out",
-                        expandedBuId === unit.id && "rotate-90",
-                      )}
-                      aria-hidden
-                    />
-                  </DropdownMenuItem>
-                  {expandedBuId === unit.id ? (
-                    <div
-                      className="border-l border-border ml-2 pl-2 space-y-0.5 pb-1 mt-0.5 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-200 ease-out motion-reduce:animate-none"
-                      role="group"
-                      aria-label={`${unit.name} pages`}
-                    >
-                      <DropdownMenuItem asChild className="pl-2">
-                        <Link to={`/business-units/${unit.id}`}>Unit overview</Link>
-                      </DropdownMenuItem>
-                      {(unit.subPages ?? []).map((sp) => (
-                        <DropdownMenuItem key={sp.slug} asChild className="pl-2">
-                          <Link to={businessUnitSubPageHref(unit.id, sp.slug)}>{sp.title}</Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {tailLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.href}
-              className={linkClass(path === link.href || path.startsWith(`${link.href}/`))}
-            >
-              {link.label}
+              <span className="hidden xl:inline">Start a Conversation</span>
+              <span className="xl:hidden">Contact</span>
             </Link>
-          ))}
 
-          {endLinks.map((link) => (
-            <Link key={link.href} to={link.href} className={linkClass(path === link.href)}>
-              {link.label}
-            </Link>
-          ))}
-
-          <Link
-            to="/contact"
-            className={cn(
-              "inline-flex items-center rounded-sm border border-accent bg-accent px-3.5 py-2 text-sm font-medium text-accent-foreground",
-              "transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5",
-              path === "/contact" && "ring-2 ring-accent/40 ring-offset-2 ring-offset-background",
-            )}
-          >
-            Start a Conversation
-          </Link>
-
-          <ThemeToggle />
+            <div className="shrink-0">
+              <ThemeToggle />
+            </div>
+          </div>
         </div>
 
         <div className="lg:hidden flex items-center gap-2 sm:gap-3">
