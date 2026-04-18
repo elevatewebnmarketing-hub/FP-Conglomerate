@@ -1,0 +1,2 @@
+# Netlify: proxy API under same origin (avoids CORS). Placeholder host — change if your Render URL changes.
+/v1/* https://elevate-backend-vpo3.onrender.com/v1/:splat 200

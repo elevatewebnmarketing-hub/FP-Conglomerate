@@ -16,6 +16,7 @@ const company = [
   { label: "Business Units", href: "/business-units", external: false },
   { label: "Services", href: "/services", external: false },
   { label: "Gallery", href: "/gallery", external: false },
+  { label: "Portfolio", href: "/portfolio", external: false },
   { label: "Careers", href: "/careers", external: false },
   { label: "Blog", href: "/blog", external: false },
   { label: "FAQ", href: "/faq", external: false },

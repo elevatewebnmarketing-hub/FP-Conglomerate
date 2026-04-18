@@ -14,6 +14,8 @@ interface ImportMetaEnv {
   readonly VITE_PUBLIC_LEAD_INDUSTRY_VERTICAL?: string;
   readonly VITE_PUBLIC_LEAD_SOURCE_SYSTEM?: string;
   readonly VITE_PUBLIC_LEAD_FORM_ID?: string;
+  /** Organization slug for public CMS reads (`/v1/public/org/:slug/...`). Hybrid with local content when unset. */
+  readonly VITE_PUBLIC_ORGANIZATION_SLUG?: string;
 }
 
 interface ImportMeta {

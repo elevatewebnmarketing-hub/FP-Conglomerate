@@ -21,6 +21,8 @@ const ServicesPage = lazy(() => import("./pages/ServicesPage.tsx"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage.tsx"));
 const CareersPage = lazy(() => import("./pages/CareersPage.tsx"));
 const BlogPage = lazy(() => import("./pages/BlogPage.tsx"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage.tsx"));
+const PortfolioPage = lazy(() => import("./pages/PortfolioPage.tsx"));
 const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
 const FAQPage = lazy(() => import("./pages/FAQPage.tsx"));
 
@@ -69,6 +71,8 @@ const App = () => (
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/careers" element={<CareersPage />} />
                 <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:postSlug" element={<BlogPostPage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="*" element={<NotFound />} />

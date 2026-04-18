@@ -10,6 +10,10 @@ import { getStaffToken } from "@/lib/elevateApi";
 import AdminPage from "./pages/AdminPage.tsx";
 import StaffLoginPage from "./pages/StaffLoginPage.tsx";
 import LeadsPage from "./pages/LeadsPage.tsx";
+import SettingsPage from "./pages/SettingsPage.tsx";
+import CmsBlogPage from "./pages/cms/CmsBlogPage.tsx";
+import CmsHiringPage from "./pages/cms/CmsHiringPage.tsx";
+import CmsPortfolioPage from "./pages/cms/CmsPortfolioPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +37,10 @@ const App = () => (
               <Route path="/" element={<AdminHome />} />
               <Route path="/login" element={<StaffLoginPage />} />
               <Route path="/leads" element={<LeadsPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/cms/blog" element={<CmsBlogPage />} />
+              <Route path="/cms/hiring" element={<CmsHiringPage />} />
+              <Route path="/cms/portfolio" element={<CmsPortfolioPage />} />
               <Route path="/content" element={<AdminPage publicSiteFallback={publicSiteFallback} />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

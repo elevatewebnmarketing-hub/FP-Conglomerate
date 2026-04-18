@@ -24,6 +24,7 @@ const SITEMAP_PATHS: string[] = (() => {
     "/gallery",
     "/careers",
     "/blog",
+    "/portfolio",
     "/contact",
     "/faq",
   ];

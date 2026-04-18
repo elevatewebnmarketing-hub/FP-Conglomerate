@@ -1,15 +1,35 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSiteContent } from "@/content/SiteContentContext";
 import MediaAsset from "@/components/MediaAsset";
+import { useElevateBlogPosts } from "@/hooks/elevateQueries";
+import { isPublicCmsEnabled } from "@/lib/elevateApi";
+import type { BlogPostPublic } from "@/lib/elevateApiTypes";
 
 export default function BlogPage() {
   const { ref, isVisible } = useScrollReveal(0.1);
   const { content } = useSiteContent();
+  const orgCms = isPublicCmsEnabled();
+  const { data: apiPosts, isLoading, isError } = useElevateBlogPosts();
 
-  const featured = content.blogPosts[0];
-  const rest = content.blogPosts.slice(1);
+  const useApi = orgCms && !isError && apiPosts && apiPosts.length > 0;
+  const staticPosts = content.blogPosts;
+
+  const featured: BlogPostPublic | (typeof staticPosts)[0] = useApi
+    ? apiPosts[0]
+    : staticPosts[0];
+  const rest: BlogPostPublic[] | typeof staticPosts = useApi ? apiPosts.slice(1) : staticPosts.slice(1);
+
+  const featuredImage = useApi
+    ? (featured as BlogPostPublic).coverUrl || content.galleryItems[0]?.src
+    : (featured as (typeof staticPosts)[0]).image || content.galleryItems[0]?.src;
+  const featuredTitle = (featured as { title: string }).title;
+  const featuredExcerpt = (featured as { excerpt?: string }).excerpt ?? "";
+  const featuredDate = useApi
+    ? formatDate((featured as BlogPostPublic).publishedAt ?? (featured as BlogPostPublic).createdAt)
+    : (featured as (typeof staticPosts)[0]).date;
 
   return (
     <>
@@ -24,6 +44,9 @@ export default function BlogPage() {
           <h1 className="font-editorial text-5xl md:text-7xl text-foreground max-w-4xl">
             Insights and field updates from across the FP group.
           </h1>
+          {orgCms && isLoading && (
+            <p className="mt-4 text-sm text-muted-foreground">Loading latest posts…</p>
+          )}
         </div>
 
         <article
@@ -32,50 +55,96 @@ export default function BlogPage() {
           }`}
         >
           <MediaAsset
-            src={featured.image || content.galleryItems[0]?.src}
-            alt={featured.title}
+            src={featuredImage || ""}
+            alt={featuredTitle}
             className="w-full h-[240px] md:h-[360px] object-cover border border-border mb-8 dark:brightness-75"
             priority
           />
-          <p className="text-xs text-muted-foreground tracking-wide mb-4">{featured.date}</p>
-          <h2 className="font-editorial text-3xl md:text-5xl text-foreground mb-6 leading-tight max-w-4xl">
-            {featured.title}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl leading-relaxed mb-8">{featured.excerpt}</p>
-          <span className="text-sm text-accent font-medium">Read more →</span>
+          <p className="text-xs text-muted-foreground tracking-wide mb-4">{featuredDate}</p>
+          <h2 className="font-editorial text-3xl md:text-5xl text-foreground mb-6 leading-tight max-w-4xl">{featuredTitle}</h2>
+          <p className="text-muted-foreground max-w-2xl leading-relaxed mb-8">{featuredExcerpt}</p>
+          {useApi && (featured as BlogPostPublic).slug ? (
+            <Link
+              to={`/blog/${encodeURIComponent((featured as BlogPostPublic).slug)}`}
+              className="text-sm text-accent font-medium hover:underline"
+            >
+              Read more →
+            </Link>
+          ) : (
+            <span className="text-sm text-accent font-medium">Read more →</span>
+          )}
         </article>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-0 gap-x-8">
-          {rest.map((post, i) => (
-            <article
-              key={post.title}
+          {rest.map((post, i) => {
+            const isApiPost = useApi;
+            const title = (post as { title: string }).title;
+            const excerpt = (post as { excerpt?: string }).excerpt ?? "";
+            const date = isApiPost
+              ? formatDate((post as BlogPostPublic).publishedAt ?? (post as BlogPostPublic).createdAt)
+              : (post as (typeof staticPosts)[0]).date;
+            const img = isApiPost
+              ? (post as BlogPostPublic).coverUrl || content.galleryItems[0]?.src
+              : (post as (typeof staticPosts)[0]).image || content.galleryItems[0]?.src;
+            const slug = isApiPost ? (post as BlogPostPublic).slug : null;
+
+            return (
+              <article
+                key={isApiPost ? (post as BlogPostPublic).id ?? title : title}
                 className={`py-9 border-b border-border group transition-all duration-500 lg:col-span-10 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${300 + i * 100}ms` }}
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-                <div className="flex-1">
-                  <p className="text-xs text-muted-foreground tracking-wide mb-2">{post.date}</p>
-                  <h3 className="text-2xl font-editorial text-foreground group-hover:text-accent transition-colors duration-300">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-2 max-w-xl">{post.excerpt}</p>
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${300 + i * 100}ms` }}
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                  <div className="flex-1">
+                    <p className="text-xs text-muted-foreground tracking-wide mb-2">{date}</p>
+                    {slug ? (
+                      <Link to={`/blog/${encodeURIComponent(slug)}`}>
+                        <h3 className="text-2xl font-editorial text-foreground group-hover:text-accent transition-colors duration-300">
+                          {title}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <h3 className="text-2xl font-editorial text-foreground group-hover:text-accent transition-colors duration-300">
+                        {title}
+                      </h3>
+                    )}
+                    <p className="text-sm text-muted-foreground mt-2 max-w-xl">{excerpt}</p>
+                  </div>
+                  <MediaAsset
+                    src={img || ""}
+                    alt={title}
+                    className="w-full md:w-40 h-28 object-cover border border-border dark:brightness-75"
+                  />
+                  {slug ? (
+                    <Link
+                      to={`/blog/${encodeURIComponent(slug)}`}
+                      className="text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"
+                    >
+                      Read →
+                    </Link>
+                  ) : (
+                    <span className="text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
+                      Read →
+                    </span>
+                  )}
                 </div>
-                <MediaAsset
-                  src={post.image || content.galleryItems[0]?.src}
-                  alt={post.title}
-                  className="w-full md:w-40 h-28 object-cover border border-border dark:brightness-75"
-                />
-                <span className="text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
-                  Read →
-                </span>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </main>
       <Footer />
     </>
   );
+}
+
+function formatDate(iso: string | null | undefined): string {
+  if (!iso) return "";
+  try {
+    return new Date(iso).toLocaleDateString();
+  } catch {
+    return iso;
+  }
 }

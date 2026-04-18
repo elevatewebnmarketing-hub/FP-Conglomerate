@@ -34,21 +34,22 @@ Set these in **`frontend/.env`** locally and in **hosting “Environment variabl
 
 | Variable | Required | Meaning |
 |----------|----------|---------|
-| `VITE_PUBLIC_API_BASE_URL` | Yes, unless using relative proxy | Full API URL (HTTPS in production). Omit or leave empty when using `VITE_PUBLIC_API_RELATIVE=true`. |
-| `VITE_PUBLIC_API_RELATIVE` | Optional | Set to `true` on **Vercel** (marketing) to call same-origin `/v1/...`; [`frontend/vercel.json`](../frontend/vercel.json) rewrites `/v1` to your Render API so the **browser does not need cross-origin CORS** for the contact form. |
-| `VITE_ELEVATE_DEV_PROXY_URL` | Optional | Local dev only: when `RELATIVE=true`, Vite proxies `/v1` to this URL (defaults to the Render service in `vite.config.ts`). |
+| `VITE_PUBLIC_API_BASE_URL` | Optional | **Leave empty** for production to use same-origin `/v1` (hosting proxies to Render — see below). Set to full API URL only if you want **direct** browser calls and have fixed **CORS** on the API for this origin. |
+| `VITE_PUBLIC_API_RELATIVE` | Optional | Only needed to **disable** relative mode: `false` if you omit the base URL intentionally (rare). Default when base URL is empty: **relative** `/v1` on this host. |
+| `VITE_ELEVATE_DEV_PROXY_URL` | Optional | Local dev: Vite proxies `/v1` to this URL when `VITE_PUBLIC_API_BASE_URL` is empty (defaults in `vite.config.ts`). |
 | `VITE_PUBLIC_SITE_KEY` | Yes (marketing) | Publishable site key from seed/ops. |
 | `VITE_PUBLIC_LEAD_INDUSTRY_VERTICAL` | Recommended | Must be one of: `construction`, `real_estate`, `ngo`, `hospital`, `marketing`, `other`. |
 | `VITE_PUBLIC_LEAD_SOURCE_SYSTEM` | Optional | Default `marketing-site` if unset. |
 | `VITE_PUBLIC_LEAD_FORM_ID` | Optional | Default `contact-main` if unset. |
 | `VITE_SITE_URL` | Recommended in prod | Canonical marketing URL for sitemap/SEO (no trailing slash). |
+| `VITE_PUBLIC_ORGANIZATION_SLUG` | Optional | **Hybrid CMS:** org slug for public reads (`GET /v1/public/org/:slug/...`). No `X-Site-Key` on these requests. When unset or on error, blog/careers/portfolio use local [`SiteContent`](../frontend/src/content/SiteContentContext.tsx) data. |
 
 For **`admin/`**, set at least:
 
 | Variable | Required | Meaning |
 |----------|----------|---------|
 | `VITE_PUBLIC_API_BASE_URL` | Yes | Same as marketing. |
-| `VITE_PUBLIC_ORGANIZATION_SLUG` | Optional | Default org slug on the login form. |
+| `VITE_PUBLIC_ORGANIZATION_SLUG` | Optional | Default org slug on the staff login form (same value as marketing if you use hybrid CMS). |
 | `VITE_PUBLIC_SITE_URL` | Optional | Public site URL for “back” navigation. |
 
 **Vite bakes `VITE_*` at build time** — change hosting env and **redeploy** after updates.
@@ -62,16 +63,22 @@ For **`admin/`**, set at least:
    - Production admin: `https://admin.yourdomain.com`
 2. If the API **site** row has **`allowed_origins`** set, the browser **`Origin`** for `POST /v1/public/leads` must match. Easiest first-time setup: leave allowed origins empty for the site, or set them to the same HTTPS marketing origin.
 
-### Marketing site on Vercel without fixing CORS (recommended for Render)
+### Marketing site: avoid CORS (recommended)
 
-If the contact form shows **“No response from the API”** / **Failed to fetch** because **Render’s `CORS_ORIGINS`** does not list your Vercel preview or production URL:
+If the contact form shows **“No response from the API”** on **https://www.fpconglomerate.com** (or any host), the usual cause is **cross-origin** requests to Render without **`CORS_ORIGINS`** including your exact site origin.
 
-1. In **Vercel** (marketing project), set **`VITE_PUBLIC_API_RELATIVE=true`** and keep **`VITE_PUBLIC_SITE_KEY`** set.
-2. Do **not** set `VITE_PUBLIC_API_BASE_URL` (or leave it empty) for that build.
-3. Ensure [`frontend/vercel.json`](../frontend/vercel.json) includes a rewrite from `/v1/:path*` to your Render service (`https://…onrender.com/v1/:path*`). Update the hostname there if you change API host.
-4. Redeploy. The browser only talks to your **marketing origin**; Vercel forwards `/v1` to Render, so **no browser CORS** to Render for the marketing app.
+**Fix A — Same-origin proxy (no CORS on Render for the marketing site)**
 
-**Admin** still calls the API by full URL unless you add a similar rewrite on the admin project; easiest is to keep **`VITE_PUBLIC_API_BASE_URL=https://…onrender.com`** for admin and add your **admin origin** to **`CORS_ORIGINS`** on Render.
+1. In **Vercel** (or Netlify) env for the marketing project: **remove** `VITE_PUBLIC_API_BASE_URL` if it is set (empty = use `/v1` on your own domain).
+2. Keep **`VITE_PUBLIC_SITE_KEY`** set.
+3. Ensure rewrites exist: [`frontend/vercel.json`](../frontend/vercel.json) (Vercel) and [`frontend/public/_redirects`](../frontend/public/_redirects) (Netlify) proxy `/v1/*` to your Render API. Update the Render hostname in both files if it changes.
+4. Redeploy. The built app will call **`https://www.fpconglomerate.com/v1/...`**, not Render directly.
+
+**Fix B — Direct API URL**
+
+Keep `VITE_PUBLIC_API_BASE_URL=https://elevate-backend-vpo3.onrender.com` and on **Render** set **`CORS_ORIGINS`** to include **`https://www.fpconglomerate.com`** (and preview URLs if needed). No trailing slashes; exact match to the browser `Origin`.
+
+**Admin** usually keeps a **direct** `VITE_PUBLIC_API_BASE_URL` and relies on **CORS** for the admin origin, unless you add a `/v1` proxy on the admin host too.
 
 ---
 
@@ -110,7 +117,7 @@ Create **two** Vercel projects from the same Git repo with different **Root Dire
 | Output | `dist` |
 | Environment Variables | `VITE_PUBLIC_API_BASE_URL`, optional `VITE_PUBLIC_ORGANIZATION_SLUG`, `VITE_PUBLIC_SITE_URL` |
 
-[`admin/vercel.json`](../admin/vercel.json) configures SPA rewrites for `/login`, `/leads`, `/content`.
+[`admin/vercel.json`](../admin/vercel.json) configures SPA rewrites so client routes work (`/login`, `/leads`, `/settings`, `/cms/*`, `/content`, etc.).
 
 ---
 
@@ -123,7 +130,8 @@ Same idea: two sites, **Base directory** `frontend` or `admin`, build `npm run b
 ## Smoke tests after deploy
 
 1. Open marketing **Contact** page → submit → DevTools Network: `POST …/v1/public/leads` → **201**.
-2. Open admin **/login** → sign in → **/leads** → `GET …/v1/leads` → **200** with `items`.
+2. With `VITE_PUBLIC_ORGANIZATION_SLUG` set, open **Blog**, **Careers**, or **Portfolio** → `GET …/v1/public/org/<slug>/…` → **200** (or fallback content if the API is unavailable).
+3. Open admin **/login** → sign in → **/leads** → `GET …/v1/leads` → **200** with `items`; **/settings** and **/cms/*** should load with staff JWT.
 
 If you see **CORS** errors, fix **`CORS_ORIGINS`** on the API. If **403** on leads POST, check **site `allowed_origins`** vs your marketing **Origin**.
 

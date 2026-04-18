@@ -4,6 +4,10 @@ import { cn } from "@/lib/utils";
 const links: { to: string; label: string }[] = [
   { to: "/login", label: "Staff login" },
   { to: "/leads", label: "Leads" },
+  { to: "/settings", label: "Settings" },
+  { to: "/cms/blog", label: "CMS — Blog" },
+  { to: "/cms/hiring", label: "CMS — Hiring" },
+  { to: "/cms/portfolio", label: "CMS — Portfolio" },
   { to: "/content", label: "Content (local)" },
 ];
 
@@ -21,7 +25,7 @@ export default function AdminNav() {
             to={to}
             className={cn(
               "rounded-md px-3 py-1.5 transition-colors",
-              pathname === to
+              pathname === to || (to !== "/" && pathname.startsWith(`${to}/`))
                 ? "bg-muted font-medium text-foreground"
                 : "text-muted-foreground hover:bg-muted/80 hover:text-foreground",
             )}

@@ -18,6 +18,7 @@ const companyLinks = [{ label: "About", href: "/about" }];
 const tailLinks = [
   { label: "Services", href: "/services" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Careers", href: "/careers" },
   { label: "Blog", href: "/blog" },
 ];

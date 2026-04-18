@@ -2,14 +2,34 @@
 
 const STAFF_TOKEN_KEY = "elevate_v1_access_token";
 
-/** When true, API calls use same-origin paths like `/v1/...` (use with Vercel rewrite to your Render API — avoids browser CORS). */
-export function useRelativeApiBase(): boolean {
-  const v = import.meta.env.VITE_PUBLIC_API_RELATIVE?.trim().toLowerCase();
-  return v === "true" || v === "1" || v === "yes";
+async function readJsonError(res: Response): Promise<string> {
+  const text = await res.text();
+  try {
+    const j = JSON.parse(text) as { message?: string; error?: string };
+    if (typeof j.message === "string") return j.message;
+    if (typeof j.error === "string") return j.error;
+    return text || res.statusText;
+  } catch {
+    return text || res.statusText;
+  }
+}
+
+/**
+ * Same-origin `/v1/...` requests (hosting rewrites to Render — no browser CORS to the API).
+ * - `true` when `VITE_PUBLIC_API_BASE_URL` is unset/empty (recommended for production with `vercel.json` / Netlify `_redirects`).
+ * - `false` when an explicit API URL is set (then CORS on the API must allow this site’s origin).
+ * - Set `VITE_PUBLIC_API_RELATIVE=false` to disable relative mode when you intentionally omit the base URL (rare).
+ */
+export function usesRelativeApiBase(): boolean {
+  const raw = import.meta.env.VITE_PUBLIC_API_BASE_URL?.trim();
+  if (raw) return false;
+  const rel = import.meta.env.VITE_PUBLIC_API_RELATIVE?.trim().toLowerCase();
+  if (rel === "false" || rel === "0" || rel === "no") return false;
+  return true;
 }
 
 export function getPublicApiBaseUrl(): string {
-  if (useRelativeApiBase()) return "";
+  if (usesRelativeApiBase()) return "";
   const raw = import.meta.env.VITE_PUBLIC_API_BASE_URL?.trim();
   if (!raw) return "";
   return raw.replace(/\/$/, "");
@@ -18,12 +38,12 @@ export function getPublicApiBaseUrl(): string {
 export function isElevateConfigured(): boolean {
   const key = import.meta.env.VITE_PUBLIC_SITE_KEY?.trim();
   if (!key) return false;
-  return useRelativeApiBase() || Boolean(getPublicApiBaseUrl());
+  return usesRelativeApiBase() || Boolean(getPublicApiBaseUrl());
 }
 
 export function apiUrl(path: string): string {
   const p = path.startsWith("/") ? path : `/${path}`;
-  if (useRelativeApiBase()) return p;
+  if (usesRelativeApiBase()) return p;
   const base = getPublicApiBaseUrl();
   if (!base) {
     throw new Error(
@@ -33,10 +53,55 @@ export function apiUrl(path: string): string {
   return `${base}${p}`;
 }
 
+export function isApiBaseConfigured(): boolean {
+  return usesRelativeApiBase() || Boolean(getPublicApiBaseUrl());
+}
+
+/** Public org slug for marketing CMS (`GET /v1/public/org/:slug/...`). */
+export function getMarketingOrganizationSlug(): string | undefined {
+  const s = import.meta.env.VITE_PUBLIC_ORGANIZATION_SLUG?.trim();
+  return s || undefined;
+}
+
+export function isPublicCmsEnabled(): boolean {
+  return Boolean(getMarketingOrganizationSlug() && isApiBaseConfigured());
+}
+
+/** Public catalog reads — no site key, no JWT (published content only). */
+export async function publicOrgFetch(path: string, init?: RequestInit): Promise<Response> {
+  if (!isApiBaseConfigured()) {
+    throw new Error("API base not configured.");
+  }
+  const headers: Record<string, string> = {
+    Accept: "application/json",
+    ...(init?.headers as Record<string, string> | undefined),
+  };
+  if (init?.body != null && !headers["Content-Type"]) {
+    headers["Content-Type"] = "application/json";
+  }
+  return fetch(apiUrl(path), { ...init, headers });
+}
+
+/** GET JSON from public org routes (no auth). */
+export async function publicOrgJson<T>(path: string): Promise<T> {
+  const res = await publicOrgFetch(path, { method: "GET" });
+  if (!res.ok) throw new Error(await readJsonError(res));
+  return res.json() as Promise<T>;
+}
+
+/** Normalize list endpoints that return either `T[]` or `{ items: T[] }`. */
+export function normalizeItems<T>(data: unknown): T[] {
+  if (Array.isArray(data)) return data as T[];
+  if (data && typeof data === "object" && "items" in data && Array.isArray((data as { items: unknown }).items)) {
+    return (data as { items: T[] }).items;
+  }
+  return [];
+}
+
 /** Public marketing / lead capture — requires site key (never JWT). */
 export async function publicFetch(path: string, init?: RequestInit): Promise<Response> {
   const siteKey = import.meta.env.VITE_PUBLIC_SITE_KEY?.trim();
-  if (!siteKey || (!useRelativeApiBase() && !getPublicApiBaseUrl())) {
+  if (!siteKey || (!usesRelativeApiBase() && !getPublicApiBaseUrl())) {
     throw new Error("Missing VITE_PUBLIC_SITE_KEY or API base (VITE_PUBLIC_API_BASE_URL or VITE_PUBLIC_API_RELATIVE).");
   }
   return fetch(apiUrl(path), {
@@ -116,12 +181,12 @@ export function describeFetchFailure(cause: unknown): string {
 
   const parts = [
     "No response from the API.",
-    useRelativeApiBase()
+    usesRelativeApiBase()
       ? "Same-origin /v1 proxy failed — confirm Vercel rewrites /v1 to your Render service and redeploy."
       : pageHttps && apiHttp
         ? "This page is HTTPS but the API URL is HTTP (mixed content is blocked). Use an https:// API URL."
         : "Check the API is running, VITE_PUBLIC_API_BASE_URL is correct, and CORS_ORIGINS on the API includes this origin.",
-    useRelativeApiBase()
+    usesRelativeApiBase()
       ? "Mode: VITE_PUBLIC_API_RELATIVE=true (paths under /v1 on this host)."
       : `Current API base: ${baseStr || "(empty)"}.`,
   ].filter(Boolean) as string[];
@@ -171,4 +236,117 @@ export async function postStaffLogin(body: StaffLoginBody): Promise<StaffLoginRe
     throw new Error("Invalid login response");
   }
   return { access_token: data.access_token };
+}
+
+export async function staffJson<T>(path: string, init?: RequestInit): Promise<T> {
+  const res = await staffFetch(path, init);
+  if (!res.ok) throw new Error(await readJsonError(res));
+  if (res.status === 204) return undefined as T;
+  return res.json() as Promise<T>;
+}
+
+export async function staffGet<T>(path: string): Promise<T> {
+  return staffJson<T>(path, { method: "GET" });
+}
+
+export async function staffPost<T>(path: string, body: unknown): Promise<T> {
+  return staffJson<T>(path, { method: "POST", body: JSON.stringify(body) });
+}
+
+export async function staffPatch<T>(path: string, body: unknown): Promise<T> {
+  return staffJson<T>(path, { method: "PATCH", body: JSON.stringify(body) });
+}
+
+export async function staffDelete(path: string): Promise<void> {
+  const res = await staffFetch(path, { method: "DELETE" });
+  if (!res.ok) throw new Error(await readJsonError(res));
+}
+
+export function decodeStaffJwtPayload(): { sub?: string; role?: string; org_id?: string } | null {
+  const t = getStaffToken();
+  if (!t) return null;
+  const parts = t.split(".");
+  if (parts.length < 2) return null;
+  try {
+    const b64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const pad = "=".repeat((4 - (b64.length % 4)) % 4);
+    const json = atob(b64 + pad);
+    return JSON.parse(json) as { sub?: string; role?: string; org_id?: string };
+  } catch {
+    return null;
+  }
+}
+
+export function staffCanWrite(): boolean {
+  return decodeStaffJwtPayload()?.role === "org_admin";
+}
+
+export type CloudinarySignatureResponse = {
+  cloudName: string;
+  apiKey: string;
+  timestamp: number;
+  signature: string;
+  folder: string;
+  tags?: string[];
+  resourceType: "image" | "video";
+  uploadUrl: string;
+};
+
+/** Request signed upload params (fails if API has no Cloudinary env). */
+export async function requestCloudinaryUploadSignature(
+  body: { resourceType?: "image" | "video"; context?: string; tags?: string[] } = {},
+): Promise<CloudinarySignatureResponse> {
+  return staffPost<CloudinarySignatureResponse>("/v1/admin/cloudinary/upload-signature", body);
+}
+
+/** Register asset after direct Cloudinary upload. */
+export async function registerCloudinaryAsset(body: Record<string, unknown>): Promise<Record<string, unknown>> {
+  return staffPost<Record<string, unknown>>("/v1/admin/cloudinary/assets", body);
+}
+
+/**
+ * Full flow: signature → multipart to Cloudinary → register metadata. Returns media asset id when API includes it.
+ */
+export async function uploadStaffImageAndRegister(
+  file: File,
+  opts?: { context?: string },
+): Promise<{ mediaAssetId: string | undefined; secureUrl: string; publicId: string }> {
+  const sig = await requestCloudinaryUploadSignature({
+    resourceType: "image",
+    context: opts?.context,
+  });
+  const form = new FormData();
+  form.append("file", file);
+  form.append("api_key", sig.apiKey);
+  form.append("timestamp", String(sig.timestamp));
+  form.append("signature", sig.signature);
+  form.append("folder", sig.folder);
+  if (sig.tags?.length) {
+    form.append("tags", sig.tags.join(","));
+  }
+  const up = await fetch(sig.uploadUrl, { method: "POST", body: form });
+  if (!up.ok) {
+    throw new Error(`Cloudinary upload failed: ${up.status}`);
+  }
+  const uploaded = (await up.json()) as { secure_url?: string; public_id?: string; width?: number; height?: number };
+  const secureUrl = uploaded.secure_url ?? "";
+  const publicId = uploaded.public_id ?? "";
+  if (!secureUrl || !publicId) {
+    throw new Error("Unexpected Cloudinary response");
+  }
+  const reg = await registerCloudinaryAsset({
+    publicId,
+    secureUrl,
+    resourceType: "image",
+    width: uploaded.width,
+    height: uploaded.height,
+    folder: sig.folder,
+  });
+  const id =
+    typeof reg.id === "string"
+      ? reg.id
+      : typeof reg.mediaAssetId === "string"
+        ? reg.mediaAssetId
+        : undefined;
+  return { mediaAssetId: id, secureUrl, publicId };
 }
