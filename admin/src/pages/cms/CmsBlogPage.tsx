@@ -53,6 +53,7 @@ export default function CmsBlogPage() {
   const [body, setBody] = useState("");
   const [status, setStatus] = useState("draft");
   const [coverMediaAssetId, setCoverMediaAssetId] = useState<string | undefined>();
+  const [saving, setSaving] = useState(false);
 
   const resetForm = () => {
     setEditing(null);
@@ -110,19 +111,29 @@ export default function CmsBlogPage() {
     } else {
       payload.publishedAt = null;
     }
+    setSaving(true);
     try {
       if (editing?.id) {
-        await staffPatch(`/v1/admin/blog-posts/${editing.id}`, payload);
-        toast.success("Post updated");
+        const updated = await staffPatch<BlogPostAdmin>(`/v1/admin/blog-posts/${editing.id}`, payload);
+        const label = String(updated?.title ?? title.trim() ?? "Post");
+        toast.success("Post updated", {
+          description: `Saved “${label}”. The marketing site will show it after it refetches (published posts only).`,
+        });
       } else {
-        await staffPost("/v1/admin/blog-posts", payload);
-        toast.success("Post created");
+        const created = await staffPost<BlogPostAdmin>("/v1/admin/blog-posts", payload);
+        const label = String(created?.title ?? title.trim() ?? "Post");
+        const outSlug = String(created?.slug ?? s);
+        toast.success("Post created", {
+          description: `Saved “${label}” (slug: ${outSlug}). Set status to published for it to appear on the public blog.`,
+        });
       }
       setOpen(false);
       resetForm();
       await qc.invalidateQueries({ queryKey: ["admin", "blog-posts"] });
     } catch (e) {
       toastRequestFailed("Couldn’t save this post", e);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -246,8 +257,8 @@ export default function CmsBlogPage() {
               Cancel
             </Button>
             {canWrite ? (
-              <Button type="button" onClick={() => void save()}>
-                Save
+              <Button type="button" disabled={saving} onClick={() => void save()}>
+                {saving ? "Saving…" : "Save"}
               </Button>
             ) : null}
           </DialogFooter>

@@ -12,15 +12,25 @@ export default function BlogPage() {
   const { ref, isVisible } = useScrollReveal(0.1);
   const { content } = useSiteContent();
   const orgCms = isPublicCmsEnabled();
-  const { data: apiPosts, isLoading, isError } = useElevateBlogPosts();
-
-  const useApi = orgCms && !isError && apiPosts && apiPosts.length > 0;
+  const { data: apiPosts, isLoading, isError, isSuccess } = useElevateBlogPosts();
   const staticPosts = content.blogPosts;
 
-  const featured: BlogPostPublic | (typeof staticPosts)[0] = useApi
-    ? apiPosts[0]
-    : staticPosts[0];
-  const rest: BlogPostPublic[] | typeof staticPosts = useApi ? apiPosts.slice(1) : staticPosts.slice(1);
+  /** Public org feed is published-only; if the API omits status, treat as published. */
+  const publishedFromApi =
+    orgCms && isSuccess && Array.isArray(apiPosts)
+      ? apiPosts.filter((p) => {
+          const st = (p as BlogPostPublic & { status?: string }).status;
+          return st == null || st === "" || st === "published";
+        })
+      : [];
+
+  const useApi =
+    orgCms && isSuccess && !isError && publishedFromApi.length > 0;
+
+  const featured: BlogPostPublic | (typeof staticPosts)[0] = useApi ? publishedFromApi[0] : staticPosts[0];
+  const rest: BlogPostPublic[] | typeof staticPosts = useApi ? publishedFromApi.slice(1) : staticPosts.slice(1);
+  const showCmsEmptyNote =
+    orgCms && isSuccess && !isError && publishedFromApi.length === 0 && staticPosts.length > 0;
 
   const featuredImage = useApi
     ? (featured as BlogPostPublic).coverUrl || content.galleryItems[0]?.src
@@ -47,6 +57,18 @@ export default function BlogPage() {
           {orgCms && isLoading && (
             <p className="mt-4 text-sm text-muted-foreground">Loading latest posts…</p>
           )}
+          {showCmsEmptyNote ? (
+            <p className="mt-4 text-sm text-muted-foreground max-w-2xl">
+              No published posts from your CMS yet (drafts stay private). Showing the site’s default stories until you
+              publish at least one post in the admin.
+            </p>
+          ) : null}
+          {orgCms && isError ? (
+            <p className="mt-4 text-sm text-muted-foreground max-w-2xl">
+              Could not load posts from the API. Showing default stories. Check your connection and{" "}
+              <code className="text-xs bg-muted px-1 rounded">VITE_PUBLIC_ORGANIZATION_SLUG</code> / API base in the build.
+            </p>
+          ) : null}
         </div>
 
         <article
