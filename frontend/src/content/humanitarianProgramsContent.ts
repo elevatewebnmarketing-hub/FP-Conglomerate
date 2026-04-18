@@ -48,17 +48,30 @@ export const humanitarianProgramsContent = {
   kogi: {
     id: "kogi-outreach",
     title: "Kogi Special Arms Blanket Outreach",
-    subtitle: "Field distribution focused on warmth, essentials, and respectful engagement with vulnerable households.",
+    subtitle:
+      "On-the-ground distribution in Kogi State—blankets, essentials, and face-to-face engagement that respects every household.",
     body:
-      "This outreach brings blankets and core supplies directly to communities in Kogi State. We coordinate with local contacts, keep records for accountability, and run distributions so people get help with as little disruption as possible.",
+      "This program meets people where they live: coordinated handoffs, clear accountability with local contacts, and distributions designed to minimize disruption. We focus on warmth, core supplies, and steady communication—not optics.",
+    galleryNote:
+      "Field documentation from outreach days in Kogi—shared to show real delivery, not sensationalize hardship.",
     gallery: [
-      { src: `${base}/kogi-01.jpg`, alt: "Team members coordinating supply bags during a community distribution." },
-      { src: `${base}/kogi-02.jpg`, alt: "Volunteers preparing essentials for handoff to residents." },
-      { src: `${base}/kogi-03.jpg`, alt: "Community members receiving packaged support during outreach." },
-      { src: `${base}/kogi-04.jpg`, alt: "Distribution moment between field team and local leaders." },
-      { src: `${base}/kogi-05.jpg`, alt: "Supplies staged for organized delivery in a local area." },
-      { src: `${base}/kogi-06.jpg`, alt: "Residents and outreach staff in conversation during the program." },
-      { src: `${base}/kogi-07.jpg`, alt: "Closing segment of the outreach with essentials distributed." },
+      { src: `${base}/kogi-01.png`, alt: "Outdoor distribution: outreach team and community members gathered on unpaved ground near modest structures." },
+      { src: `${base}/kogi-02.png`, alt: "Volunteers and residents during a supply handoff beside weathered corrugated shelters." },
+      { src: `${base}/kogi-03.png`, alt: "Aid items being shared with seated community members in an informal settlement setting." },
+      { src: `${base}/kogi-04.png`, alt: "Team members distributing supplies from bags during a community visit." },
+      { src: `${base}/kogi-05.png`, alt: "Residents receiving support during an outdoor outreach session." },
+      { src: `${base}/kogi-06.png`, alt: "Conversation and coordination between outreach workers and local community members." },
+      { src: `${base}/kogi-07.png`, alt: "Distribution moment with supplies passed hand to hand in a camp-like environment." },
+      { src: `${base}/kogi-08.png`, alt: "Volunteers engaging with women and children during blanket and essentials outreach." },
+      { src: `${base}/kogi-09.png`, alt: "Field team members preparing to hand over packaged essentials to residents." },
+      { src: `${base}/kogi-10.png`, alt: "Community gathering during relief distribution between makeshift buildings." },
+      { src: `${base}/kogi-11.png`, alt: "Outreach workers and residents in discussion during a distribution pause." },
+      { src: `${base}/kogi-12.png`, alt: "Supplies carried through a narrow outdoor lane between shelters." },
+      { src: `${base}/kogi-13.png`, alt: "Residents lining up or receiving items during a structured distribution." },
+      { src: `${base}/kogi-14.png`, alt: "Elderly and younger community members present during an essentials handoff." },
+      { src: `${base}/kogi-15.png`, alt: "Wider view of outreach activity across a dusty common area." },
+      { src: `${base}/kogi-16.png`, alt: "Volunteer leaning to pass supplies to a seated community member." },
+      { src: `${base}/kogi-17.png`, alt: "Closing moments of outreach with residents and field team still engaged." },
     ],
     impact: [
       { label: "Location", value: "Kogi State" },
@@ -87,10 +100,10 @@ export const humanitarianProgramsContent = {
   moments: [
     { src: `${base}/idp-02.png`, alt: "Settlement pathways between temporary shelters in an IDP context." },
     { src: `${base}/idp-06.png`, alt: "Elevated view across temporary shelters in a camp setting." },
-    { src: `${base}/kogi-02.jpg`, alt: "Volunteers preparing outreach supplies." },
+    { src: `${base}/kogi-02.png`, alt: "Volunteers preparing outreach supplies." },
     { src: `${base}/idp-07.png`, alt: "Organized shelter rows and paths visible across a camp area." },
     { src: `${base}/idp-08.png`, alt: "Community gathering on open ground in a settlement context." },
-    { src: `${base}/kogi-04.jpg`, alt: "Coordinated distribution moment during Kogi outreach." },
+    { src: `${base}/kogi-04.png`, alt: "Coordinated distribution moment during Kogi outreach." },
   ],
   cta: {
     title: "Be Part of the Impact",

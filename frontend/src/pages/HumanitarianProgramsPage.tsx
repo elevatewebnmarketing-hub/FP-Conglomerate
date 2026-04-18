@@ -90,18 +90,19 @@ export default function HumanitarianProgramsPage() {
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">{kogi.subtitle}</p>
               <p className="mt-6 text-muted-foreground leading-relaxed">{kogi.body}</p>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{kogi.galleryNote}</p>
             </div>
 
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-              {kogi.gallery.map((item) => (
+              {kogi.gallery.map((item, index) => (
                 <figure
-                  key={item.src}
+                  key={`${item.src}-${index}`}
                   className="group overflow-hidden rounded-sm border border-border bg-muted/20 transition duration-300 hover:shadow-lg"
                 >
                   <MediaAsset
                     src={item.src}
                     alt={item.alt}
-                    className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-[1.02]"
+                    className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-[1.02] dark:brightness-[0.9] dark:contrast-[0.98]"
                   />
                 </figure>
               ))}

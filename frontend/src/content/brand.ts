@@ -291,7 +291,7 @@ export const defaultSiteContent: SiteContent = {
       heroImage: "/images/mia/humanitarian/hero.jpg",
       gallery: [
         "/images/mia/humanitarian/idp-04.png",
-        "/images/mia/humanitarian/kogi-02.jpg",
+        "/images/mia/humanitarian/kogi-02.png",
         "/images/mia/humanitarian/idp-06.png",
       ],
       subPages: [
@@ -302,7 +302,7 @@ export const defaultSiteContent: SiteContent = {
             "Relief that puts people first: outreach in the field, honest awareness, and delivery we can stand behind.",
           content:
             "Programs are designed to meet urgent realities while restoring long-term hope through education, shelter support, and community-centered assistance.",
-          image: "/images/mia/humanitarian/kogi-01.jpg",
+          image: "/images/mia/humanitarian/kogi-01.png",
         },
         {
           slug: "idp-camps",
