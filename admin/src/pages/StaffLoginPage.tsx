@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AdminNav from "../components/AdminNav.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPublicApiBaseUrl, getStaffToken, postStaffLogin, setStaffToken } from "@/lib/elevateApi";
+import { getPublicMarketingSiteUrl } from "../lib/publicSite.ts";
 import { toast } from "sonner";
 
 const defaultSlug = import.meta.env.VITE_PUBLIC_ORGANIZATION_SLUG?.trim() ?? "";
@@ -18,6 +16,8 @@ export default function StaffLoginPage() {
   const [password, setPassword] = useState("");
   const [organizationSlug, setOrganizationSlug] = useState(defaultSlug);
   const [submitting, setSubmitting] = useState(false);
+
+  const siteUrl = getPublicMarketingSiteUrl();
 
   if (getStaffToken()) {
     return <Navigate to="/leads" replace />;
@@ -49,12 +49,15 @@ export default function StaffLoginPage() {
   };
 
   return (
-    <>
-      <Navbar />
-      <AdminNav />
-      <main className="min-h-[60vh] bg-muted/25 pb-24 pt-8">
-        <div className="section-shell max-w-md">
-          <Card className="border-border/80 shadow-sm">
+    <div className="relative flex min-h-screen flex-col bg-muted/30">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--muted))_0%,_transparent_55%)] opacity-90"
+        aria-hidden
+      />
+      <div className="relative flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md space-y-8">
+          <p className="text-center font-editorial text-2xl tracking-tight text-foreground">FP Conglomerate</p>
+          <Card className="border-border/80 shadow-md">
             <CardHeader>
               <CardTitle className="font-editorial text-2xl">Staff sign in</CardTitle>
               <CardDescription>
@@ -107,9 +110,17 @@ export default function StaffLoginPage() {
               </form>
             </CardContent>
           </Card>
+          <p className="text-center text-sm text-muted-foreground">
+            <a
+              href={siteUrl}
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+              rel="noopener noreferrer"
+            >
+              Back to website
+            </a>
+          </p>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </div>
   );
 }

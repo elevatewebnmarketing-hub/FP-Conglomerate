@@ -1,9 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AdminNav from "../../components/AdminNav.tsx";
-import RequireStaff from "../../components/RequireStaff.tsx";
 import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,14 +24,6 @@ import type { HiringPositionAdmin } from "@/lib/elevateApiTypes";
 import { toast } from "sonner";
 
 export default function CmsHiringPage() {
-  return (
-    <RequireStaff>
-      <CmsHiringInner />
-    </RequireStaff>
-  );
-}
-
-function CmsHiringInner() {
   const qc = useQueryClient();
   const canWrite = staffCanWrite();
   const { data: rows, isLoading } = useQuery({
@@ -112,14 +100,12 @@ function CmsHiringInner() {
 
   return (
     <>
-      <Navbar />
-      <AdminNav />
-      <main className="min-h-[60vh] bg-muted/25 pb-24 pt-8">
-        <div className="section-shell space-y-6">
+      <main className="p-4 sm:p-6">
+        <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <p className="eyebrow mb-1">CMS</p>
-              <h1 className="font-editorial text-3xl text-foreground">Hiring positions</h1>
+              <h2 className="font-editorial text-3xl text-foreground">Hiring positions</h2>
             </div>
             {canWrite ? (
               <Button
@@ -210,7 +196,6 @@ function CmsHiringInner() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <Footer />
     </>
   );
 }

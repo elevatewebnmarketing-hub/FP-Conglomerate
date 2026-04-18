@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useSiteContent } from "@/content/SiteContentContext";
 import { defaultSiteContent, type SiteContent } from "@/content/brand";
 import PageBackButton from "@/components/PageBackButton";
-import AdminNav from "../components/AdminNav.tsx";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -85,23 +82,20 @@ export default function AdminPage({ publicSiteFallback = "http://localhost:8080"
   };
 
   return (
-    <>
-      <Navbar />
-      <AdminNav />
-      <main className="min-h-screen bg-muted/35 pb-24">
-        <div className="section-shell pt-28 md:pt-32">
-          <PageBackButton className="mb-6" fallbackTo={publicSiteFallback} />
-        </div>
+    <main className="min-h-full bg-muted/20 pb-16">
+      <div className="section-shell pt-6 sm:pt-8">
+        <PageBackButton className="mb-6" fallbackTo={publicSiteFallback} />
+      </div>
 
-        <Tabs defaultValue="overview" className="w-full">
-          <div className="sticky top-20 z-40 border-b border-border/80 bg-background/90 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-background/75">
-            <div className="section-shell space-y-4 py-4">
+      <Tabs defaultValue="overview" className="w-full">
+        <div className="sticky top-0 z-30 border-b border-border/80 bg-background/95 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
+          <div className="section-shell space-y-4 py-4">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div className="min-w-0">
                   <p className="eyebrow mb-2">Admin</p>
-                  <h1 className="font-editorial text-3xl tracking-tight text-foreground md:text-4xl lg:text-5xl">
+                  <h2 className="font-editorial text-3xl tracking-tight text-foreground md:text-4xl lg:text-5xl">
                     Content dashboard
-                  </h1>
+                  </h2>
                   <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
                     Edit copy and media. Save to publish to this browser; use Reset to restore defaults. The admin app
                     uses its own origin, so drafts are separate from the public site until you wire a shared backend.
@@ -643,8 +637,6 @@ export default function AdminPage({ publicSiteFallback = "http://localhost:8080"
             </TabsContent>
           </div>
         </Tabs>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }

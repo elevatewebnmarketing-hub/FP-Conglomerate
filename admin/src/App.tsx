@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/ScrollToTop";
 import { SiteContentProvider } from "@/content/SiteContentContext";
 import { getStaffToken } from "@/lib/elevateApi";
+import AuthenticatedLayout from "./layouts/AuthenticatedLayout.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import StaffLoginPage from "./pages/StaffLoginPage.tsx";
 import LeadsPage from "./pages/LeadsPage.tsx";
@@ -14,11 +15,11 @@ import SettingsPage from "./pages/SettingsPage.tsx";
 import CmsBlogPage from "./pages/cms/CmsBlogPage.tsx";
 import CmsHiringPage from "./pages/cms/CmsHiringPage.tsx";
 import CmsPortfolioPage from "./pages/cms/CmsPortfolioPage.tsx";
+import { getPublicMarketingSiteUrl } from "./lib/publicSite.ts";
 
 const queryClient = new QueryClient();
 
-const publicSiteFallback =
-  import.meta.env.VITE_PUBLIC_SITE_URL?.trim().replace(/\/$/, "") || "http://localhost:8080";
+const publicSiteFallback = getPublicMarketingSiteUrl();
 
 function AdminHome() {
   return <Navigate to={getStaffToken() ? "/leads" : "/login"} replace />;
@@ -36,12 +37,14 @@ const App = () => (
             <Routes>
               <Route path="/" element={<AdminHome />} />
               <Route path="/login" element={<StaffLoginPage />} />
-              <Route path="/leads" element={<LeadsPage />} />
-              <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/cms/blog" element={<CmsBlogPage />} />
-              <Route path="/cms/hiring" element={<CmsHiringPage />} />
-              <Route path="/cms/portfolio" element={<CmsPortfolioPage />} />
-              <Route path="/content" element={<AdminPage publicSiteFallback={publicSiteFallback} />} />
+              <Route element={<AuthenticatedLayout />}>
+                <Route path="/leads" element={<LeadsPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/cms/blog" element={<CmsBlogPage />} />
+                <Route path="/cms/hiring" element={<CmsHiringPage />} />
+                <Route path="/cms/portfolio" element={<CmsPortfolioPage />} />
+                <Route path="/content" element={<AdminPage publicSiteFallback={publicSiteFallback} />} />
+              </Route>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </BrowserRouter>

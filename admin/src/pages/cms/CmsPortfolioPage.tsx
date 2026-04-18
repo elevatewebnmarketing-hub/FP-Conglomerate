@@ -1,9 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AdminNav from "../../components/AdminNav.tsx";
-import RequireStaff from "../../components/RequireStaff.tsx";
 import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,14 +26,6 @@ import { toast } from "sonner";
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export default function CmsPortfolioPage() {
-  return (
-    <RequireStaff>
-      <CmsPortfolioInner />
-    </RequireStaff>
-  );
-}
-
-function CmsPortfolioInner() {
   const qc = useQueryClient();
   const canWrite = staffCanWrite();
   const { data: rows, isLoading } = useQuery({
@@ -119,14 +107,12 @@ function CmsPortfolioInner() {
 
   return (
     <>
-      <Navbar />
-      <AdminNav />
-      <main className="min-h-[60vh] bg-muted/25 pb-24 pt-8">
-        <div className="section-shell space-y-6">
+      <main className="p-4 sm:p-6">
+        <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <p className="eyebrow mb-1">CMS</p>
-              <h1 className="font-editorial text-3xl text-foreground">Portfolio projects</h1>
+              <h2 className="font-editorial text-3xl text-foreground">Portfolio projects</h2>
             </div>
             {canWrite ? (
               <Button
@@ -212,7 +198,6 @@ function CmsPortfolioInner() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <Footer />
     </>
   );
 }

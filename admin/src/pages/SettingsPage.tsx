@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AdminNav from "../components/AdminNav.tsx";
-import RequireStaff from "../components/RequireStaff.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,14 +8,6 @@ import type { OrganizationAdmin, SiteAdmin } from "@/lib/elevateApiTypes";
 import { toast } from "sonner";
 
 export default function SettingsPage() {
-  return (
-    <RequireStaff>
-      <SettingsInner />
-    </RequireStaff>
-  );
-}
-
-function SettingsInner() {
   const [orgEmail, setOrgEmail] = useState("");
   const [sites, setSites] = useState<SiteAdmin[]>([]);
   const [loading, setLoading] = useState(true);
@@ -74,14 +62,11 @@ function SettingsInner() {
   };
 
   return (
-    <>
-      <Navbar />
-      <AdminNav />
-      <main className="min-h-[60vh] bg-muted/25 pb-24 pt-8">
-        <div className="section-shell max-w-3xl space-y-8">
+    <main className="p-4 sm:p-6">
+      <div className="mx-auto max-w-3xl space-y-8">
           <div>
             <p className="eyebrow mb-1">Elevate</p>
-            <h1 className="font-editorial text-3xl text-foreground">Lead notification emails</h1>
+            <h2 className="font-editorial text-3xl text-foreground">Lead notification emails</h2>
             <p className="text-sm text-muted-foreground mt-2">
               Server resolves site override first, then organization fallback. Requires Resend on the API.
             </p>
@@ -135,9 +120,7 @@ function SettingsInner() {
             </>
           )}
         </div>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }
 
