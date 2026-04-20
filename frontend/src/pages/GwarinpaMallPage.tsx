@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MediaAsset from "@/components/MediaAsset";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const GWARINPA_VIDEOS: { src: string; title: string }[] = [
+  { src: "/videos/gwarinpa-mall/01.mp4", title: "Site approach — exterior progress" },
+  { src: "/videos/gwarinpa-mall/02.mp4", title: "On-site walk-through clip" },
+  { src: "/videos/gwarinpa-mall/03.mp4", title: "Structure and envelope overview" },
+  { src: "/videos/gwarinpa-mall/04.mp4", title: "Construction yard and building line" },
+];
 
 const GWARINPA_IMAGES: { src: string; caption: string }[] = [
   {
@@ -52,6 +68,59 @@ const GWARINPA_IMAGES: { src: string; caption: string }[] = [
   },
 ];
 
+function GwarinpaVideoCarousel() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  return (
+    <div className="relative px-11 sm:px-14 md:px-16">
+      <Carousel
+        opts={{ loop: true, align: "center" }}
+        setApi={setApi}
+        className="w-full max-w-2xl mx-auto"
+      >
+        <CarouselContent>
+          {GWARINPA_VIDEOS.map((item) => (
+            <CarouselItem key={item.src}>
+              <div className="border border-border overflow-hidden rounded-sm bg-muted/10">
+                <div className="relative w-full max-w-md mx-auto aspect-[9/16] max-h-[min(70vh,720px)] bg-black/40">
+                  <MediaAsset
+                    src={item.src}
+                    alt={item.title}
+                    className="absolute inset-0 h-full w-full object-contain"
+                  />
+                </div>
+                <p className="px-4 py-3 text-sm text-muted-foreground text-center">{item.title}</p>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          type="button"
+          className="left-1 sm:left-2 border-border bg-background/95 shadow-sm hover:bg-background"
+        />
+        <CarouselNext
+          type="button"
+          className="right-1 sm:right-2 border-border bg-background/95 shadow-sm hover:bg-background"
+        />
+      </Carousel>
+      <p className="text-center text-xs text-muted-foreground tabular-nums mt-4" aria-live="polite">
+        {current + 1} / {GWARINPA_VIDEOS.length}
+      </p>
+    </div>
+  );
+}
+
 export default function GwarinpaMallPage() {
   return (
     <>
@@ -82,6 +151,15 @@ export default function GwarinpaMallPage() {
             </Link>{" "}
             for real estate and development-oriented work.
           </p>
+        </section>
+
+        <section className="section-shell py-16 md:py-20 border-t border-border/60">
+          <p className="eyebrow mb-5">Video</p>
+          <h2 className="font-editorial text-3xl md:text-4xl max-w-3xl mb-4">On-site footage</h2>
+          <p className="text-muted-foreground max-w-2xl mb-10 md:mb-12">
+            Short clips from the inspection visit—scaffolding, envelope work, and movement around the active site.
+          </p>
+          <GwarinpaVideoCarousel />
         </section>
 
         <section className="section-shell py-20 md:py-24">
