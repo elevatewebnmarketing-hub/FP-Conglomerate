@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageBackButton from "@/components/PageBackButton";
 import MediaAsset from "@/components/MediaAsset";
 import {
   type CarouselApi,
@@ -126,30 +127,30 @@ export default function GwarinpaMallPage() {
     <>
       <Seo
         title="Gwarinpa Mall — Site inspection"
-        path="/projects/gwarinpa-mall"
-        description="Site inspection documentation for Gwarinpa Mall, Abuja: structural progress, envelope and glazing, and on-the-ground oversight during construction."
+        path="/business-units/boys-sterling/gwarinpa-mall"
+        description="Site inspection documentation for Gwarinpa Mall, Abuja: structural progress, envelope and glazing, and on-the-ground oversight during construction. Boys Sterling Company Limited."
       />
       <Navbar />
       <main className="pt-32 pb-28">
         <section className="section-shell">
-          <p className="eyebrow mb-5">Project documentation</p>
+          <PageBackButton fallbackTo="/business-units/boys-sterling" className="mb-10" />
+          <p className="eyebrow mb-5">Boys Sterling · Project documentation</p>
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">Gwarinpa Mall</h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-3xl leading-relaxed">
-            Field photos from a site inspection in Gwarinpa, Abuja, recording progress on a multi-level commercial
-            development: concrete shell, traditional scaffolding, storefront openings, and the start of glazed
-            facades. The visit focused on structural and envelope readiness, safe access routes, and alignment with
-            the delivery plan for a modern mall footprint.
-          </p>
-          <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
-            Related group capabilities:{" "}
-            <Link to="/business-units/amgi" className="text-accent hover:underline">
-              Anate Grand Empire Solutions (AGE)
-            </Link>{" "}
-            for construction and technical execution, and{" "}
+            Field documentation from a site inspection in Gwarinpa, Abuja, for this{" "}
             <Link to="/business-units/boys-sterling" className="text-accent hover:underline">
               Boys Sterling
             </Link>{" "}
-            for real estate and development-oriented work.
+            commercial development: concrete shell, traditional scaffolding, storefront openings, and the start of
+            glazed facades. The visit focused on structural and envelope readiness, safe access routes, and alignment
+            with the delivery plan for a modern mall footprint.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
+            Group construction and technical execution capabilities are also coordinated through{" "}
+            <Link to="/business-units/amgi" className="text-accent hover:underline">
+              Anate Grand Empire Solutions (AGE)
+            </Link>
+            .
           </p>
         </section>
 

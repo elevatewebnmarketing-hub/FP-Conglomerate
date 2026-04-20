@@ -27,13 +27,12 @@ const SITEMAP_PATHS: string[] = (() => {
     "/portfolio",
     "/contact",
     "/faq",
-    "/projects/gwarinpa-mall",
   ];
   const units: { id: string; subs: string[] }[] = [
     { id: "fp-parent", subs: ["governance", "strategy"] },
     { id: "ordained-believers", subs: ["ministry", "outreach"] },
     { id: "amgi", subs: ["product-lines", "quality-assurance"] },
-    { id: "boys-sterling", subs: ["real-estate", "media-entertainment"] },
+    { id: "boys-sterling", subs: ["gwarinpa-mall", "real-estate", "media-entertainment"] },
     { id: "mogadishu-initiative", subs: ["humanitarian-programs", "idp-camps", "social-justice"] },
   ];
   const dynamic: string[] = [];

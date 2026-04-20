@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -66,6 +66,14 @@ const App = () => (
                   path="/business-units/mogadishu-initiative/humanitarian-programs"
                   element={<HumanitarianProgramsPage />}
                 />
+                <Route
+                  path="/business-units/boys-sterling/gwarinpa-mall"
+                  element={<GwarinpaMallPage />}
+                />
+                <Route
+                  path="/projects/gwarinpa-mall"
+                  element={<Navigate to="/business-units/boys-sterling/gwarinpa-mall" replace />}
+                />
                 <Route path="/business-units/:unitId" element={<BusinessUnitDetailPage />} />
                 <Route path="/business-units/:unitId/:subPageSlug" element={<BusinessUnitSubPage />} />
                 <Route path="/services" element={<ServicesPage />} />
@@ -76,7 +84,6 @@ const App = () => (
                 <Route path="/portfolio" element={<PortfolioPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/faq" element={<FAQPage />} />
-                <Route path="/projects/gwarinpa-mall" element={<GwarinpaMallPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               </div>

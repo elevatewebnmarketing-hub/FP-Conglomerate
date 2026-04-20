@@ -266,6 +266,15 @@ export const defaultSiteContent: SiteContent = {
       ],
       subPages: [
         {
+          slug: "gwarinpa-mall",
+          title: "Gwarinpa Mall",
+          summary:
+            "Site inspection: photos and video documenting construction progress for the Gwarinpa Mall development in Abuja.",
+          content:
+            "Gwarinpa Mall is documented as part of Boys Sterling’s built-environment work: a multi-level commercial development in Gwarinpa, Abuja. Field visits capture structural progress, envelope and glazing, scaffolding access, and on-site conditions during delivery. Full photo and video documentation is on the dedicated project page.",
+          image: "/images/projects/gwarinpa-mall/05.png",
+        },
+        {
           slug: "real-estate",
           title: "Real Estate and Hospitality",
           summary: "Property and hospitality services delivered with disciplined execution.",
