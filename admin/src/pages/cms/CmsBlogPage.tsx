@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
+import type { UploadState } from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -58,6 +59,7 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
   const [body, setBody] = useState("");
   const [status, setStatus] = useState("draft");
   const [coverMediaAssetId, setCoverMediaAssetId] = useState<string | undefined>();
+  const [coverUpload, setCoverUpload] = useState<UploadState>({ uploading: false, attempted: false, error: false });
   const [saving, setSaving] = useState(false);
 
   const resetForm = () => {
@@ -68,6 +70,7 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
     setBody("");
     setStatus("draft");
     setCoverMediaAssetId(undefined);
+    setCoverUpload({ uploading: false, attempted: false, error: false });
   };
 
   const openNew = () => {
@@ -95,6 +98,19 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
 
   const save = async () => {
     if (!canWrite) return;
+    if (coverUpload.uploading) {
+      toast.error("Image upload still in progress", {
+        description: "Please wait for the image upload to finish before saving this post.",
+      });
+      return;
+    }
+    if (coverUpload.attempted && !coverMediaAssetId) {
+      toast.error("Image upload must finish first", {
+        description:
+          "You attempted to upload a cover image, but it did not complete. Re-upload the image or clear the upload state before saving.",
+      });
+      return;
+    }
     const s = slug.trim();
     if (!SLUG_RE.test(s)) {
       toast.error("Check the web address (slug)", {
@@ -268,9 +284,21 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
             </div>
             <div className="space-y-2">
               <Label>Cover image (Cloudinary)</Label>
-              <CloudinaryImageField onAssetId={setCoverMediaAssetId} context="blog-cover" />
+              <CloudinaryImageField
+                onAssetId={setCoverMediaAssetId}
+                onStateChange={setCoverUpload}
+                context="blog-cover"
+              />
               {coverMediaAssetId ? (
                 <p className="text-xs font-mono text-muted-foreground">coverMediaAssetId: {coverMediaAssetId}</p>
+              ) : null}
+              {coverUpload.uploading ? (
+                <p className="text-xs text-muted-foreground">Cover image upload in progress. Save is temporarily disabled.</p>
+              ) : null}
+              {coverUpload.attempted && coverUpload.error ? (
+                <p className="text-xs text-destructive">
+                  Cover upload was attempted but failed. Please re-upload before saving.
+                </p>
               ) : null}
             </div>
           </div>
@@ -279,7 +307,7 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
               Cancel
             </Button>
             {canWrite ? (
-              <Button type="button" disabled={saving} onClick={() => void save()}>
+              <Button type="button" disabled={saving || coverUpload.uploading} onClick={() => void save()}>
                 {saving ? "Saving…" : "Save"}
               </Button>
             ) : null}

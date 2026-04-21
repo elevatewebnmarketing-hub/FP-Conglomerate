@@ -3,22 +3,32 @@ import { Button } from "@/components/ui/button";
 import { uploadStaffImageAndRegister } from "@/lib/elevateApi";
 import { toast } from "sonner";
 
+export type UploadState = {
+  uploading: boolean;
+  attempted: boolean;
+  error: boolean;
+};
+
 type Props = {
   onAssetId: (id: string | undefined) => void;
   context?: string;
   label?: string;
+  onStateChange?: (state: UploadState) => void;
 };
 
-export default function CloudinaryImageField({ onAssetId, context, label = "Upload image" }: Props) {
+export default function CloudinaryImageField({ onAssetId, context, label = "Upload image", onStateChange }: Props) {
   const [uploading, setUploading] = useState(false);
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
+    onStateChange?.({ uploading: true, attempted: true, error: false });
     try {
       const { mediaAssetId } = await uploadStaffImageAndRegister(file, { context });
       if (!mediaAssetId) {
+        onAssetId(undefined);
+        onStateChange?.({ uploading: false, attempted: true, error: true });
         toast.error("Image upload did not finish", {
           description:
             "The file uploaded but the API did not return an image ID. Please try again. If this continues, ask your developer to check Cloudinary asset registration on the backend.",
@@ -26,9 +36,12 @@ export default function CloudinaryImageField({ onAssetId, context, label = "Uplo
         return;
       }
       onAssetId(mediaAssetId);
+      onStateChange?.({ uploading: false, attempted: true, error: false });
       toast.success("Image registered");
     } catch (err) {
       const detail = err instanceof Error ? err.message : "Upload failed";
+      onAssetId(undefined);
+      onStateChange?.({ uploading: false, attempted: true, error: true });
       toast.error("Image upload failed", {
         description: `${detail} Ensure the Elevate API has Cloudinary env vars and your account is org_admin. See docs/DEPLOYMENT.md (CMS troubleshooting).`,
       });
@@ -48,7 +61,16 @@ export default function CloudinaryImageField({ onAssetId, context, label = "Uplo
         className="text-sm file:mr-3 file:rounded-md file:border-0 file:bg-muted file:px-3 file:py-1.5"
       />
       {uploading ? <p className="text-xs text-muted-foreground">Uploading…</p> : null}
-      <Button type="button" variant="ghost" size="sm" className="h-auto p-0 text-xs" onClick={() => onAssetId(undefined)}>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="h-auto p-0 text-xs"
+        onClick={() => {
+          onAssetId(undefined);
+          onStateChange?.({ uploading: false, attempted: false, error: false });
+        }}
+      >
         Clear cover image id
       </Button>
     </div>

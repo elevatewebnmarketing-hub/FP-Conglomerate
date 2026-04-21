@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
+import type { UploadState } from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -43,6 +44,7 @@ export default function CmsPortfolioPage() {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [imageMediaAssetId, setImageMediaAssetId] = useState<string | undefined>();
+  const [imageUpload, setImageUpload] = useState<UploadState>({ uploading: false, attempted: false, error: false });
   const [isPublished, setIsPublished] = useState(true);
   const [sortOrder, setSortOrder] = useState(0);
   const [saving, setSaving] = useState(false);
@@ -53,6 +55,7 @@ export default function CmsPortfolioPage() {
     setSummary("");
     setBody("");
     setImageMediaAssetId(undefined);
+    setImageUpload({ uploading: false, attempted: false, error: false });
     setIsPublished(true);
     setSortOrder(0);
   };
@@ -78,6 +81,19 @@ export default function CmsPortfolioPage() {
 
   const save = async () => {
     if (!canWrite) return;
+    if (imageUpload.uploading) {
+      toast.error("Image upload still in progress", {
+        description: "Please wait for the image upload to finish before saving this project.",
+      });
+      return;
+    }
+    if (imageUpload.attempted && !imageMediaAssetId) {
+      toast.error("Image upload must finish first", {
+        description:
+          "You attempted to upload a project image, but it did not complete. Re-upload the image or clear the upload state before saving.",
+      });
+      return;
+    }
     if (!title.trim()) {
       toast.error("Project title is required", {
         description: "Enter a project title before saving.",
@@ -218,12 +234,24 @@ export default function CmsPortfolioPage() {
             </div>
             <div className="space-y-1">
               <Label>Image</Label>
-              <CloudinaryImageField onAssetId={setImageMediaAssetId} context="portfolio" />
+              <CloudinaryImageField
+                onAssetId={setImageMediaAssetId}
+                onStateChange={setImageUpload}
+                context="portfolio"
+              />
               {imageMediaAssetId ? (
                 <p className="text-xs font-mono text-muted-foreground">imageMediaAssetId: {imageMediaAssetId}</p>
               ) : (
                 <p className="text-xs text-muted-foreground">No image selected for this project.</p>
               )}
+              {imageUpload.uploading ? (
+                <p className="text-xs text-muted-foreground">Project image upload in progress. Save is temporarily disabled.</p>
+              ) : null}
+              {imageUpload.attempted && imageUpload.error ? (
+                <p className="text-xs text-destructive">
+                  Project image upload was attempted but failed. Please re-upload before saving.
+                </p>
+              ) : null}
             </div>
             <div className="flex items-center gap-2">
               <Checkbox
@@ -252,7 +280,7 @@ export default function CmsPortfolioPage() {
               Cancel
             </Button>
             {canWrite ? (
-              <Button type="button" disabled={saving} onClick={() => void save()}>
+              <Button type="button" disabled={saving || imageUpload.uploading} onClick={() => void save()}>
                 {saving ? "Saving..." : "Save"}
               </Button>
             ) : null}
