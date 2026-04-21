@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 /** Single flat menu — no separate “Site content” section; all entries at the same level. */
 const menuItems: { to: string; label: string; end?: boolean }[] = [
   { to: "/leads", label: "Inquiries" },
-  { to: "/cms/marketing", label: "Blog & hiring" },
+  { to: "/cms/marketing", label: "Blog (API drafts)" },
   { to: "/cms/portfolio", label: "Portfolio" },
 ];
 

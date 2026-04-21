@@ -2,11 +2,10 @@ import { Link, useParams } from "react-router-dom";
 import { Seo, SEO_DEFAULT_DESCRIPTION, SITE_NAME } from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useElevateBlogPost } from "@/hooks/elevateQueries";
-import { isPublicCmsEnabled } from "@/lib/elevateApi";
-import type { BlogPostPublic } from "@/lib/elevateApiTypes";
 import MediaAsset from "@/components/MediaAsset";
 import { Button } from "@/components/ui/button";
+import { useSiteContent } from "@/content/SiteContentContext";
+import type { BlogPost } from "@/content/brand";
 
 function truncateMeta(s: string, max = 160): string {
   const t = s.replace(/\s+/g, " ").trim();
@@ -14,13 +13,13 @@ function truncateMeta(s: string, max = 160): string {
   return `${t.slice(0, max - 1)}…`;
 }
 
-function blogPostDescription(post: BlogPostPublic): string {
+function postDescription(post: BlogPost): string {
+  if (post.metaDescription?.trim()) return truncateMeta(post.metaDescription);
   if (post.excerpt?.trim()) return truncateMeta(post.excerpt);
   if (post.body?.trim()) return truncateMeta(post.body);
   return SEO_DEFAULT_DESCRIPTION;
 }
 
-/** Resolve relative asset paths against `VITE_SITE_URL` for canonicals and schema. */
 function absoluteSiteUrl(pathOrUrl: string): string | undefined {
   const base = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
   if (!pathOrUrl) return undefined;
@@ -30,16 +29,16 @@ function absoluteSiteUrl(pathOrUrl: string): string | undefined {
   return `${base}${p}`;
 }
 
-function blogPostingJsonLd(post: BlogPostPublic, path: string): Record<string, unknown> {
+function blogPostingJsonLd(post: BlogPost, path: string): Record<string, unknown> {
   const canonical = absoluteSiteUrl(path);
-  const cover = post.coverUrl?.trim();
+  const cover = post.image?.trim();
   const imageUrl = cover ? absoluteSiteUrl(cover) ?? cover : undefined;
   const logoUrl = absoluteSiteUrl("/logos/bsc-logo.png");
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    datePublished: post.publishedAt ?? post.createdAt,
+    ...(post.date ? { datePublished: post.date } : {}),
     ...(imageUrl ? { image: [imageUrl] } : {}),
     publisher: {
       "@type": "Organization",
@@ -52,25 +51,17 @@ function blogPostingJsonLd(post: BlogPostPublic, path: string): Record<string, u
 
 export default function BlogPostPage() {
   const { postSlug } = useParams<{ postSlug: string }>();
-  const enabled = Boolean(postSlug) && isPublicCmsEnabled();
-  const { data: post, isLoading, isError } = useElevateBlogPost(enabled ? postSlug : undefined);
+  const { content } = useSiteContent();
+  const post = content.blogPosts.find((p) => p.slug === postSlug);
   const path = postSlug ? `/blog/${postSlug}` : "/blog";
 
-  if (!enabled) {
+  if (!postSlug) {
     return (
       <>
-        <Seo
-          title="Blog"
-          path="/blog"
-          description="Blog posts load on the live site when the public CMS is configured. Use the blog index for default stories."
-          noindex
-        />
+        <Seo title="Blog" path="/blog" description={SEO_DEFAULT_DESCRIPTION} noindex />
         <Navbar />
         <main className="section-shell pt-32 pb-24">
-          <p className="text-muted-foreground">
-            Online stories aren’t available in preview here. Open the live site or ask your team to finish connecting the
-            blog.
-          </p>
+          <p className="text-muted-foreground">Invalid URL.</p>
           <Button asChild variant="outline" className="mt-4">
             <Link to="/blog">Back to blog</Link>
           </Button>
@@ -80,29 +71,18 @@ export default function BlogPostPage() {
     );
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <Seo title="Blog" path={path} description={SEO_DEFAULT_DESCRIPTION} />
-        <Navbar />
-        <main className="section-shell pt-32 pb-24 text-muted-foreground">Loading…</main>
-        <Footer />
-      </>
-    );
-  }
-
-  if (isError || !post) {
+  if (!post) {
     return (
       <>
         <Seo
           title="Blog post"
           path={path}
-          description="This post could not be loaded. Return to the blog index."
+          description="This article is not available. Return to the blog index."
           noindex
         />
         <Navbar />
         <main className="section-shell pt-32 pb-24">
-          <p className="text-destructive mb-4">Could not load this post.</p>
+          <p className="text-muted-foreground mb-4">This article could not be found.</p>
           <Button asChild variant="outline">
             <Link to="/blog">Back to blog</Link>
           </Button>
@@ -112,10 +92,9 @@ export default function BlogPostPage() {
     );
   }
 
-  const dateLabel = post.publishedAt ?? post.createdAt ?? "";
-  const img = post.coverUrl ?? "";
+  const description = postDescription(post);
+  const img = post.image ?? "";
   const postPath = `/blog/${post.slug}`;
-  const description = blogPostDescription(post);
   const ogImage = img ? absoluteSiteUrl(img) ?? img : undefined;
 
   return (
@@ -124,6 +103,7 @@ export default function BlogPostPage() {
         title={post.title}
         path={postPath}
         description={description}
+        keywords={post.keywords}
         ogImage={ogImage}
         ogType="article"
         jsonLd={blogPostingJsonLd(post, postPath)}
@@ -143,8 +123,8 @@ export default function BlogPostPage() {
             priority
           />
         ) : null}
-        {dateLabel ? (
-          <p className="text-xs text-muted-foreground tracking-wide mb-4">{new Date(dateLabel).toLocaleDateString()}</p>
+        {post.date ? (
+          <p className="text-xs text-muted-foreground tracking-wide mb-4">{post.date}</p>
         ) : null}
         <h1 className="font-editorial text-4xl md:text-6xl text-foreground mb-8 max-w-4xl leading-tight">{post.title}</h1>
         {post.excerpt ? <p className="text-lg text-muted-foreground max-w-3xl mb-10">{post.excerpt}</p> : null}

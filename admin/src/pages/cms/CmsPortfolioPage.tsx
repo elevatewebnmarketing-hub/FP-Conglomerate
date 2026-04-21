@@ -1,7 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
-import type { UploadState } from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -43,8 +41,6 @@ export default function CmsPortfolioPage() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [imageMediaAssetId, setImageMediaAssetId] = useState<string | undefined>();
-  const [imageUpload, setImageUpload] = useState<UploadState>({ uploading: false, attempted: false, error: false });
   const [isPublished, setIsPublished] = useState(true);
   const [sortOrder, setSortOrder] = useState(0);
   const [saving, setSaving] = useState(false);
@@ -54,8 +50,6 @@ export default function CmsPortfolioPage() {
     setTitle("");
     setSummary("");
     setBody("");
-    setImageMediaAssetId(undefined);
-    setImageUpload({ uploading: false, attempted: false, error: false });
     setIsPublished(true);
     setSortOrder(0);
   };
@@ -66,13 +60,6 @@ export default function CmsPortfolioPage() {
     setSummary(String(r.summary ?? ""));
     setBody(String(r.body ?? ""));
     const raw = r as Record<string, unknown>;
-    const imageId =
-      typeof r.imageMediaAssetId === "string"
-        ? r.imageMediaAssetId
-        : typeof raw.image_media_asset_id === "string"
-          ? raw.image_media_asset_id
-          : undefined;
-    setImageMediaAssetId(imageId);
     setIsPublished(Boolean(r.isPublished ?? raw.is_published ?? true));
     const so = r.sortOrder ?? raw.sort_order;
     setSortOrder(typeof so === "number" && !Number.isNaN(so) ? so : 0);
@@ -81,19 +68,6 @@ export default function CmsPortfolioPage() {
 
   const save = async () => {
     if (!canWrite) return;
-    if (imageUpload.uploading) {
-      toast.error("Image upload still in progress", {
-        description: "Please wait for the image upload to finish before saving this project.",
-      });
-      return;
-    }
-    if (imageUpload.attempted && !imageMediaAssetId) {
-      toast.error("Image upload must finish first", {
-        description:
-          "You attempted to upload a project image, but it did not complete. Re-upload the image or clear the upload state before saving.",
-      });
-      return;
-    }
     if (!title.trim()) {
       toast.error("Project title is required", {
         description: "Enter a project title before saving.",
@@ -104,8 +78,8 @@ export default function CmsPortfolioPage() {
       title: title.trim(),
       summary: summary.trim() || null,
       body: body.trim() || null,
-      imageMediaAssetId: imageMediaAssetId ?? null,
-      image_media_asset_id: imageMediaAssetId ?? null,
+      imageMediaAssetId: null,
+      image_media_asset_id: null,
       isPublished,
       sortOrder,
     };
@@ -157,8 +131,10 @@ export default function CmsPortfolioPage() {
               <p className="eyebrow mb-1">CMS</p>
               <h2 className="font-editorial text-3xl text-foreground">Portfolio projects</h2>
               <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
-                Elevate stores title, summary, body, image, published, and sort order. Per-project URL slugs are not
-                persisted by the API — the public site lists projects by organization.
+                API records store text fields and sort order.{" "}
+                <strong className="font-medium text-foreground">Public portfolio images and copy</strong> for SEO are
+                maintained in <code className="text-xs bg-muted px-1 rounded">frontend/src/content/brand.ts</code> (
+                <code className="text-xs bg-muted px-1 rounded">portfolioProjects</code>). Image upload is disabled here.
               </p>
             </div>
             {canWrite ? (
@@ -216,7 +192,7 @@ export default function CmsPortfolioPage() {
           <DialogHeader>
             <DialogTitle>{editing ? "Edit project" : "New project"}</DialogTitle>
             <DialogDescription className="sr-only">
-              Create or edit a portfolio project: title, summary, body, image, published flag, and sort order.
+              Create or edit a portfolio project: title, summary, body, published flag, and sort order. No image upload.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 py-2">
@@ -232,27 +208,10 @@ export default function CmsPortfolioPage() {
               <Label>Body</Label>
               <Textarea value={body} onChange={(e) => setBody(e.target.value)} rows={6} />
             </div>
-            <div className="space-y-1">
-              <Label>Image</Label>
-              <CloudinaryImageField
-                onAssetId={setImageMediaAssetId}
-                onStateChange={setImageUpload}
-                context="portfolio"
-              />
-              {imageMediaAssetId ? (
-                <p className="text-xs font-mono text-muted-foreground">imageMediaAssetId: {imageMediaAssetId}</p>
-              ) : (
-                <p className="text-xs text-muted-foreground">No image selected for this project.</p>
-              )}
-              {imageUpload.uploading ? (
-                <p className="text-xs text-muted-foreground">Project image upload in progress. Save is temporarily disabled.</p>
-              ) : null}
-              {imageUpload.attempted && imageUpload.error ? (
-                <p className="text-xs text-destructive">
-                  Project image upload was attempted but failed. Please re-upload before saving.
-                </p>
-              ) : null}
-            </div>
+            <p className="text-xs text-muted-foreground rounded-md border border-border bg-muted/30 px-3 py-2">
+              Images for the public portfolio are not uploaded in this admin UI. Update{" "}
+              <code className="text-[11px]">portfolioProjects</code> in the frontend codebase instead.
+            </p>
             <div className="flex items-center gap-2">
               <Checkbox
                 id="port-pub"
@@ -280,7 +239,7 @@ export default function CmsPortfolioPage() {
               Cancel
             </Button>
             {canWrite ? (
-              <Button type="button" disabled={saving || imageUpload.uploading} onClick={() => void save()}>
+              <Button type="button" disabled={saving} onClick={() => void save()}>
                 {saving ? "Saving..." : "Save"}
               </Button>
             ) : null}

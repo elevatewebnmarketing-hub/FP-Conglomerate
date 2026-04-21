@@ -60,6 +60,11 @@ function normalizeContent(raw: Partial<SiteContent>): SiteContent {
       ...base.blogPosts[index],
       ...item,
     })) ?? base.blogPosts,
+    portfolioProjects:
+      raw.portfolioProjects?.map((item, index) => ({
+        ...base.portfolioProjects[index],
+        ...item,
+      })) ?? base.portfolioProjects,
     galleryItems: raw.galleryItems ?? base.galleryItems,
   };
 }

@@ -99,7 +99,9 @@ export function useElevateBlogPost(postSlug: string | undefined) {
 
 export function useElevateHiringPositions() {
   const slug = getMarketingOrganizationSlug();
-  const enabled = Boolean(slug) && isPublicCmsEnabled();
+  /** Public careers page can disable API-driven listings while keeping other CMS routes available. */
+  const hiringCmsEnabled = import.meta.env.VITE_ENABLE_HIRING_CMS === "true";
+  const enabled = hiringCmsEnabled && Boolean(slug) && isPublicCmsEnabled();
   return useQuery({
     queryKey: ["elevate", "hiring-positions", slug],
     enabled,

@@ -1,7 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import CloudinaryImageField from "../../components/CloudinaryImageField.tsx";
-import type { UploadState } from "../../components/CloudinaryImageField.tsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -58,8 +56,6 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
   const [excerpt, setExcerpt] = useState("");
   const [body, setBody] = useState("");
   const [status, setStatus] = useState("draft");
-  const [coverMediaAssetId, setCoverMediaAssetId] = useState<string | undefined>();
-  const [coverUpload, setCoverUpload] = useState<UploadState>({ uploading: false, attempted: false, error: false });
   const [saving, setSaving] = useState(false);
 
   const resetForm = () => {
@@ -69,8 +65,6 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
     setExcerpt("");
     setBody("");
     setStatus("draft");
-    setCoverMediaAssetId(undefined);
-    setCoverUpload({ uploading: false, attempted: false, error: false });
   };
 
   const openNew = () => {
@@ -85,32 +79,11 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
     setExcerpt(String(p.excerpt ?? ""));
     setBody(String(p.body ?? ""));
     setStatus(String(p.status ?? "draft"));
-    const raw = p as Record<string, unknown>;
-    const coverId =
-      typeof p.coverMediaAssetId === "string"
-        ? p.coverMediaAssetId
-        : typeof raw.cover_media_asset_id === "string"
-          ? raw.cover_media_asset_id
-          : undefined;
-    setCoverMediaAssetId(coverId);
     setOpen(true);
   };
 
   const save = async () => {
     if (!canWrite) return;
-    if (coverUpload.uploading) {
-      toast.error("Image upload still in progress", {
-        description: "Please wait for the image upload to finish before saving this post.",
-      });
-      return;
-    }
-    if (coverUpload.attempted && !coverMediaAssetId) {
-      toast.error("Image upload must finish first", {
-        description:
-          "You attempted to upload a cover image, but it did not complete. Re-upload the image or clear the upload state before saving.",
-      });
-      return;
-    }
     const s = slug.trim();
     if (!SLUG_RE.test(s)) {
       toast.error("Check the web address (slug)", {
@@ -138,8 +111,8 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
       excerpt: excerpt.trim() || null,
       body: bodyText,
       status,
-      coverMediaAssetId: coverMediaAssetId ?? null,
-      cover_media_asset_id: coverMediaAssetId ?? null,
+      coverMediaAssetId: null,
+      cover_media_asset_id: null,
     };
     if (status === "published") {
       payload.publishedAt =
@@ -193,8 +166,11 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
             <div>
               {!embedded ? <p className="eyebrow mb-1">CMS</p> : null}
               <h2 className="font-editorial text-3xl text-foreground">Blog posts</h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                Only team members with editor access can add or change posts.
+              <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
+                Only team members with editor access can add or change API drafts.{" "}
+                <strong className="font-medium text-foreground">Public SEO articles and images</strong> are maintained in
+                the website codebase (<code className="text-xs bg-muted px-1 rounded">frontend/src/content/brand.ts</code>
+                ), not via image upload here.
               </p>
             </div>
             {canWrite ? (
@@ -246,7 +222,7 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
           <DialogHeader>
             <DialogTitle>{editing ? "Edit post" : "New post"}</DialogTitle>
             <DialogDescription className="sr-only">
-              Create or edit a blog post: title, slug, excerpt, body, status, and optional cover image.
+              Create or edit a blog post: title, slug, excerpt, body, and status. Cover images are not uploaded here.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
@@ -282,32 +258,13 @@ export default function CmsBlogPage({ embedded = false }: CmsBlogPageProps) {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
-              <Label>Cover image (Cloudinary)</Label>
-              <CloudinaryImageField
-                onAssetId={setCoverMediaAssetId}
-                onStateChange={setCoverUpload}
-                context="blog-cover"
-              />
-              {coverMediaAssetId ? (
-                <p className="text-xs font-mono text-muted-foreground">coverMediaAssetId: {coverMediaAssetId}</p>
-              ) : null}
-              {coverUpload.uploading ? (
-                <p className="text-xs text-muted-foreground">Cover image upload in progress. Save is temporarily disabled.</p>
-              ) : null}
-              {coverUpload.attempted && coverUpload.error ? (
-                <p className="text-xs text-destructive">
-                  Cover upload was attempted but failed. Please re-upload before saving.
-                </p>
-              ) : null}
-            </div>
           </div>
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => setOpen(false)}>
               Cancel
             </Button>
             {canWrite ? (
-              <Button type="button" disabled={saving || coverUpload.uploading} onClick={() => void save()}>
+              <Button type="button" disabled={saving} onClick={() => void save()}>
                 {saving ? "Saving…" : "Save"}
               </Button>
             ) : null}

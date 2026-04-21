@@ -33,7 +33,7 @@ const App = () => (
               <Route path="/leads" element={<LeadsPage />} />
               <Route path="/cms/marketing" element={<CmsMarketingPage />} />
               <Route path="/cms/blog" element={<Navigate to="/cms/marketing" replace />} />
-              <Route path="/cms/hiring" element={<Navigate to="/cms/marketing?tab=hiring" replace />} />
+              <Route path="/cms/hiring" element={<Navigate to="/cms/marketing" replace />} />
               <Route path="/cms/portfolio" element={<CmsPortfolioPage />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />

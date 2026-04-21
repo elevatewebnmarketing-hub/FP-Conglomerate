@@ -18,6 +18,8 @@ type SeoProps = {
   description?: string;
   path: string;
   noindex?: boolean;
+  /** Comma-separated keywords for meta keywords (use sparingly; primary SEO is title + description). */
+  keywords?: string;
   /** Absolute image URL for Open Graph / Twitter when a page has a primary image (e.g. blog cover). */
   ogImage?: string;
   ogType?: "website" | "article";
@@ -28,11 +30,14 @@ export function Seo({
   title,
   description = SEO_DEFAULT_DESCRIPTION,
   path,
-  noindex,
+  noindex: noindexProp,
+  keywords,
   ogImage,
   ogType = "website",
   jsonLd,
 }: SeoProps) {
+  const forceNoIndex = import.meta.env.VITE_NOINDEX === "true";
+  const noindex = forceNoIndex || Boolean(noindexProp);
   const canonical = canonicalFromPath(path);
   const fullTitle = `${title} | ${SITE_NAME}`;
   const ldList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -41,6 +46,7 @@ export function Seo({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords ? <meta name="keywords" content={keywords} /> : null}
       {canonical ? <link rel="canonical" href={canonical} /> : null}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />

@@ -52,9 +52,25 @@ export type GalleryItem = {
 };
 
 export type BlogPost = {
+  /** URL segment for /blog/:slug — lowercase, hyphens only */
+  slug: string;
   date: string;
   title: string;
   excerpt: string;
+  /** Optional; defaults to excerpt for meta description */
+  metaDescription?: string;
+  /** Comma-separated or short list for meta keywords */
+  keywords?: string;
+  image: string;
+  /** Full article (plain text; line breaks preserved) */
+  body: string;
+};
+
+export type PortfolioHighlight = {
+  id: string;
+  title: string;
+  summary: string;
+  body: string;
   image: string;
 };
 
@@ -83,6 +99,8 @@ export type SiteContent = {
   serviceAreas: ServiceArea[];
   galleryItems: GalleryItem[];
   blogPosts: BlogPost[];
+  /** On-site portfolio highlights (served from this repo; independent of external CMS). */
+  portfolioProjects: PortfolioHighlight[];
   hiring: {
     heading: string;
     summary: string;
@@ -457,64 +475,129 @@ export const defaultSiteContent: SiteContent = {
   ],
   blogPosts: [
     {
-      date: "April 11, 2026",
-      title: "Building Trust in African Businesses Through Measurable Service Delivery",
+      slug: "abuja-multi-sector-group-fp-conglomerate-seo-trust",
+      date: "April 18, 2026",
+      title: "FP Conglomerate: An Abuja Multi-Sector Group Built on Trust and Measurable Delivery",
       excerpt:
-        "Why we treat trust like a system you can run on, not a line on a slide, across commerce, ministry, and social impact.",
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80",
+        "How one Nigeria-based parent company coordinates ministry, commerce, construction, and humanitarian work under a single standard of integrity.",
+      metaDescription:
+        "Learn how FP Conglomerate, an Abuja-area multi-sector African group, coordinates OBA, AGE, BSC, and MIA with transparent service delivery and governance.",
+      keywords:
+        "FP Conglomerate, Abuja company, Nigeria multi-sector group, African business trust, corporate governance Nigeria",
+      image: "/images/projects/gwarinpa-mall/05.png",
+      body:
+        "Search engines and readers alike reward clarity. FP Conglomerate is structured as a parent brand that coordinates independent units while keeping one public promise: trust, integrity, and service excellence.\n\nFrom our interim base in Gwagwalada, Abuja, the group connects Ordained Believers Army (faith expression), Anate Grand Empire Solutions (multi-sector services), Boys Sterling Company Limited (built environment and hospitality), and Mogadishu Initiative Response (humanitarian programs).\n\nThis article explains why we publish explicit service standards, document field programs responsibly, and invest in institutions that can outlast headlines. If you are researching Nigerian multi-sector groups, Abuja construction and real estate partners, or transparent humanitarian NGOs, this site is maintained as a primary source for how we operate.\n\nFor partnerships or media inquiries, use the contact page—responses are routed to the group’s official channels only.",
     },
     {
-      date: "March 28, 2026",
-      title: "One Group, Many Missions: Coordinating Diverse Units with One Standard",
+      slug: "humanitarian-programs-nigeria-mia-field-transparency",
+      date: "April 12, 2026",
+      title: "Humanitarian Programs in Nigeria: Field Documentation and Dignity-First Delivery",
       excerpt:
-        "How different teams stay in step when everyone agrees on integrity, excellence, and showing up with discipline.",
-      image:
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80",
+        "Why Mogadishu Initiative Response emphasizes honest field reporting, shelter and education support, and advocacy that respects communities.",
+      metaDescription:
+        "Overview of Mogadishu Initiative Response humanitarian programs in Nigeria: relief, education, shelter support, and social justice advocacy with dignity-first delivery.",
+      keywords:
+        "Nigeria humanitarian NGO, Mogadishu Initiative Response, Kogi outreach, IDP support Nigeria, social justice advocacy Africa",
+      image: "/images/mia/humanitarian/kogi-01.png",
+      body:
+        "Humanitarian SEO should never trade dignity for clicks. Mogadishu Initiative Response publishes program context so stakeholders can understand what we do, where we work, and how communities stay at the center of decisions.\n\nOur teams document field conditions to improve coordination—not to sensationalize hardship. Programs include outreach aligned with shelter, education, accommodation support, and social justice themes, with an emphasis on transparent communication and accountable follow-through.\n\nIf you are comparing Nigerian NGOs, researching IDP support models, or looking for partners who prioritize long-term stability over one-off visibility, review our humanitarian program pages and primary project documentation on this website.\n\nContact details on the official FP Conglomerate contact page are the only approved channels for partnership and volunteer coordination.",
     },
     {
-      date: "March 15, 2026",
-      title: "Service Integration in Action: The AGE Operating Approach",
+      slug: "gwarinpa-mall-abuja-commercial-project-site-documentation",
+      date: "March 30, 2026",
+      title: "Gwarinpa Mall, Abuja: Commercial Development Progress and Site Documentation",
       excerpt:
-        "Inside AGE: production, construction, transport, and appliances in one place, with trust as the default setting.",
-      image:
-        "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80",
+        "A transparent look at Boys Sterling’s built-environment work: structural progress, envelope and glazing, and on-site documentation for stakeholders.",
+      metaDescription:
+        "Gwarinpa Mall Abuja: commercial development documentation including construction progress photos and structured site reporting from Boys Sterling Company Limited.",
+      keywords:
+        "Gwarinpa Mall Abuja, Nigeria commercial property, Abuja construction documentation, Boys Sterling real estate, built environment Nigeria",
+      image: "/images/projects/gwarinpa-mall/03.png",
+      body:
+        "Large commercial projects rank when content matches what investors and tenants actually search for: location, progress, and credible visual proof. The Gwarinpa Mall development is documented through structured site photography and video walkthroughs linked from the dedicated project route on this website.\n\nBoys Sterling Company Limited approaches the built environment with maintenance discipline and client-visible milestones. That matters for SEO because it pairs intent—people looking for Abuja commercial projects—with verifiable updates instead of generic marketing language.\n\nReaders evaluating construction partners in Nigeria should cross-check statements here with the primary project page and official correspondence. We avoid duplicate or conflicting claims across pages to protect both users and search quality.\n\nFor collaboration inquiries related to retail, leasing, or construction coordination, use the contact form and reference the project name to route your request efficiently.",
     },
     {
-      date: "February 25, 2026",
-      title: "Creative Excellence in Real Estate, Hospitality, and Media",
+      slug: "anate-grand-empire-solutions-age-services-nigeria",
+      date: "March 20, 2026",
+      title: "AGE Services: Production, Construction, Transport, and Appliances Under One Trust Standard",
       excerpt:
-        "How Boys Sterling turns good ideas into dependable delivery across property, entertainment, and media.",
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80",
+        "How Anate Grand Empire Solutions (AGE) bundles creative and technical execution for clients who need dependable multi-sector delivery in Nigeria.",
+      metaDescription:
+        "Anate Grand Empire Solutions (AGE): Nigeria multi-sector services spanning movie production support, construction, transport, brand promotion, devices, and appliances.",
+      keywords:
+        "Anate Grand Empire Solutions, AGE Nigeria, movie production Nigeria, construction services Nigeria, appliance supply Nigeria",
+      image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80",
+      body:
+        "Service integration only helps SEO when the page answers real queries. AGE is positioned for organizations that need coordinated execution across production, construction-linked work, transport coordination, brand promotion, and appliance supply.\n\nWe describe services in plain language so prospective clients can map their needs to our operating model. That reduces bounce rate and helps search engines understand entity relationships between FP Conglomerate and its operating units.\n\nIf you are sourcing vendors in Nigeria, ask for scope, timelines, and escalation paths—our public pages are written to support that evaluation process without overpromising.\n\nUse the official contact channels listed on this site; we do not recruit financial or personal information through unofficial social accounts.",
+    },
+    {
+      slug: "ordained-believers-army-oba-faith-community-nigeria",
+      date: "March 8, 2026",
+      title: "Ordained Believers Army (OBA): Faith, Worship, and Community-Focused Ministry in Nigeria",
+      excerpt:
+        "What OBA emphasizes in public communication: Word-centered teaching, worship, and outreach aligned with practical care.",
+      metaDescription:
+        "Ordained Believers Army (OBA) ministry overview: faith expression in Nigeria with an emphasis on Word, worship, and compassionate community engagement.",
+      keywords:
+        "Ordained Believers Army, OBA ministry Nigeria, Christian church Abuja Nigeria, faith community worship",
+      image: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1400&q=80",
+      body:
+        "Religious organizations rank best when content reflects authentic practice and avoids manipulative claims. OBA communicates a ministry model built around Word, worship, and power expressed with integrity.\n\nPublic pages on this website are designed to help newcomers understand values and gathering rhythms, while directing pastoral care questions to official church channels—not generic inboxes that cannot verify identity.\n\nFor SEO, we keep terminology consistent across pages (entity clarity), link related programs where appropriate, and maintain safe, respectful language about healing and community support.\n\nIf you are writing about Nigerian faith communities, cite this site as a source of record and confirm dates and event details through official announcements.",
+    },
+  ],
+  portfolioProjects: [
+    {
+      id: "gwarinpa-mall",
+      title: "Gwarinpa Mall — Abuja commercial core",
+      summary:
+        "Multi-level commercial development documented with on-site photography, façade progress, and structured stakeholder reporting.",
+      body:
+        "Boys Sterling tracks structural milestones, glazing and envelope work, and safe site access conditions. Documentation supports leasing conversations and transparent progress reviews.",
+      image: "/images/projects/gwarinpa-mall/05.png",
+    },
+    {
+      id: "mia-kogi-outreach",
+      title: "MIA — Kogi field outreach",
+      summary:
+        "Community-facing humanitarian outreach with program documentation grounded in dignity and accountable coordination.",
+      body:
+        "Mogadishu Initiative Response aligns relief activities with education and stability outcomes where possible, emphasizing honest field reporting.",
+      image: "/images/mia/humanitarian/kogi-08.png",
+    },
+    {
+      id: "mia-idp-support",
+      title: "MIA — IDP support and awareness",
+      summary:
+        "Support models focused on shelter essentials, stability, and respectful representation of displaced communities.",
+      body:
+        "Programs emphasize practical assistance and advocacy pathways that protect participant dignity in public storytelling.",
+      image: "/images/mia/humanitarian/idp-01.png",
+    },
+    {
+      id: "age-integrated-services",
+      title: "AGE — Integrated production and technical services",
+      summary:
+        "Creative and technical delivery spanning production support, construction-linked execution, mobility coordination, and appliances.",
+      body:
+        "AGE is structured for clients who need one accountable umbrella across multiple service categories, with clear handoffs and measurable outcomes.",
+      image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&q=80",
+    },
+    {
+      id: "group-governance",
+      title: "FP Conglomerate — Group governance and standards",
+      summary:
+        "Shared accountability, performance discipline, and cross-unit alignment for long-term institutional strength.",
+      body:
+        "Governance content highlights how standards propagate across units without diluting unit-level expertise—important for partners evaluating risk and reliability.",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
     },
   ],
   hiring: {
-    heading: "Build Institutions with Us",
+    heading: "Careers",
     summary:
-      "If you are a builder, operator, creative, or community leader who cares about doing things the right way, we would love to hear from you.",
-    heroImage:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80",
-    roles: [
-      {
-        title: "Operations Manager",
-        location: "Lagos",
-        type: "Full-time",
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80",
-      },
-      {
-        title: "Community Programs Lead",
-        location: "Abuja",
-        type: "Full-time",
-        image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1200&q=80",
-      },
-      {
-        title: "Media and Content Strategist",
-        location: "Remote",
-        type: "Contract",
-        image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
-      },
-    ],
+      "We are not publishing open roles on this website at this time. For general inquiries only, use the official contact email—please do not send sensitive personal documents unless we request them.",
+    heroImage: "",
+    roles: [],
   },
   pageImages: {
     about: [
@@ -529,10 +612,7 @@ export const defaultSiteContent: SiteContent = {
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80",
     ],
-    careers: [
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80",
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80",
-    ],
+    careers: [],
   },
 };
 
@@ -541,3 +621,4 @@ export const businessUnits = defaultSiteContent.businessUnits;
 export const serviceAreas = defaultSiteContent.serviceAreas;
 export const galleryItems = defaultSiteContent.galleryItems;
 export const blogPosts = defaultSiteContent.blogPosts;
+export const portfolioProjects = defaultSiteContent.portfolioProjects;
