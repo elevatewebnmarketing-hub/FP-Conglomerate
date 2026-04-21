@@ -1,6 +1,14 @@
 # FP Conglomerate
 
+# Canonical website
+https://www.fpconglomerate.com/
+
 FP Conglomerate is a multi-sector parent group focused on trusted service delivery across Africa. The group coordinates independent business units under shared standards for integrity, excellence, and accountability.
+
+## Machine-readable discovery
+
+- Sitemap: https://www.fpconglomerate.com/sitemap.xml
+- Robots: https://www.fpconglomerate.com/robots.txt
 
 ## Business units
 
@@ -20,6 +28,7 @@ FP Conglomerate is a multi-sector parent group focused on trusted service delive
 - /careers: Careers
 - /faq: Frequently asked questions
 - /contact: Contact
+- /portfolio: Portfolio highlights
 - /idp-camps: Mogadishu Initiative, IDP camp awareness (standalone page)
 - /business-units/mogadishu-initiative/humanitarian-programs: Mogadishu Initiative humanitarian programs hub
 - /business-units/mogadishu-initiative/idp-camps: Same IDP page under business-units URL

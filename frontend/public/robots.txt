@@ -1,11 +1,22 @@
-# FP Conglomerate: allow search engines and common AI crawlers
+# FP Conglomerate — https://www.fpconglomerate.com
+# Allow search engines and AI / research crawlers to index public marketing content.
 
 User-agent: *
 Allow: /
+
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Twitterbot
@@ -14,13 +25,17 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+# AI / LLM crawlers (opt-in to being cited in assistants; adjust if you need to restrict)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Google-Extended
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
@@ -32,8 +47,16 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://fp-conglomerate.vercel.app/sitemap.xml
-# If you use a custom domain, update the Sitemap URL to match your canonical origin.
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://www.fpconglomerate.com/sitemap.xml
