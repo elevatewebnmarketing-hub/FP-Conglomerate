@@ -40,18 +40,24 @@ function FounderImageCarousel({
   }, [api]);
 
   return (
-    <div className="relative">
-      <Carousel opts={{ loop: true, align: "center" }} setApi={setApi} className="w-full">
+    <div className="relative px-10 sm:px-12 md:px-14">
+      <Carousel
+        opts={{ loop: true, align: "center" }}
+        setApi={setApi}
+        className="w-full max-w-md mx-auto"
+      >
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={`${item.src}-${index}`}>
-              <figure className="border border-border bg-card/40 overflow-hidden">
-                <MediaAsset
-                  src={item.src}
-                  alt={item.caption}
-                  priority={index === 0}
-                  className="w-full h-[50vh] min-h-[300px] max-h-[760px] object-cover md:h-[62vh]"
-                />
+              <figure className="border border-border bg-card/40 overflow-hidden rounded-sm">
+                <div className="relative w-full max-w-md mx-auto aspect-[9/16] max-h-[min(72vh,780px)] bg-black/30">
+                  <MediaAsset
+                    src={item.src}
+                    alt={item.caption}
+                    priority={index === 0}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
                 <figcaption className="px-4 py-3 text-sm text-muted-foreground leading-relaxed md:px-5">
                   {item.caption}
                 </figcaption>
@@ -61,11 +67,11 @@ function FounderImageCarousel({
         </CarouselContent>
         <CarouselPrevious
           type="button"
-          className="left-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+          className="left-0 sm:left-1 top-[40%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
         />
         <CarouselNext
           type="button"
-          className="right-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+          className="right-0 sm:right-1 top-[40%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
         />
       </Carousel>
       <p className="mt-3 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
@@ -94,17 +100,23 @@ function FounderVideoCarousel({
   }, [api]);
 
   return (
-    <div className="relative">
-      <Carousel opts={{ loop: true, align: "center" }} setApi={setApi} className="w-full">
+    <div className="relative px-10 sm:px-12 md:px-14">
+      <Carousel
+        opts={{ loop: true, align: "center" }}
+        setApi={setApi}
+        className="w-full max-w-md mx-auto"
+      >
         <CarouselContent>
           {items.map((item) => (
             <CarouselItem key={item.src}>
-              <article className="border border-border bg-card/40 overflow-hidden">
-                <MediaAsset
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-[50vh] min-h-[300px] max-h-[760px] bg-black object-contain md:h-[62vh]"
-                />
+              <article className="border border-border bg-card/40 overflow-hidden rounded-sm">
+                <div className="relative w-full max-w-md mx-auto aspect-[9/16] max-h-[min(72vh,780px)] bg-black/60">
+                  <MediaAsset
+                    src={item.src}
+                    alt={item.title}
+                    className="absolute inset-0 h-full w-full object-contain"
+                  />
+                </div>
                 <p className="px-4 py-3 text-sm text-muted-foreground md:px-5">{item.title}</p>
               </article>
             </CarouselItem>
@@ -112,11 +124,11 @@ function FounderVideoCarousel({
         </CarouselContent>
         <CarouselPrevious
           type="button"
-          className="left-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+          className="left-0 sm:left-1 top-[40%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
         />
         <CarouselNext
           type="button"
-          className="right-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+          className="right-0 sm:right-1 top-[40%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
         />
       </Carousel>
       <p className="mt-3 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
