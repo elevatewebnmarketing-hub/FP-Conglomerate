@@ -112,7 +112,6 @@ export type SiteContent = {
     roles: HiringRole[];
   };
   pageImages: {
-    about: string[];
     services: string[];
     contact: string[];
     careers: string[];
@@ -708,10 +707,6 @@ export const defaultSiteContent: SiteContent = {
     roles: [],
   },
   pageImages: {
-    about: [
-      "/images/about/founder-white-01.png",
-      "/images/about/founder-gray-01.png",
-    ],
     services: [
       "/images/projects/gwarinpa-mall/02.png",
       "/images/projects/gwarinpa-mall/07.png",

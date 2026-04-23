@@ -212,16 +212,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {(content.pageImages?.about ?? []).map((image, index) => (
-                <MediaAsset
-                  key={`${image}-${index}`}
-                  src={image}
-                  alt={`About visual ${index + 1}`}
-                  className="h-52 w-full object-cover border border-border md:h-64 dark:brightness-75"
-                />
-              ))}
-            </div>
           </section>
         </RevealOnScroll>
 
