@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import Navbar from "@/components/Navbar";
@@ -5,12 +6,125 @@ import Footer from "@/components/Footer";
 import { useSiteContent } from "@/content/SiteContentContext";
 import MediaAsset from "@/components/MediaAsset";
 import RevealOnScroll from "@/components/humanitarian/RevealOnScroll";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const values = ["Trust", "Excellence", "Integrity", "Service"];
 const sourceTypeLabel = {
   web: "Web source",
   "founder-provided": "Founder-provided",
 } as const;
+
+function FounderImageCarousel({
+  items,
+}: {
+  items: { src: string; caption: string }[];
+}) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  return (
+    <div className="relative">
+      <Carousel opts={{ loop: true, align: "center" }} setApi={setApi} className="w-full">
+        <CarouselContent>
+          {items.map((item, index) => (
+            <CarouselItem key={`${item.src}-${index}`}>
+              <figure className="border border-border bg-card/40 overflow-hidden">
+                <MediaAsset
+                  src={item.src}
+                  alt={item.caption}
+                  priority={index === 0}
+                  className="w-full h-[50vh] min-h-[300px] max-h-[760px] object-cover md:h-[62vh]"
+                />
+                <figcaption className="px-4 py-3 text-sm text-muted-foreground leading-relaxed md:px-5">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          type="button"
+          className="left-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+        />
+        <CarouselNext
+          type="button"
+          className="right-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+        />
+      </Carousel>
+      <p className="mt-3 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
+        {current + 1} / {items.length}
+      </p>
+    </div>
+  );
+}
+
+function FounderVideoCarousel({
+  items,
+}: {
+  items: { src: string; title: string }[];
+}) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  return (
+    <div className="relative">
+      <Carousel opts={{ loop: true, align: "center" }} setApi={setApi} className="w-full">
+        <CarouselContent>
+          {items.map((item) => (
+            <CarouselItem key={item.src}>
+              <article className="border border-border bg-card/40 overflow-hidden">
+                <MediaAsset
+                  src={item.src}
+                  alt={item.title}
+                  className="w-full h-[50vh] min-h-[300px] max-h-[760px] bg-black object-contain md:h-[62vh]"
+                />
+                <p className="px-4 py-3 text-sm text-muted-foreground md:px-5">{item.title}</p>
+              </article>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          type="button"
+          className="left-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+        />
+        <CarouselNext
+          type="button"
+          className="right-3 top-[38%] border-white/35 bg-black/20 text-white backdrop-blur-sm hover:bg-black/35 disabled:opacity-40"
+        />
+      </Carousel>
+      <p className="mt-3 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
+        {current + 1} / {items.length}
+      </p>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   const { content } = useSiteContent();
@@ -219,38 +333,24 @@ export default function AboutPage() {
               <p className="mb-5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Visual portfolio
               </p>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
-                {founderGallery.map((item) => (
-                  <figure key={`${item.src}-${item.caption}`} className="group">
-                    <MediaAsset
-                      src={item.src}
-                      alt={item.caption}
-                      className="h-52 w-full object-cover border border-border"
-                    />
-                    <figcaption className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                      {item.caption}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
+              <h3 className="font-editorial text-2xl md:text-3xl mb-3">Image carousel</h3>
+              <p className="text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+                Curated founder portraits showcasing executive presence across studio and
+                field-style settings. Swipe or use the on-screen controls to navigate.
+              </p>
+              <FounderImageCarousel items={founderGallery} />
             </div>
 
             <div className="mt-12">
               <p className="mb-5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Video highlights
               </p>
-              <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-                {founderVideos.map((video) => (
-                  <article key={video.src} className="border border-border bg-card/40 p-3">
-                    <MediaAsset
-                      src={video.src}
-                      alt={video.title}
-                      className="aspect-[4/5] w-full object-cover"
-                    />
-                    <p className="mt-3 text-sm text-foreground">{video.title}</p>
-                  </article>
-                ))}
-              </div>
+              <h3 className="font-editorial text-2xl md:text-3xl mb-3">Video carousel</h3>
+              <p className="text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+                Short-form founder clips are delivered in a full-width carousel format. Videos are
+                loaded conservatively for performance while preserving quality across screen sizes.
+              </p>
+              <FounderVideoCarousel items={founderVideos} />
             </div>
 
             <div className="mt-12 border border-border p-6 md:p-8">

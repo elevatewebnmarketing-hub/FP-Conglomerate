@@ -26,7 +26,7 @@ export default function MediaAsset({ src, alt, className, priority }: MediaAsset
         controls
         muted
         playsInline
-        preload="metadata"
+        preload={priority ? "metadata" : "none"}
       />
     );
   }
