@@ -91,12 +91,6 @@ export type AboutLeadership = {
   journeyTimeline?: { period: string; title: string; summary: string }[];
   gallery?: { src: string; caption: string }[];
   videoHighlights?: { src: string; title: string }[];
-  references?: {
-    title: string;
-    url: string;
-    sourceType: "web" | "founder-provided";
-    note?: string;
-  }[];
   portraitSrc: string;
   portraitAlt: string;
 };
@@ -260,40 +254,6 @@ export const defaultSiteContent: SiteContent = {
       {
         src: "/videos/about/founder-profile-03.mp4",
         title: "Behind-the-scenes short video",
-      },
-    ],
-    references: [
-      {
-        title: "Nigerian Military School (Official Website)",
-        url: "https://www.nms1954.sch.ng/",
-        sourceType: "web",
-      },
-      {
-        title: "Nigerian Military School — About",
-        url: "https://www.nms1954.sch.ng/about-us/",
-        sourceType: "web",
-      },
-      {
-        title: "Nigerian Military School (Background listing)",
-        url: "https://en.wikipedia.org/wiki/Nigerian_Military_School",
-        sourceType: "web",
-        note: "Used as supplementary public context.",
-      },
-      {
-        title: "Founder-provided claim: born 1987; former military officer; 21+ years experience",
-        url: "#",
-        sourceType: "founder-provided",
-      },
-      {
-        title:
-          "Founder-provided bibliography: SUNSET IN NORTH EAST NIGERIA and MIRROR OF A STERLING INFANTRYMAN (author of 7+ books)",
-        url: "#",
-        sourceType: "founder-provided",
-      },
-      {
-        title: "Founder-provided profile note: movie script writing and music artist work",
-        url: "#",
-        sourceType: "founder-provided",
       },
     ],
     portraitSrc: "/images/about/anuhi-victor-anate.png",

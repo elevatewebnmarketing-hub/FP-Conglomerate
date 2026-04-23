@@ -16,10 +16,6 @@ import {
 } from "@/components/ui/carousel";
 
 const values = ["Trust", "Excellence", "Integrity", "Service"];
-const sourceTypeLabel = {
-  web: "Web source",
-  "founder-provided": "Founder-provided",
-} as const;
 
 function FounderImageCarousel({
   items,
@@ -145,7 +141,6 @@ export default function AboutPage() {
   const founderJourney = L.journeyTimeline ?? [];
   const founderGallery = L.gallery ?? [];
   const founderVideos = L.videoHighlights ?? [];
-  const founderReferences = L.references ?? [];
 
   return (
     <>
@@ -365,36 +360,6 @@ export default function AboutPage() {
               <FounderVideoCarousel items={founderVideos} />
             </div>
 
-            <div className="mt-12 border border-border p-6 md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                References &amp; sources
-              </p>
-              <ul className="mt-4 grid gap-3">
-                {founderReferences.map((reference) => (
-                  <li
-                    key={`${reference.title}-${reference.url}-${reference.sourceType}`}
-                    className="border border-border/70 bg-background/80 px-4 py-3"
-                  >
-                    {reference.url === "#" ? (
-                      <p className="text-sm text-foreground">{reference.title}</p>
-                    ) : (
-                      <a
-                        href={reference.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm text-foreground border-b border-foreground/30 pb-0.5 hover:border-foreground"
-                      >
-                        {reference.title}
-                      </a>
-                    )}
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {sourceTypeLabel[reference.sourceType]}
-                      {reference.note ? ` — ${reference.note}` : ""}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </section>
         </RevealOnScroll>
 

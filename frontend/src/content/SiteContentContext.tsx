@@ -29,7 +29,6 @@ function normalizeContent(raw: Partial<SiteContent>): SiteContent {
       gallery: raw.aboutLeadership?.gallery ?? base.aboutLeadership.gallery,
       videoHighlights:
         raw.aboutLeadership?.videoHighlights ?? base.aboutLeadership.videoHighlights,
-      references: raw.aboutLeadership?.references ?? base.aboutLeadership.references,
     },
     pageImages: { ...base.pageImages, ...raw.pageImages },
     hiring: {
