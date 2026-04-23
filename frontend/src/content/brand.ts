@@ -712,7 +712,7 @@ export const defaultSiteContent: SiteContent = {
     ],
     contact: [
       "/images/mia/humanitarian/kogi-17.png",
-      "https://images.unsplash.com/photo-1573164713714-95f63629b390?auto=format&fit=crop&w=1400&q=80",
+      "/images/projects/gwarinpa-mall/01.png",
     ],
     careers: [],
   },
