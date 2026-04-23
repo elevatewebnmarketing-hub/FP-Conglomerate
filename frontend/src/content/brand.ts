@@ -200,51 +200,51 @@ export const defaultSiteContent: SiteContent = {
     ],
     gallery: [
       {
-        src: "/images/about/founder-white-01.png",
+        src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80",
         caption: "Founder portrait session — signature white executive look.",
       },
       {
-        src: "/images/about/founder-white-02.png",
+        src: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80",
         caption: "Leadership portrait — confident posture, service-first identity.",
       },
       {
-        src: "/images/about/founder-white-03.png",
+        src: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1200",
         caption: "Full-length profile — discipline and composure in visual form.",
       },
       {
-        src: "/images/about/founder-stripe-01.png",
+        src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80",
         caption: "Pinstripe editorial set — strategic and classic executive tone.",
       },
       {
-        src: "/images/about/founder-stripe-02.png",
+        src: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200",
         caption: "Side profile composition — presence with precise styling.",
       },
       {
-        src: "/images/about/founder-stripe-03.png",
+        src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
         caption: "Studio stance — confidence and control.",
       },
       {
-        src: "/images/about/founder-stripe-04.png",
+        src: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200",
         caption: "Movement shot — modern personal-brand storytelling.",
       },
       {
-        src: "/images/about/founder-gray-01.png",
+        src: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
         caption: "Field candid by vehicle — practical leadership in motion.",
       },
       {
-        src: "/images/about/founder-gray-02.png",
+        src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
         caption: "Close-up detail — branded cap and executive styling.",
       },
       {
-        src: "/images/about/founder-gray-03.png",
+        src: "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1200",
         caption: "Outdoor candid — transition from formal pose to field context.",
       },
       {
-        src: "/images/about/founder-gray-04.png",
+        src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
         caption: "Corridor walk shot — leadership beyond studio environments.",
       },
       {
-        src: "/images/about/founder-white-04.png",
+        src: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
         caption: "Expressive studio shot — personality and composure combined.",
       },
     ],
@@ -262,7 +262,7 @@ export const defaultSiteContent: SiteContent = {
         title: "Behind-the-scenes short video",
       },
     ],
-    portraitSrc: "/images/about/anuhi-victor-anate.png",
+    portraitSrc: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80",
     portraitAlt: "Anuhi Victor Anate, Founder and Group Principal, FP Conglomerate",
   },
   businessUnits: [
@@ -275,11 +275,12 @@ export const defaultSiteContent: SiteContent = {
         "A multi-sector parent company established in 2026 to bridge the trust gap in service delivery across Africa.",
       details:
         "We coordinate independent business units with one group-wide framework for integrity, consistency, and measurable execution. Our commitment is clear: target-driven delivery with trust at the center of every engagement.",
-      heroImage: "/images/projects/gwarinpa-mall/05.png",
+      heroImage:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "/images/projects/gwarinpa-mall/01.png",
-        "/images/projects/gwarinpa-mall/02.png",
-        "/images/about/founder-stripe-03.png",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
       ],
       subPages: [
         {
@@ -288,7 +289,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "How standards, oversight, and accountability work across all units.",
           content:
             "FP Conglomerate runs a simple governance model: clear mandates, transparent expectations, and regular performance reviews. Each unit executes independently but remains accountable to shared group standards on service, ethics, and client trust.",
-          image: "/images/projects/gwarinpa-mall/05.png",
+          image:
+            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "strategy",
@@ -296,7 +298,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "How the group builds and scales institutions for long-term relevance.",
           content:
             "Our strategy is to build businesses that solve practical needs while preserving credibility. New initiatives are selected based on social value, durability of demand, and our ability to deliver with excellence over time.",
-          image: "/images/about/founder-stripe-01.png",
+          image:
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -310,11 +313,12 @@ export const defaultSiteContent: SiteContent = {
         "Ordained Believers Army (OBA) is a bold spiritual movement manifesting healing power, scriptural revelation, and believer identity.",
       details:
         "Founded in 2026, OBA was established with an audacious conviction: power should not be delayed. The ministry emphasizes healing for all manner of diseases, deep scriptural insight, and practical discipleship that helps believers understand who they are in Christ.",
-      heroImage: "/images/about/founder-white-01.png",
+      heroImage:
+        "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "/images/about/founder-white-02.png",
-        "/images/mia/humanitarian/kogi-02.png",
-        "/images/mia/humanitarian/kogi-04.png",
+        "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1470259078422-826894b933aa?auto=format&fit=crop&w=1600&q=80",
+        "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1600",
       ],
       subPages: [
         {
@@ -323,7 +327,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "How OBA ministers through Word, worship, and bold faith.",
           content:
             "OBA's ministry expression is built around three pillars: Word, worship, and power. Services focus on spirit-led teaching, practical interpretation of scripture, and an atmosphere where faith is activated for real transformation.",
-          image: "/images/about/founder-white-03.png",
+          image:
+            "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "outreach",
@@ -331,7 +336,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "Faith in action through prayer, healing, and practical care.",
           content:
             "Beyond gatherings, OBA serves people through prayer outreach, counseling, and practical support. The mission is simple: match spiritual conviction with compassionate action and visible impact.",
-          image: "/images/mia/humanitarian/kogi-08.png",
+          image:
+            "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -345,11 +351,12 @@ export const defaultSiteContent: SiteContent = {
         "AGE delivers practical value across movie production, construction, transport, brand promotion, devices, and general appliances.",
       details:
         "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable production support, construction services, transport coordination, brand promotion support, and durable appliances under one service umbrella.",
-      heroImage: "/images/projects/gwarinpa-mall/03.png",
+      heroImage:
+        "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "/images/projects/gwarinpa-mall/04.png",
-        "/images/projects/gwarinpa-mall/06.png",
-        "/images/projects/gwarinpa-mall/07.png",
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1600&q=80",
+        "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&w=1600",
       ],
       subPages: [
         {
@@ -358,7 +365,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "Core operating areas across media, construction, mobility, and appliances.",
           content:
             "AGE operates across movie production services, construction support, transport-linked execution, brand promotion, and technology and appliance supply. This blend allows clients to access both creative and practical delivery through one coordinated team.",
-          image: "/images/projects/gwarinpa-mall/04.png",
+          image:
+            "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "quality-assurance",
@@ -366,7 +374,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "How AGE protects customer confidence across varied service lines.",
           content:
             "AGE follows a service model built on integrity, responsiveness, and practical results. Whether the assignment is production, logistics, construction, or appliance delivery, the unit is measured by reliability and client confidence.",
-          image: "/images/projects/gwarinpa-mall/08.png",
+          image:
+            "https://images.unsplash.com/photo-1581092160607-ee22731a0f71?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -380,11 +389,12 @@ export const defaultSiteContent: SiteContent = {
         "BSC delivers practical value across real estate, hospitality, counseling, construction, building maintenance, and brand promotion.",
       details:
         "Boys Sterling Company Limited (BSC) was established in 2020 with a service promise built on dependable execution. The unit is designed to help clients feel secure in every engagement by combining care, technical delivery, and maintenance discipline.",
-      heroImage: "/images/projects/gwarinpa-mall/09.png",
+      heroImage:
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "/images/projects/gwarinpa-mall/05.png",
-        "/images/projects/gwarinpa-mall/06.png",
-        "/images/projects/gwarinpa-mall/08.png",
+        "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80",
       ],
       subPages: [
         {
@@ -394,7 +404,8 @@ export const defaultSiteContent: SiteContent = {
             "Site inspection: photos and video documenting construction progress for the Gwarinpa Mall development in Abuja.",
           content:
             "Gwarinpa Mall is documented as part of Boys Sterling’s built-environment work: a multi-level commercial development in Gwarinpa, Abuja. Field visits capture structural progress, envelope and glazing, scaffolding access, and on-site conditions during delivery. Full photo and video documentation is on the dedicated project page.",
-          image: "/images/projects/gwarinpa-mall/05.png",
+          image:
+            "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "real-estate",
@@ -402,7 +413,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "Property and hospitality services delivered with disciplined execution.",
           content:
             "BSC supports property and hospitality projects with a practical approach to planning, delivery, and client support. Every engagement is managed for long-term usability and service confidence.",
-          image: "/images/projects/gwarinpa-mall/05.png",
+          image:
+            "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "media-entertainment",
@@ -410,7 +422,8 @@ export const defaultSiteContent: SiteContent = {
           summary: "People support and technical services for stable operations.",
           content:
             "Beyond property and hospitality, BSC delivers counseling support, construction execution, building maintenance, and brand promotion services. This integrated model helps clients maintain both functional spaces and healthy service outcomes over time.",
-          image: "/images/about/founder-gray-03.png",
+          image:
+            "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -425,11 +438,12 @@ export const defaultSiteContent: SiteContent = {
         "Mogadishu Initiative Response serves vulnerable communities through sincere aid, practical relief, and justice-focused support.",
       details:
         "Founded in 2026, the initiative was born from a careful desire to support humanity across Africa, with immediate concern for Nigeria. Programs include shelter, education, accommodation support, social justice advocacy, and community recognition initiatives.",
-      heroImage: "/images/mia/humanitarian/kogi-01.png",
+      heroImage:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "/images/mia/humanitarian/idp-04.png",
-        "/images/mia/humanitarian/kogi-02.png",
-        "/images/mia/humanitarian/idp-06.png",
+        "https://images.unsplash.com/photo-1469571486292-b53601020acb?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
       ],
       subPages: [
         {
@@ -439,7 +453,8 @@ export const defaultSiteContent: SiteContent = {
             "Relief that puts people first: outreach in the field, honest awareness, and delivery we can stand behind.",
           content:
             "Programs are designed to meet urgent realities while restoring long-term hope through education, shelter support, and community-centered assistance.",
-          image: "/images/mia/humanitarian/kogi-01.png",
+          image:
+            "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "idp-camps",
@@ -448,7 +463,8 @@ export const defaultSiteContent: SiteContent = {
             "Straightforward context on life in camps and informal settlements, with support that always respects dignity.",
           content:
             "Mogadishu Initiative Response documents realities responsibly and channels resources toward shelter, essentials, and stability for displaced communities.",
-          image: "/images/mia/humanitarian/idp-01.png",
+          image:
+            "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
         },
         {
           slug: "social-justice",
@@ -456,13 +472,14 @@ export const defaultSiteContent: SiteContent = {
           summary: "Advocacy that protects dignity and amplifies underserved voices.",
           content:
             "Mogadishu Initiative Response works with communities and partners to defend dignity, encourage social justice, and convert compassion into practical action.",
-          image: "/images/mia/humanitarian/kogi-12.png",
+          image:
+            "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80",
           gallery: [
-            "/images/mia/humanitarian/kogi-02.png",
-            "/images/mia/humanitarian/kogi-05.png",
-            "/images/mia/humanitarian/kogi-08.png",
-            "/images/mia/humanitarian/kogi-11.png",
-            "/images/mia/humanitarian/kogi-15.png",
+            "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1469571486292-b53601020acb?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
           ],
         },
       ],
@@ -473,100 +490,105 @@ export const defaultSiteContent: SiteContent = {
       title: "AGE Multi-Sector Services",
       summary:
         "Movie production, construction, transport, brand promotion, devices, and general appliance services delivered through Anate Grand Empire Solutions (AGE).",
-      image: "/images/projects/gwarinpa-mall/04.png",
+      image:
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=80",
     },
     {
       title: "BSC Real Estate and Support Services",
       summary:
         "Real estate, hospitality, counseling, construction, building maintenance, and brand promotion services delivered through Boys Sterling Company Limited (BSC).",
-      image: "/images/projects/gwarinpa-mall/09.png",
+      image:
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
     },
     {
       title: "Humanitarian and Justice Programs",
       summary:
         "Shelter, education, accommodation support, and social justice interventions through Mogadishu Initiative Response.",
-      image: "/images/mia/humanitarian/kogi-01.png",
+      image:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80",
     },
     {
       title: "Faith and Ministry Services",
       summary:
         "Word-based teaching, worship gatherings, and healing-focused ministry through Ordained Believers Army (OBA).",
-      image: "/images/about/founder-white-03.png",
+      image:
+        "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1600&q=80",
     },
     {
       title: "Group Strategy and Operational Support",
       summary:
         "Shared strategic direction, leadership alignment, and accountability systems coordinated by FP Conglomerate.",
-      image: "/images/projects/gwarinpa-mall/05.png",
+      image:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
     },
   ],
   galleryItems: [
     {
-      src: "/images/projects/gwarinpa-mall/05.png",
+      src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: storefront glazing and facade progress",
     },
     {
-      src: "/images/mia/humanitarian/kogi-01.png",
+      src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80",
       caption: "Community program — field documentation (Kogi)",
     },
     {
-      src: "/images/projects/gwarinpa-mall/01.png",
+      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: approach to the structural shell",
     },
     {
-      src: "/images/mia/humanitarian/idp-01.png",
+      src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
       caption: "Mogadishu Initiative — displaced-persons support, on-site",
     },
     {
-      src: "/images/projects/gwarinpa-mall/03.png",
+      src: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: corner massing and scaffolding",
     },
     {
-      src: "/images/mia/humanitarian/kogi-08.png",
+      src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=80",
       caption: "Humanitarian outreach — Kogi field visit",
     },
     {
-      src: "/images/projects/gwarinpa-mall/02.png",
+      src: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: exterior finish and access review",
     },
     {
-      src: "/images/projects/gwarinpa-mall/04.png",
+      src: "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: interior shell walk-through",
     },
     {
-      src: "/images/projects/gwarinpa-mall/06.png",
+      src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: perimeter and staging documentation",
     },
     {
-      src: "/images/projects/gwarinpa-mall/07.png",
+      src: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: courtyard elevation under construction",
     },
     {
-      src: "/images/projects/gwarinpa-mall/08.png",
+      src: "https://images.unsplash.com/photo-1581092160607-ee22731a0f71?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: overall L-shaped block progress",
     },
     {
-      src: "/images/projects/gwarinpa-mall/09.png",
+      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
       caption: "Gwarinpa Mall: scaffolding and wall plane inspection",
     },
     {
-      src: "/images/mia/humanitarian/kogi-02.png",
+      src: "https://images.unsplash.com/photo-1469571486292-b53601020acb?auto=format&fit=crop&w=1400&q=80",
       caption: "Community engagement — Kogi program",
     },
     {
-      src: "/images/mia/humanitarian/kogi-04.png",
+      src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80",
       caption: "Field program documentation (Kogi)",
     },
     {
-      src: "/images/mia/humanitarian/kogi-12.png",
+      src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
       caption: "Humanitarian program — community moments",
     },
     {
-      src: "/images/mia/humanitarian/idp-04.png",
+      src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80",
       caption: "IDP support — field documentation",
     },
     {
-      src: "/images/mia/humanitarian/kogi-15.png",
+      src: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1400",
       caption: "Outreach visit — Kogi",
     },
   ],
@@ -581,7 +603,7 @@ export const defaultSiteContent: SiteContent = {
         "Learn how FP Conglomerate, an Abuja-area multi-sector African group, coordinates OBA, AGE, BSC, and MIA with transparent service delivery and governance.",
       keywords:
         "FP Conglomerate, Abuja company, Nigeria multi-sector group, African business trust, corporate governance Nigeria",
-      image: "/images/projects/gwarinpa-mall/05.png",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
       body:
         "Search engines and readers alike reward clarity. FP Conglomerate is structured as a parent brand that coordinates independent units while keeping one public promise: trust, integrity, and service excellence.\n\nFrom our interim base in Gwagwalada, Abuja, the group connects Ordained Believers Army (faith expression), Anate Grand Empire Solutions (multi-sector services), Boys Sterling Company Limited (built environment and hospitality), and Mogadishu Initiative Response (humanitarian programs).\n\nThis article explains why we publish explicit service standards, document field programs responsibly, and invest in institutions that can outlast headlines. If you are researching Nigerian multi-sector groups, Abuja construction and real estate partners, or transparent humanitarian NGOs, this site is maintained as a primary source for how we operate.\n\nFor partnerships or media inquiries, use the contact page—responses are routed to the group’s official channels only.",
     },
@@ -595,7 +617,7 @@ export const defaultSiteContent: SiteContent = {
         "Overview of Mogadishu Initiative Response humanitarian programs in Nigeria: relief, education, shelter support, and social justice advocacy with dignity-first delivery.",
       keywords:
         "Nigeria humanitarian NGO, Mogadishu Initiative Response, Kogi outreach, IDP support Nigeria, social justice advocacy Africa",
-      image: "/images/mia/humanitarian/kogi-01.png",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80",
       body:
         "Humanitarian SEO should never trade dignity for clicks. Mogadishu Initiative Response publishes program context so stakeholders can understand what we do, where we work, and how communities stay at the center of decisions.\n\nOur teams document field conditions to improve coordination—not to sensationalize hardship. Programs include outreach aligned with shelter, education, accommodation support, and social justice themes, with an emphasis on transparent communication and accountable follow-through.\n\nIf you are comparing Nigerian NGOs, researching IDP support models, or looking for partners who prioritize long-term stability over one-off visibility, review our humanitarian program pages and primary project documentation on this website.\n\nContact details on the official FP Conglomerate contact page are the only approved channels for partnership and volunteer coordination.",
     },
@@ -609,7 +631,7 @@ export const defaultSiteContent: SiteContent = {
         "Gwarinpa Mall Abuja: commercial development documentation including construction progress photos and structured site reporting from Boys Sterling Company Limited.",
       keywords:
         "Gwarinpa Mall Abuja, Nigeria commercial property, Abuja construction documentation, Boys Sterling real estate, built environment Nigeria",
-      image: "/images/projects/gwarinpa-mall/03.png",
+      image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1600&q=80",
       body:
         "Large commercial projects rank when content matches what investors and tenants actually search for: location, progress, and credible visual proof. The Gwarinpa Mall development is documented through structured site photography and video walkthroughs linked from the dedicated project route on this website.\n\nBoys Sterling Company Limited approaches the built environment with maintenance discipline and client-visible milestones. That matters for SEO because it pairs intent—people looking for Abuja commercial projects—with verifiable updates instead of generic marketing language.\n\nReaders evaluating construction partners in Nigeria should cross-check statements here with the primary project page and official correspondence. We avoid duplicate or conflicting claims across pages to protect both users and search quality.\n\nFor collaboration inquiries related to retail, leasing, or construction coordination, use the contact form and reference the project name to route your request efficiently.",
     },
@@ -623,7 +645,8 @@ export const defaultSiteContent: SiteContent = {
         "Anate Grand Empire Solutions (AGE): Nigeria multi-sector services spanning movie production support, construction, transport, brand promotion, devices, and appliances.",
       keywords:
         "Anate Grand Empire Solutions, AGE Nigeria, movie production Nigeria, construction services Nigeria, appliance supply Nigeria",
-      image: "/images/projects/gwarinpa-mall/04.png",
+      image:
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1600&q=80",
       body:
         "Service integration only helps SEO when the page answers real queries. AGE is positioned for organizations that need coordinated execution across production, construction-linked work, transport coordination, brand promotion, and appliance supply.\n\nWe describe services in plain language so prospective clients can map their needs to our operating model. That reduces bounce rate and helps search engines understand entity relationships between FP Conglomerate and its operating units.\n\nIf you are sourcing vendors in Nigeria, ask for scope, timelines, and escalation paths—our public pages are written to support that evaluation process without overpromising.\n\nUse the official contact channels listed on this site; we do not recruit financial or personal information through unofficial social accounts.",
     },
@@ -637,7 +660,8 @@ export const defaultSiteContent: SiteContent = {
         "Ordained Believers Army (OBA) ministry overview: faith expression in Nigeria with an emphasis on Word, worship, and compassionate community engagement.",
       keywords:
         "Ordained Believers Army, OBA ministry Nigeria, Christian church Abuja Nigeria, faith community worship",
-      image: "/images/about/founder-white-03.png",
+      image:
+        "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1600&q=80",
       body:
         "Religious organizations rank best when content reflects authentic practice and avoids manipulative claims. OBA communicates a ministry model built around Word, worship, and power expressed with integrity.\n\nPublic pages on this website are designed to help newcomers understand values and gathering rhythms, while directing pastoral care questions to official church channels—not generic inboxes that cannot verify identity.\n\nFor SEO, we keep terminology consistent across pages (entity clarity), link related programs where appropriate, and maintain safe, respectful language about healing and community support.\n\nIf you are writing about Nigerian faith communities, cite this site as a source of record and confirm dates and event details through official announcements.",
     },
@@ -650,7 +674,7 @@ export const defaultSiteContent: SiteContent = {
         "Multi-level commercial development documented with on-site photography, façade progress, and structured stakeholder reporting.",
       body:
         "Boys Sterling tracks structural milestones, glazing and envelope work, and safe site access conditions. Documentation supports leasing conversations and transparent progress reviews.",
-      image: "/images/projects/gwarinpa-mall/05.png",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: "mia-kogi-outreach",
@@ -659,7 +683,7 @@ export const defaultSiteContent: SiteContent = {
         "Community-facing humanitarian outreach with program documentation grounded in dignity and accountable coordination.",
       body:
         "Mogadishu Initiative Response aligns relief activities with education and stability outcomes where possible, emphasizing honest field reporting.",
-      image: "/images/mia/humanitarian/kogi-08.png",
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: "mia-idp-support",
@@ -668,7 +692,7 @@ export const defaultSiteContent: SiteContent = {
         "Support models focused on shelter essentials, stability, and respectful representation of displaced communities.",
       body:
         "Programs emphasize practical assistance and advocacy pathways that protect participant dignity in public storytelling.",
-      image: "/images/mia/humanitarian/idp-01.png",
+      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: "age-integrated-services",
@@ -677,7 +701,8 @@ export const defaultSiteContent: SiteContent = {
         "Creative and technical delivery spanning production support, construction-linked execution, mobility coordination, and appliances.",
       body:
         "AGE is structured for clients who need one accountable umbrella across multiple service categories, with clear handoffs and measurable outcomes.",
-      image: "/images/projects/gwarinpa-mall/06.png",
+      image:
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: "group-governance",
@@ -686,7 +711,8 @@ export const defaultSiteContent: SiteContent = {
         "Shared accountability, performance discipline, and cross-unit alignment for long-term institutional strength.",
       body:
         "Governance content highlights how standards propagate across units without diluting unit-level expertise—important for partners evaluating risk and reliability.",
-      image: "/images/projects/gwarinpa-mall/05.png",
+      image:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
     },
   ],
   hiring: {
@@ -698,16 +724,16 @@ export const defaultSiteContent: SiteContent = {
   },
   pageImages: {
     about: [
-      "/images/about/founder-white-02.png",
-      "/images/about/founder-white-04.png",
+      "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80",
     ],
     services: [
-      "/images/projects/gwarinpa-mall/05.png",
-      "/images/mia/humanitarian/kogi-08.png",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80",
     ],
     contact: [
-      "/images/about/founder-gray-01.png",
-      "/images/about/founder-gray-03.png",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80",
     ],
     careers: [],
   },
