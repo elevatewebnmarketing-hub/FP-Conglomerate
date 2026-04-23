@@ -146,12 +146,12 @@ export const defaultSiteContent: SiteContent = {
     name: "Anuhi Victor Anate",
     title: "Founder & Group Principal",
     tagline:
-      "Former military officer and strategist building institution-grade businesses anchored in discipline, trust, and accountability.",
+      "Former military officer and strategist bringing discipline, trust, and accountability to service delivery.",
     bio: [
       "Born in 1987 and shaped by military formation in Nigeria, Anuhi Victor Anate leads FP Conglomerate with a service doctrine rooted in discipline, strategic clarity, and accountability.",
       "A former military officer with over 21 years of military experience, he translates field-tested leadership principles into enterprise execution across commerce, ministry expression, media, hospitality, and humanitarian impact.",
       "As Group Principal, his operating philosophy is straightforward: trust must be earned through consistent delivery, measurable standards, and transparent responsibility at every unit level.",
-      "Beyond executive leadership, he is an author with over seven books to his name, including founder-cited works such as 'Sunset in North East Nigeria' and 'Mirror of a Sterling Infantryman', and is also active in movie script writing and music.",
+      "Beyond executive leadership, he is an author of over seven books, including 'SUNSET IN NORTH EAST NIGERIA' and 'MIRROR OF A STERLING INFANTRYMAN', and is also active in movie script writing and music.",
       "From the Abuja base outward, his focus remains institution-building over publicity cycles, combining long-horizon strategy with practical service outcomes that people, partners, and communities can verify.",
     ],
     highlights: [
@@ -166,7 +166,11 @@ export const defaultSiteContent: SiteContent = {
       { label: "State of Origin", value: "Kogi State, Nigeria" },
       { label: "Education", value: "Nigerian Military School, Zaria" },
       { label: "Experience", value: "21+ years military and strategic leadership" },
-      { label: "Books", value: "7+ titles (founder-provided bibliography)" },
+      {
+        label: "Books",
+        value:
+          "Author of 7+ books including SUNSET IN NORTH EAST NIGERIA and MIRROR OF A STERLING INFANTRYMAN",
+      },
     ],
     journeyTimeline: [
       {
@@ -276,24 +280,13 @@ export const defaultSiteContent: SiteContent = {
         note: "Used as supplementary public context.",
       },
       {
-        title: "Sunset at Dawn: A Novel of the Biafran War (catalog record)",
-        url: "https://books.google.com/books/about/Sunset_at_Dawn.html?id=W7VUAQAACAAJ",
-        sourceType: "web",
-        note: "Title surfaced during source discovery near founder-cited bibliography.",
-      },
-      {
-        title: "Sunset at Dawn (African Books Collective listing)",
-        url: "https://africanbookscollective.com/books/sunset-at-dawn/",
-        sourceType: "web",
-      },
-      {
         title: "Founder-provided claim: born 1987; former military officer; 21+ years experience",
         url: "#",
         sourceType: "founder-provided",
       },
       {
         title:
-          "Founder-provided bibliography: 'Sunset in North East Nigeria' and 'Mirror of a Sterling Infantryman' among 7+ books",
+          "Founder-provided bibliography: SUNSET IN NORTH EAST NIGERIA and MIRROR OF A STERLING INFANTRYMAN (author of 7+ books)",
         url: "#",
         sourceType: "founder-provided",
       },
