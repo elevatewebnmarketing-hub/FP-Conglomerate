@@ -117,16 +117,26 @@ export default function CareersPage() {
                       <p className="text-sm text-muted-foreground mt-3">
                         {role.location} · {role.type}
                       </p>
-                      <p className="text-sm text-muted-foreground mt-6">
-                        To apply, send your CV and a short statement of fit to {content.brand.contactEmail}.
-                      </p>
-                      {role.image ? (
-                        <MediaAsset
-                          src={role.image}
-                          alt={role.title}
-                          className="w-full h-40 object-cover border border-border mt-6 dark:brightness-75"
-                        />
+                      {role.salaryRange ? (
+                        <p className="text-sm font-medium text-foreground mt-3">
+                          Salary: {role.salaryRange}
+                        </p>
                       ) : null}
+                      {role.description ? (
+                        <p className="text-sm text-muted-foreground mt-5 leading-relaxed whitespace-pre-wrap">
+                          {role.description}
+                        </p>
+                      ) : null}
+                      <p className="text-sm text-muted-foreground mt-6 border-t border-border pt-5">
+                        To apply, send your CV and a short statement of fit to{" "}
+                        <a
+                          href={`mailto:${content.brand.contactEmail}`}
+                          className="text-accent underline-offset-4 hover:underline"
+                        >
+                          {content.brand.contactEmail}
+                        </a>
+                        .
+                      </p>
                     </article>
                   ))}
             </div>

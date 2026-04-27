@@ -27,16 +27,16 @@ export const idpCampsPageContent = {
         "Displacement driven by over a decade of insurgency across Borno, Yobe, and Adamawa states — Nigeria's most prolonged humanitarian emergency, with millions still living in camps and host communities.",
       images: [
         {
-          src: "https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Children sitting outside makeshift shelters in a displaced persons settlement in North East Nigeria, faces showing exhaustion and uncertainty.",
+          src: "/images/mia/humanitarian/idp-01.png",
+          alt: "Wide elevated view of clustered temporary shelters across dry ground in a North East Nigerian IDP settlement.",
         },
         {
-          src: "https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Women and children queuing for food distribution at a humanitarian aid point in a North East Nigerian IDP camp.",
+          src: "/images/mia/humanitarian/idp-02.png",
+          alt: "Rows of blue and white tarp shelters along a path in a North East Nigeria displacement camp.",
         },
         {
-          src: "https://images.pexels.com/photos/8828374/pexels-photo-8828374.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Rows of temporary tarp shelters stretching across open ground in a displacement camp, illustrating the scale of the North East crisis.",
+          src: "/images/mia/humanitarian/idp-03.png",
+          alt: "White canvas shelters on open ground in a North East Nigeria IDP settlement, with trees and structures visible beyond.",
         },
       ],
     },
@@ -46,35 +46,35 @@ export const idpCampsPageContent = {
         "Communities uprooted by armed banditry, kidnappings, and farmer-herder conflicts across Zamfara, Katsina, and Sokoto states — a crisis that has displaced hundreds of thousands with limited national attention.",
       images: [
         {
-          src: "https://images.pexels.com/photos/6647003/pexels-photo-6647003.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Displaced families sheltering under minimal cover in a temporary settlement in North West Nigeria, with few possessions visible.",
+          src: "/images/mia/humanitarian/idp-04.png",
+          alt: "Makeshift shelters and open ground between structures in a North West Nigeria IDP settlement.",
         },
         {
-          src: "https://images.pexels.com/photos/6646958/pexels-photo-6646958.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "A mother and young children at an informal displacement site in North West Nigeria, surrounded by basic aid supplies.",
+          src: "/images/mia/humanitarian/idp-05.png",
+          alt: "Dense rows of temporary dwellings stretching toward the horizon in a North West Nigeria displacement camp.",
         },
         {
-          src: "https://images.pexels.com/photos/8828370/pexels-photo-8828370.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Men and women gathered at a community distribution point in a North West Nigerian IDP settlement, waiting for essentials.",
+          src: "/images/mia/humanitarian/idp-06.png",
+          alt: "Elevated perspective across many temporary shelters on sandy terrain in a North West Nigeria IDP camp.",
         },
       ],
     },
     {
       region: "North Central Nigeria",
       context:
-        "Civilians displaced by escalating farmer-herder violence and intercommunal conflict in Benue, Plateau, and Nasarawa states — communities left with destroyed homes, loss of livelihoods, and uncertain futures.",
+        "Civilians displaced by escalating farmer-herder violence and intercommunal conflict in Benue, Plateau, and Nasarawa states — communities left with destroyed homes, lost livelihoods, and uncertain futures.",
       images: [
         {
-          src: "https://images.pexels.com/photos/6647060/pexels-photo-6647060.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Displaced community members in a temporary shelter camp in North Central Nigeria, coping with the aftermath of intercommunal violence.",
+          src: "/images/mia/humanitarian/idp-07.png",
+          alt: "Organised rows of shelters with narrow paths and scattered figures in a North Central Nigeria IDP settlement.",
         },
         {
-          src: "https://images.pexels.com/photos/6646942/pexels-photo-6646942.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Children attending an informal learning session at an IDP camp in North Central Nigeria, illustrating disrupted education.",
+          src: "/images/mia/humanitarian/idp-08.png",
+          alt: "Young people gathered on open ground near low buildings in a North Central Nigeria displacement camp.",
         },
         {
-          src: "https://images.pexels.com/photos/8828367/pexels-photo-8828367.jpeg?auto=compress&cs=tinysrgb&w=1200",
-          alt: "Wide view of a temporary settlement in North Central Nigeria, with makeshift shelters and limited infrastructure visible.",
+          src: "/images/mia/humanitarian/idp-09.png",
+          alt: "Wide view of shelter materials and terrain at the edge of a North Central Nigeria IDP settlement.",
         },
       ],
     },

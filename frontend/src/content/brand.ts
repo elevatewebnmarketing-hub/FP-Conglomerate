@@ -80,7 +80,9 @@ export type HiringRole = {
   title: string;
   location: string;
   type: string;
-  image: string;
+  description?: string;
+  salaryRange?: string;
+  image?: string;
 };
 
 export type AboutLeadership = {
@@ -747,64 +749,73 @@ export const defaultSiteContent: SiteContent = {
         title: "Driver",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1609743510702-69b2bd9baa40?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦120,000 – ₦200,000 / month",
+        description:
+          "Responsible for the safe, punctual, and professional transportation of staff, executives, and materials across Abuja and other designated routes. The Driver must maintain the assigned vehicle in good condition, keep accurate logs of trips and fuel usage, and ensure the comfort and safety of all passengers at all times. A valid Nigerian driver's licence and a clean driving record are required.",
       },
       {
         title: "Media & Web Expert",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦200,000 – ₦450,000 / month",
+        description:
+          "Manages the organisation's digital presence across all FP Conglomerate business units. Responsibilities include website updates and maintenance, social media content creation and scheduling, photography, videography, and graphic design. The role requires close collaboration with management and marketing to produce content that is on-brand, consistent, and effective in reaching target audiences.",
       },
       {
         title: "Site Engineer",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦150,000 – ₦350,000 / month",
+        description:
+          "Oversees on-site construction and civil works, ensuring projects are executed to approved specifications, on schedule, and within budget. Duties include coordinating with contractors and material suppliers, conducting quality inspections, preparing technical site reports, and ensuring full compliance with safety standards and regulations. A degree in Civil Engineering or a related field is required.",
       },
       {
         title: "Marketing Manager",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦200,000 – ₦400,000 / month",
+        description:
+          "Leads marketing strategy and campaign execution across all FP Conglomerate business units. The Marketing Manager develops brand messaging, manages external partnerships, coordinates promotions and public events, and measures the effectiveness of all marketing activities. Strong communication skills, creativity, and a results-driven approach are essential.",
       },
       {
         title: "HR Specialist",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦150,000 – ₦300,000 / month",
+        description:
+          "Manages all aspects of human resources across the group, including recruitment, onboarding, staff welfare, disciplinary procedures, and compliance with Nigerian labour law. The HR Specialist maintains accurate employee records, coordinates performance review cycles, and provides support to line managers and department heads across all business units.",
       },
       {
         title: "Transport Manager",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦200,000 – ₦350,000 / month",
+        description:
+          "Plans and oversees all transport operations including fleet scheduling, driver supervision, route planning, vehicle maintenance coordination, and logistics management. The Transport Manager ensures the timely, cost-effective, and safe movement of personnel and goods, and is accountable for maintaining the overall readiness and compliance of the fleet.",
       },
       {
         title: "Assistant Secretary",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦100,000 – ₦180,000 / month",
+        description:
+          "Provides administrative and clerical support to senior management and executive leadership. Key duties include handling official correspondence, scheduling and coordinating meetings, maintaining organised filing systems, managing office logistics, and ensuring smooth day-to-day administrative operations across the group.",
       },
       {
         title: "Accountant",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦150,000 – ₦350,000 / month",
+        description:
+          "Manages financial records, prepares accounts, processes payroll, and ensures accurate and timely financial reporting across all business units. Additional responsibilities include tax compliance, bank reconciliations, budgeting support, and liaison with external auditors and relevant regulatory bodies. A professional accounting qualification (ICAN, ACCA, or equivalent) is preferred.",
       },
       {
         title: "Supervisor",
         location: "Abuja, Nigeria",
         type: "Full-time",
-        image:
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        salaryRange: "₦120,000 – ₦250,000 / month",
+        description:
+          "Oversees daily operations in an assigned department or work site, ensuring that team performance targets are met and that organisational standards are consistently maintained. The Supervisor reports directly to management, resolves on-the-ground operational issues, upholds discipline, and drives productivity within their team.",
       },
     ],
   },
