@@ -35,6 +35,8 @@ export type BusinessUnit = {
     content: string;
     /** Hero image; may be supplemented by `gallery` on the sub-page view */
     image: string;
+    /** Sub-brand logo displayed in the page header */
+    logo?: string;
     /** Additional stock or field images shown below the hero */
     gallery?: string[];
   }[];
@@ -414,7 +416,9 @@ export const defaultSiteContent: SiteContent = {
             "AGE's dedicated news and awareness platform — reporting stories, amplifying voices, and keeping communities informed.",
           content:
             "Contriman News Media is the news and awareness arm of Anate Grand Empire Solutions, established to bridge the information gap across communities in Nigeria and beyond.\n\nOperating under the AGE umbrella, Contriman News Media delivers timely reporting on local developments, community stories, humanitarian issues, and matters of public interest. The platform is committed to factual, responsible journalism that gives voice to the underrepresented and holds events to account.\n\nIn addition to news coverage, Contriman News Media supports awareness campaigns for organisations, individuals, and causes that need credible and structured media amplification. Whether you are seeking coverage for a community initiative, a public event, or a social cause, Contriman News Media offers a platform built on integrity and reach.\n\nFor editorial enquiries, story submissions, or awareness partnerships, reach out through the contact page.",
-          image: "/logos/contriman-logo.png.jpeg",
+          logo: "/logos/contriman-logo.png.jpeg",
+          image:
+            "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },

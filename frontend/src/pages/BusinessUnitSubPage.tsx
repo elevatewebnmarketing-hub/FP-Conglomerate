@@ -60,6 +60,13 @@ export default function BusinessUnitSubPage() {
             <BusinessUnitLogo unit={unit} className="h-7 w-auto object-contain" />
             <span>{unit.name}</span>
           </div>
+          {subPage.logo && (
+            <img
+              src={subPage.logo}
+              alt={`${subPage.title} logo`}
+              className="h-14 w-auto object-contain mb-6"
+            />
+          )}
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">{subPage.title}</h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl">{subPage.summary}</p>
           <MediaAsset
