@@ -21,6 +21,9 @@ dist-ssr
 # Local copy of Elevate API (reference only; deploy API from its own repo)
 Elevate-Backend/
 
+# Raw media assets (host on CDN, not in git)
+Video/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

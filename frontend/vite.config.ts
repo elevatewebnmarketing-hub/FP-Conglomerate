@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { defaultSiteContent } from "./src/content/brand.ts";
+import { businessUnitSubPageHref } from "./src/navigation/siteHierarchy.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -14,12 +16,12 @@ function siteOrigin(): string {
   return "";
 }
 
-const SITEMAP_PATHS: string[] = (() => {
-  const staticPaths = [
+/** Indexable paths derived from `brand.ts` and `businessUnitSubPageHref` (no duplicate `/idp-camps`; canonical is nested MIA URL). */
+function buildSitemapPaths(): string[] {
+  const paths = new Set<string>([
     "/",
     "/about",
     "/business-units",
-    "/idp-camps",
     "/services",
     "/gallery",
     "/careers",
@@ -27,31 +29,20 @@ const SITEMAP_PATHS: string[] = (() => {
     "/portfolio",
     "/contact",
     "/faq",
-  ];
-  const units: { id: string; subs: string[] }[] = [
-    { id: "fp-parent", subs: ["governance", "strategy"] },
-    { id: "ordained-believers", subs: ["ministry", "outreach"] },
-    { id: "amgi", subs: ["product-lines", "quality-assurance"] },
-    { id: "boys-sterling", subs: ["gwarinpa-mall", "real-estate", "media-entertainment"] },
-    { id: "mogadishu-initiative", subs: ["humanitarian-programs", "idp-camps", "social-justice"] },
-  ];
-  const dynamic: string[] = [];
-  for (const u of units) {
-    dynamic.push(`/business-units/${u.id}`);
-    for (const s of u.subs) {
-      dynamic.push(`/business-units/${u.id}/${s}`);
+  ]);
+  for (const unit of defaultSiteContent.businessUnits) {
+    paths.add(`/business-units/${unit.id}`);
+    for (const sub of unit.subPages) {
+      paths.add(businessUnitSubPageHref(unit.id, sub.slug));
     }
   }
-  // Keep in sync with `blogPosts[].slug` in `src/content/brand.ts` when adding posts.
-  const blogPaths = [
-    "/blog/abuja-multi-sector-group-fp-conglomerate-seo-trust",
-    "/blog/humanitarian-programs-nigeria-mia-field-transparency",
-    "/blog/gwarinpa-mall-abuja-commercial-project-site-documentation",
-    "/blog/anate-grand-empire-solutions-age-services-nigeria",
-    "/blog/ordained-believers-army-oba-faith-community-nigeria",
-  ];
-  return [...staticPaths, ...dynamic, ...blogPaths];
-})();
+  for (const post of defaultSiteContent.blogPosts) {
+    paths.add(`/blog/${post.slug}`);
+  }
+  return Array.from(paths).sort((a, b) => a.localeCompare(b));
+}
+
+const SITEMAP_PATHS = buildSitemapPaths();
 
 function seoPlugin(): Plugin {
   const orgJson = {
@@ -134,10 +125,14 @@ function seoPlugin(): Plugin {
       });
       const robotsPublic = path.resolve(__dirname, "public", "robots.txt");
       const robotsBase = readFileSync(robotsPublic, "utf8").trimEnd();
+      const hasSitemapLine = /^\s*Sitemap:\s/im.test(robotsBase);
+      const robotsOut = hasSitemapLine
+        ? robotsBase
+        : `${robotsBase}\n\nSitemap: ${site}/sitemap.xml\n`;
       this.emitFile({
         type: "asset",
         fileName: "robots.txt",
-        source: `${robotsBase}\n\nSitemap: ${site}/sitemap.xml\n`,
+        source: robotsOut.endsWith("\n") ? robotsOut : `${robotsOut}\n`,
       });
       const llmsPublic = path.resolve(__dirname, "public", "llms.txt");
       try {

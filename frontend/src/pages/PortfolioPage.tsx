@@ -35,7 +35,7 @@ export default function PortfolioPage() {
         }}
       />
       <Navbar />
-      <main className="pt-32 pb-32 section-shell" ref={ref}>
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-32 section-shell" ref={ref}>
         <div
           className={`mb-16 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

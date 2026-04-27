@@ -14,13 +14,15 @@ const Index = () => {
     <>
       <Seo title="Home" path="/" description={SEO_DEFAULT_DESCRIPTION} />
       <Navbar />
-      <Hero />
-      <BusinessEcosystem />
-      <About />
-      <ImpactStats />
-      <Gallery />
-      <HiringSection />
-      <CTASection />
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <BusinessEcosystem />
+        <About />
+        <ImpactStats />
+        <Gallery />
+        <HiringSection />
+        <CTASection />
+      </main>
       <Footer />
     </>
   );

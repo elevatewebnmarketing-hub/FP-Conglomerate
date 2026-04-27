@@ -6,6 +6,7 @@ import MediaAsset from "@/components/MediaAsset";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/content/SiteContentContext";
 import type { BlogPost } from "@/content/brand";
+import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
 
 function truncateMeta(s: string, max = 160): string {
   const t = s.replace(/\s+/g, " ").trim();
@@ -34,11 +35,12 @@ function blogPostingJsonLd(post: BlogPost, path: string): Record<string, unknown
   const cover = post.image?.trim();
   const imageUrl = cover ? absoluteSiteUrl(cover) ?? cover : undefined;
   const logoUrl = absoluteSiteUrl("/logos/bsc-logo.png");
+  const datePublished = post.dateIso?.trim() || post.date?.trim();
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    ...(post.date ? { datePublished: post.date } : {}),
+    ...(datePublished ? { datePublished } : {}),
     ...(imageUrl ? { image: [imageUrl] } : {}),
     publisher: {
       "@type": "Organization",
@@ -60,7 +62,7 @@ export default function BlogPostPage() {
       <>
         <Seo title="Blog" path="/blog" description={SEO_DEFAULT_DESCRIPTION} noindex />
         <Navbar />
-        <main className="section-shell pt-32 pb-24">
+        <main id="main-content" tabIndex={-1} className="section-shell pt-32 pb-24">
           <p className="text-muted-foreground">Invalid URL.</p>
           <Button asChild variant="outline" className="mt-4">
             <Link to="/blog">Back to blog</Link>
@@ -81,7 +83,7 @@ export default function BlogPostPage() {
           noindex
         />
         <Navbar />
-        <main className="section-shell pt-32 pb-24">
+        <main id="main-content" tabIndex={-1} className="section-shell pt-32 pb-24">
           <p className="text-muted-foreground mb-4">This article could not be found.</p>
           <Button asChild variant="outline">
             <Link to="/blog">Back to blog</Link>
@@ -96,6 +98,13 @@ export default function BlogPostPage() {
   const img = post.image ?? "";
   const postPath = `/blog/${post.slug}`;
   const ogImage = img ? absoluteSiteUrl(img) ?? img : undefined;
+  const crumbs = breadcrumbListJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: postPath },
+  ]);
+  const postLd = blogPostingJsonLd(post, postPath);
+  const structuredData = crumbs ? [crumbs, postLd] : postLd;
 
   return (
     <>
@@ -106,10 +115,10 @@ export default function BlogPostPage() {
         keywords={post.keywords}
         ogImage={ogImage}
         ogType="article"
-        jsonLd={blogPostingJsonLd(post, postPath)}
+        jsonLd={structuredData}
       />
       <Navbar />
-      <main className="pt-32 pb-32 section-shell">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-32 section-shell">
         <p className="eyebrow mb-4">
           <Link to="/blog" className="text-muted-foreground hover:text-foreground">
             Blog

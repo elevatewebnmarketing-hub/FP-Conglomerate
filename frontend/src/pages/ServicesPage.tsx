@@ -15,7 +15,7 @@ export default function ServicesPage() {
         description="Services and capabilities across FP Conglomerate: commercial delivery, ministry, construction, media, and humanitarian response coordinated from Abuja."
       />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <p className="eyebrow mb-5">Services</p>
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">

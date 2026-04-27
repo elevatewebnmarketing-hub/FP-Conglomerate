@@ -150,7 +150,7 @@ export default function AboutPage() {
         description="About FP Conglomerate: Abuja-based multi-sector group, founder story, values, and units including MIA humanitarian NGO programs."
       />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-6 xl:col-span-7">

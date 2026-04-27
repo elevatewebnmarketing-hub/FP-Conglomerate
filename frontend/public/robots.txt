@@ -62,3 +62,5 @@ Allow: /
 
 User-agent: Amazonbot
 Allow: /
+
+Sitemap: https://www.fpconglomerate.com/sitemap.xml

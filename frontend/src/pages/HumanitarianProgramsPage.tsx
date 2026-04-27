@@ -8,6 +8,7 @@ import MediaAsset from "@/components/MediaAsset";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/content/SiteContentContext";
 import { humanitarianProgramsContent, MIA_UNIT_ID } from "@/content/humanitarianProgramsContent";
+import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
 import RevealOnScroll from "@/components/humanitarian/RevealOnScroll";
 
 const { hero, idpTeaser, kogi, impactPillars, moments, cta } = humanitarianProgramsContent;
@@ -22,9 +23,22 @@ export default function HumanitarianProgramsPage() {
         title="Humanitarian programs"
         path="/business-units/mogadishu-initiative/humanitarian-programs"
         description="MIA humanitarian programs: field response, shelter, education, and dignity-first support aligned with FP Conglomerate (Abuja-based)."
+        jsonLd={
+          unit
+            ? breadcrumbListJsonLd([
+                { name: "Home", path: "/" },
+                { name: "Business units", path: "/business-units" },
+                { name: unit.name, path: `/business-units/${MIA_UNIT_ID}` },
+                {
+                  name: "Humanitarian programs",
+                  path: "/business-units/mogadishu-initiative/humanitarian-programs",
+                },
+              ])
+            : undefined
+        }
       />
       <Navbar />
-      <main className="pb-24 md:pb-28">
+      <main id="main-content" tabIndex={-1} className="pb-24 md:pb-28">
         {/* Hero */}
         <section aria-labelledby="hero-heading" className="relative min-h-[min(72vh,560px)] flex flex-col justify-end overflow-hidden">
           <MediaAsset

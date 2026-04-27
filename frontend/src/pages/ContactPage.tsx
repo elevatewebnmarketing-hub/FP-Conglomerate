@@ -153,7 +153,7 @@ export default function ContactPage() {
         description="Contact FP Conglomerate: interim Abuja office (Gwagwalada), email, phone, map, and partnership or media inquiries."
       />
       <Navbar />
-      <main className="pt-32 pb-32 section-shell" ref={ref}>
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-32 section-shell" ref={ref}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 xl:gap-16">
           <div
             className={cn(

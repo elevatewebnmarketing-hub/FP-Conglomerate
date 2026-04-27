@@ -13,6 +13,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
+
+const GWARINPA_PATH = "/business-units/boys-sterling/gwarinpa-mall";
 
 const GWARINPA_VIDEOS: { src: string; title: string }[] = [
   { src: "/videos/gwarinpa-mall/01.mp4", title: "Site approach — exterior progress" },
@@ -127,11 +130,17 @@ export default function GwarinpaMallPage() {
     <>
       <Seo
         title="Gwarinpa Mall — Site inspection"
-        path="/business-units/boys-sterling/gwarinpa-mall"
+        path={GWARINPA_PATH}
         description="Site inspection documentation for Gwarinpa Mall, Abuja: structural progress, envelope and glazing, and on-the-ground oversight during construction. Boys Sterling Company Limited."
+        jsonLd={breadcrumbListJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Business units", path: "/business-units" },
+          { name: "Boys Sterling Company Limited", path: "/business-units/boys-sterling" },
+          { name: "Gwarinpa Mall", path: GWARINPA_PATH },
+        ])}
       />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <PageBackButton fallbackTo="/business-units/boys-sterling" className="mb-10" />
           <p className="eyebrow mb-5">Boys Sterling · Project documentation</p>

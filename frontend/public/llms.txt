@@ -41,9 +41,8 @@ FP Conglomerate coordinates several institutions: Ordained Believers Army (OBA) 
 - /contact — Contact and inquiry
 - /faq — FAQ
 - /careers — Careers
-- /idp-camps — IDP camp awareness
 - /business-units/mogadishu-initiative/humanitarian-programs — MIA programs
-- /business-units/mogadishu-initiative/idp-camps — MIA IDP (alternate URL)
+- /business-units/mogadishu-initiative/idp-camps — MIA IDP (canonical URL; `/idp-camps` is the same page and uses this canonical for SEO)
 - /business-units/boys-sterling/gwarinpa-mall — Gwarinpa Mall project page
 
 ## What this site is not

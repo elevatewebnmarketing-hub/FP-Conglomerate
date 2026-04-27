@@ -55,6 +55,8 @@ export type BlogPost = {
   /** URL segment for /blog/:slug — lowercase, hyphens only */
   slug: string;
   date: string;
+  /** ISO 8601 date for schema.org `datePublished` (e.g. 2026-04-18) */
+  dateIso?: string;
   title: string;
   excerpt: string;
   /** Optional; defaults to excerpt for meta description */
@@ -581,6 +583,7 @@ export const defaultSiteContent: SiteContent = {
     {
       slug: "abuja-multi-sector-group-fp-conglomerate-seo-trust",
       date: "April 18, 2026",
+      dateIso: "2026-04-18",
       title: "FP Conglomerate: An Abuja Multi-Sector Group Built on Trust and Measurable Delivery",
       excerpt:
         "How one Nigeria-based parent company coordinates ministry, commerce, construction, and humanitarian work under a single standard of integrity.",
@@ -595,6 +598,7 @@ export const defaultSiteContent: SiteContent = {
     {
       slug: "humanitarian-programs-nigeria-mia-field-transparency",
       date: "April 12, 2026",
+      dateIso: "2026-04-12",
       title: "Humanitarian Programs in Nigeria: Field Documentation and Dignity-First Delivery",
       excerpt:
         "Why Mogadishu Initiative Response emphasizes honest field reporting, shelter and education support, and advocacy that respects communities.",
@@ -609,6 +613,7 @@ export const defaultSiteContent: SiteContent = {
     {
       slug: "gwarinpa-mall-abuja-commercial-project-site-documentation",
       date: "March 30, 2026",
+      dateIso: "2026-03-30",
       title: "Gwarinpa Mall, Abuja: Commercial Development Progress and Site Documentation",
       excerpt:
         "A transparent look at Boys Sterling’s built-environment work: structural progress, envelope and glazing, and on-site documentation for stakeholders.",
@@ -623,6 +628,7 @@ export const defaultSiteContent: SiteContent = {
     {
       slug: "anate-grand-empire-solutions-age-services-nigeria",
       date: "March 20, 2026",
+      dateIso: "2026-03-20",
       title: "AGE Services: Production, Construction, Transport, and Appliances Under One Trust Standard",
       excerpt:
         "How Anate Grand Empire Solutions (AGE) bundles creative and technical execution for clients who need dependable multi-sector delivery in Nigeria.",
@@ -638,6 +644,7 @@ export const defaultSiteContent: SiteContent = {
     {
       slug: "ordained-believers-army-oba-faith-community-nigeria",
       date: "March 8, 2026",
+      dateIso: "2026-03-08",
       title: "Ordained Believers Army (OBA): Faith, Worship, and Community-Focused Ministry in Nigeria",
       excerpt:
         "What OBA emphasizes in public communication: Word-centered teaching, worship, and outreach aligned with practical care.",

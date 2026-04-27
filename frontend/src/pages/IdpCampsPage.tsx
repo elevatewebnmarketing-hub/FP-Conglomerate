@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,12 +8,13 @@ import MediaAsset from "@/components/MediaAsset";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/content/SiteContentContext";
 import { idpCampsBody, idpCampsPageContent, MIA_UNIT_ID } from "@/content/idpCampsContent";
+import { IDP_CAMPS_CANONICAL_PATH } from "@/navigation/siteHierarchy";
+import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
 import RevealOnScroll from "@/components/humanitarian/RevealOnScroll";
 
 const { hero, gallery, gallerySection, cta } = idpCampsPageContent;
 
 export default function IdpCampsPage() {
-  const { pathname } = useLocation();
   const { content } = useSiteContent();
   const unit = content.businessUnits.find((u) => u.id === MIA_UNIT_ID);
 
@@ -21,11 +22,21 @@ export default function IdpCampsPage() {
     <>
       <Seo
         title="IDP camps"
-        path={pathname}
+        path={IDP_CAMPS_CANONICAL_PATH}
         description="MIA IDP camp support: dignified shelter, basic services, and pathways toward stability—part of FP Conglomerate humanitarian work."
+        jsonLd={
+          unit
+            ? breadcrumbListJsonLd([
+                { name: "Home", path: "/" },
+                { name: "Business units", path: "/business-units" },
+                { name: unit.name, path: `/business-units/${MIA_UNIT_ID}` },
+                { name: "IDP camps", path: IDP_CAMPS_CANONICAL_PATH },
+              ])
+            : undefined
+        }
       />
       <Navbar />
-      <main className="pb-24 md:pb-28">
+      <main id="main-content" tabIndex={-1} className="pb-24 md:pb-28">
         <section aria-labelledby="idp-hero-heading" className="relative min-h-[min(65vh,480px)] flex flex-col justify-end overflow-hidden">
           <MediaAsset
             src={hero.imageSrc}

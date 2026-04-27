@@ -6,6 +6,8 @@ import { useSiteContent } from "@/content/SiteContentContext";
 import MediaAsset from "@/components/MediaAsset";
 import PageBackButton from "@/components/PageBackButton";
 import BusinessUnitLogo from "@/components/BusinessUnitLogo";
+import { businessUnitSubPageHref } from "@/navigation/siteHierarchy";
+import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
 
 export default function BusinessUnitDetailPage() {
   const { unitId } = useParams();
@@ -23,7 +25,7 @@ export default function BusinessUnitDetailPage() {
           noindex
         />
         <Navbar />
-        <main className="pt-32 pb-28 section-shell">
+        <main id="main-content" tabIndex={-1} className="pt-32 pb-28 section-shell">
           <h1 className="font-editorial text-5xl">Business unit not found.</h1>
           <Link to="/business-units" className="inline-block mt-8 text-accent">
             Back to all business units
@@ -39,9 +41,18 @@ export default function BusinessUnitDetailPage() {
 
   return (
     <>
-      <Seo title={unit.name} path={`/business-units/${unit.id}`} description={metaDesc} />
+      <Seo
+        title={unit.name}
+        path={`/business-units/${unit.id}`}
+        description={metaDesc}
+        jsonLd={breadcrumbListJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Business units", path: "/business-units" },
+          { name: unit.name, path: `/business-units/${unit.id}` },
+        ])}
+      />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <PageBackButton fallbackTo="/business-units" className="mb-10" />
           <p className="eyebrow mb-5">{unit.shortLabel}</p>
@@ -84,7 +95,7 @@ export default function BusinessUnitDetailPage() {
               {unit.subPages.map((subPage) => (
                 <Link
                   key={subPage.slug}
-                  to={`/business-units/${unit.id}/${subPage.slug}`}
+                  to={businessUnitSubPageHref(unit.id, subPage.slug)}
                   state={{ from: location.pathname }}
                   className="border border-border p-5 hover:bg-secondary transition-colors"
                 >

@@ -5,11 +5,21 @@ export const SITE_NAME = "FP Conglomerate";
 export const SEO_DEFAULT_DESCRIPTION =
   "FP Conglomerate is an Abuja-based multi-sector African group: Ordained Believers Army (OBA), Anate Grand Empire Solutions (AGE), Boys Sterling Company Limited (BSC), and Mogadishu Initiative Response (MIA) humanitarian NGO programs.";
 
+/** Default relative path for Open Graph / Twitter when a page has no hero image. */
+export const SEO_DEFAULT_OG_IMAGE_PATH = "/logos/bsc-logo.png";
+
 function canonicalFromPath(path: string): string | undefined {
   const base = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
   if (!base) return undefined;
   if (!path || path === "/") return `${base}/`;
   const p = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${p}`;
+}
+
+function absoluteAssetPath(assetPath: string): string | undefined {
+  const base = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
+  if (!base) return undefined;
+  const p = assetPath.startsWith("/") ? assetPath : `/${assetPath}`;
   return `${base}${p}`;
 }
 
@@ -41,6 +51,7 @@ export function Seo({
   const canonical = canonicalFromPath(path);
   const fullTitle = `${title} | ${SITE_NAME}`;
   const ldList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const resolvedOgImage = ogImage ?? absoluteAssetPath(SEO_DEFAULT_OG_IMAGE_PATH);
 
   return (
     <Helmet>
@@ -53,11 +64,11 @@ export function Seo({
       {canonical ? <meta property="og:url" content={canonical} /> : null}
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content={ogType} />
-      {ogImage ? <meta property="og:image" content={ogImage} /> : null}
+      {resolvedOgImage ? <meta property="og:image" content={resolvedOgImage} /> : null}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      {ogImage ? <meta name="twitter:image" content={ogImage} /> : null}
+      {resolvedOgImage ? <meta name="twitter:image" content={resolvedOgImage} /> : null}
       {noindex ? <meta name="robots" content="noindex, follow" /> : null}
       {ldList.map((obj, i) => (
         <script key={i} type="application/ld+json">

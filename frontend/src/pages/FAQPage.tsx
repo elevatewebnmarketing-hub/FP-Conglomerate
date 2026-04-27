@@ -66,6 +66,21 @@ const faqs = [
   },
 ];
 
+function faqPageJsonLd(items: typeof faqs): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
 export default function FAQPage() {
   return (
     <>
@@ -73,9 +88,10 @@ export default function FAQPage() {
         title="FAQ"
         path="/faq"
         description="Frequently asked questions about FP Conglomerate: business units, partnerships, careers, NGO work, and how to contact us."
+        jsonLd={faqPageJsonLd(faqs)}
       />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <p className="eyebrow mb-5">Frequently Asked Questions</p>
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">

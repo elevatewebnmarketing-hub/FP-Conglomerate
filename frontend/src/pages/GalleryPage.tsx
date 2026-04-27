@@ -15,7 +15,7 @@ export default function GalleryPage() {
         description="Photo gallery: projects, events, and impact across FP Conglomerate business units and programs."
       />
       <Navbar />
-      <main className="pt-32 pb-28">
+      <main id="main-content" tabIndex={-1} className="pt-32 pb-28">
         <section className="section-shell">
           <p className="eyebrow mb-5">Portfolio</p>
           <h1 className="font-editorial text-5xl md:text-7xl max-w-4xl">

@@ -1,3 +1,6 @@
+/** Preferred canonical path for MIA IDP camps (the `/idp-camps` route uses this for meta + sitemap). */
+export const IDP_CAMPS_CANONICAL_PATH = "/business-units/mogadishu-initiative/idp-camps";
+
 /** Canonical URL for a business unit sub-page (some MIA routes use dedicated pages). */
 export function businessUnitSubPageHref(unitId: string, slug: string): string {
   if (unitId === "mogadishu-initiative") {
