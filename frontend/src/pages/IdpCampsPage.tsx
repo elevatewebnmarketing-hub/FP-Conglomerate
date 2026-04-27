@@ -12,7 +12,7 @@ import { IDP_CAMPS_CANONICAL_PATH } from "@/navigation/siteHierarchy";
 import { breadcrumbListJsonLd } from "@/lib/breadcrumbJsonLd";
 import RevealOnScroll from "@/components/humanitarian/RevealOnScroll";
 
-const { hero, gallery, gallerySection, cta } = idpCampsPageContent;
+const { hero, regionalGalleries, gallerySection, cta } = idpCampsPageContent;
 
 export default function IdpCampsPage() {
   const { content } = useSiteContent();
@@ -108,18 +108,30 @@ export default function IdpCampsPage() {
             <p className="mt-3 text-sm text-muted-foreground max-w-2xl leading-relaxed">
               {gallerySection.description}
             </p>
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-              {gallery.map((item, index) => (
-                <figure
-                  key={`${item.src}-${index}`}
-                  className="group overflow-hidden rounded-sm border border-border bg-muted/15 transition duration-300 hover:shadow-md"
-                >
-                  <MediaAsset
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-[1.02] dark:brightness-[0.9] dark:contrast-[0.98]"
-                  />
-                </figure>
+            <div className="mt-12 space-y-16">
+              {regionalGalleries.map((region) => (
+                <div key={region.region}>
+                  <h3 className="font-editorial text-xl md:text-2xl text-foreground">
+                    {region.region}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+                    {region.context}
+                  </p>
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+                    {region.images.map((item, index) => (
+                      <figure
+                        key={`${item.src}-${index}`}
+                        className="group overflow-hidden rounded-sm border border-border bg-muted/15 transition duration-300 hover:shadow-md"
+                      >
+                        <MediaAsset
+                          src={item.src}
+                          alt={item.alt}
+                          className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-[1.02] dark:brightness-[0.9] dark:contrast-[0.98]"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </section>

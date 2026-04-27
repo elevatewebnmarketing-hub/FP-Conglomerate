@@ -337,6 +337,16 @@ export const defaultSiteContent: SiteContent = {
           image:
             "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80",
         },
+        {
+          slug: "faith-coaching",
+          title: "Spiritual Counseling & Faith Coaching",
+          summary:
+            "One-on-one sessions, group teachings, and deep exploration of scripture for believers seeking growth, healing, and identity in Christ.",
+          content:
+            "OBA offers intentional spiritual formation through three streams: personal spiritual counseling for those navigating life's challenges, deep scripture study that unveils the mysteries of the Word, and faith coaching that helps believers walk in their identity in Christ.\n\nSessions are available in-person and virtually. Whether you are seeking healing, understanding of scripture, or simply want to grow deeper in your walk with God, OBA's ministers are available to journey with you.\n\nReach out through the contact page to book a one-on-one session or to join an ongoing group teaching. All enquiries are handled with confidentiality and care.",
+          image:
+            "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80",
+        },
       ],
     },
     {
@@ -374,6 +384,26 @@ export const defaultSiteContent: SiteContent = {
             "AGE follows a service model built on integrity, responsiveness, and practical results. Whether the assignment is production, logistics, construction, or appliance delivery, the unit is measured by reliability and client confidence.",
           image:
             "https://images.unsplash.com/photo-1581092160607-ee22731a0f71?auto=format&fit=crop&w=1600&q=80",
+        },
+        {
+          slug: "movie-audition",
+          title: "Open Movie Audition",
+          summary:
+            "AGE is casting for an upcoming film production. Submit your interest and get screened for a role.",
+          content:
+            "Anate Grand Empire Solutions is launching its first major film production and is now open for auditions. We are looking for talented individuals — actors, presenters, and on-screen personalities — to be considered for roles in the project.\n\nThe audition process is open, structured, and transparent: submit your interest via the contact page, attend a scheduled screening, and our production team will make selections based on fit and potential. Venue and full audition details, including wardrobe and styling direction, will be communicated to shortlisted candidates.\n\nWhether you are an experienced performer or a fresh talent ready for your first opportunity, we want to hear from you. Use the contact form to express your interest and stay informed on audition dates as they are announced.",
+          image:
+            "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80",
+        },
+        {
+          slug: "transport-booking",
+          title: "Transport Services & Bus Booking",
+          summary:
+            "AGE is launching a fleet of buses for commercial and charter services. Register your interest now.",
+          content:
+            "AGE's transport division is preparing to launch a modern fleet of buses for both scheduled commercial routes and private charter services across Nigeria. The fleet is being assembled and readied for full operational deployment.\n\nOnce live, booking will be open to individuals, organizations, and corporate clients seeking reliable, professionally managed passenger transport. Routes, schedules, and pricing will be published here when services go live.\n\nIf you would like to pre-register your interest — whether as a passenger, a business client, or a charter partner — use the contact form to get in touch. We will reach out with schedules, routes, and booking details as operations commence. Formal publicity and booking channels will be announced through this page and our communication platforms.",
+          image:
+            "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -707,11 +737,76 @@ export const defaultSiteContent: SiteContent = {
     },
   ],
   hiring: {
-    heading: "Careers",
+    heading: "Join Our Team",
     summary:
-      "We are not publishing open roles on this website at this time. For general inquiries only, use the official contact email—please do not send sensitive personal documents unless we request them.",
-    heroImage: "",
-    roles: [],
+      "FP Conglomerate and its business units are actively recruiting across several roles. Browse open positions below and send your CV along with a short statement of interest to our official contact email.",
+    heroImage:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80",
+    roles: [
+      {
+        title: "Driver",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1609743510702-69b2bd9baa40?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Media & Web Expert",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Site Engineer",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Marketing Manager",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "HR Specialist",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Transport Manager",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Assistant Secretary",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Accountant",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+      },
+      {
+        title: "Supervisor",
+        location: "Abuja, Nigeria",
+        type: "Full-time",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      },
+    ],
   },
   pageImages: {
     services: [
