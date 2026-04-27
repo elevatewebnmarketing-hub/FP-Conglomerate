@@ -355,12 +355,12 @@ export const defaultSiteContent: SiteContent = {
       id: "amgi",
       name: "Anate Grand Empire Solutions (AGE)",
       logo: "/logos/age-logo.png",
-      shortLabel: "Movie, Construction, Transport, Devices",
-      focus: "Multi-Sector Solutions Across Production, Infrastructure, Mobility, and Appliances",
+      shortLabel: "Movie, News Media, Construction, Transport, Devices",
+      focus: "Multi-Sector Solutions Across Media, Production, Infrastructure, Mobility, and Appliances",
       statement:
-        "AGE delivers practical value across movie production, construction, transport, brand promotion, devices, and general appliances.",
+        "AGE delivers practical value across news media, movie production, construction, transport, brand promotion, devices, and general appliances.",
       details:
-        "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable production support, construction services, transport coordination, brand promotion support, and durable appliances under one service umbrella.",
+        "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable media coverage, production support, construction services, transport coordination, brand promotion support, and durable appliances under one service umbrella. AGE also operates Contriman News Media, its dedicated news and awareness platform.",
       heroImage:
         "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80",
       gallery: [
@@ -406,6 +406,16 @@ export const defaultSiteContent: SiteContent = {
             "AGE's transport division is preparing to launch a modern fleet of buses for both scheduled commercial routes and private charter services across Nigeria. The fleet is being assembled and readied for full operational deployment.\n\nOnce live, booking will be open to individuals, organizations, and corporate clients seeking reliable, professionally managed passenger transport. Routes, schedules, and pricing will be published here when services go live.\n\nIf you would like to pre-register your interest — whether as a passenger, a business client, or a charter partner — use the contact form to get in touch. We will reach out with schedules, routes, and booking details as operations commence. Formal publicity and booking channels will be announced through this page and our communication platforms.",
           image:
             "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80",
+        },
+        {
+          slug: "contriman-news-media",
+          title: "Contriman News Media",
+          summary:
+            "AGE's dedicated news and awareness platform — reporting stories, amplifying voices, and keeping communities informed.",
+          content:
+            "Contriman News Media is the news and awareness arm of Anate Grand Empire Solutions, established to bridge the information gap across communities in Nigeria and beyond.\n\nOperating under the AGE umbrella, Contriman News Media delivers timely reporting on local developments, community stories, humanitarian issues, and matters of public interest. The platform is committed to factual, responsible journalism that gives voice to the underrepresented and holds events to account.\n\nIn addition to news coverage, Contriman News Media supports awareness campaigns for organisations, individuals, and causes that need credible and structured media amplification. Whether you are seeking coverage for a community initiative, a public event, or a social cause, Contriman News Media offers a platform built on integrity and reach.\n\nFor editorial enquiries, story submissions, or awareness partnerships, reach out through the contact page.",
+          image:
+            "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
         },
       ],
     },
@@ -511,7 +521,7 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "AGE Multi-Sector Services",
       summary:
-        "Movie production, construction, transport, brand promotion, devices, and general appliance services delivered through Anate Grand Empire Solutions (AGE).",
+        "News media, movie production, construction, transport, brand promotion, devices, and general appliance services delivered through Anate Grand Empire Solutions (AGE) — including Contriman News Media.",
       image:
         "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80",
     },
