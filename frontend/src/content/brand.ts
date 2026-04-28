@@ -329,8 +329,7 @@ export const defaultSiteContent: SiteContent = {
           summary: "How OBA ministers through Word, worship, and bold faith.",
           content:
             "OBA's ministry expression is built around three pillars: Word, worship, and power. Services focus on spirit-led teaching, practical interpretation of scripture, and an atmosphere where faith is activated for real transformation.",
-          image:
-            "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1600&q=80",
+          image: "/images/oba/ministry-expression.png",
         },
         {
           slug: "outreach",
