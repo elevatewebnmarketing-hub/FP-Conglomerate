@@ -426,7 +426,7 @@ export const defaultSiteContent: SiteContent = {
         "BSC delivers practical value across real estate, hospitality, counseling, construction, building maintenance, and brand promotion.",
       details:
         "Boys Sterling Company Limited (BSC) was established in 2020 with a service promise built on dependable execution. The unit is designed to help clients feel secure in every engagement by combining care, technical delivery, and maintenance discipline.",
-      heroImage: "/images/projects/gwarinpa-mall/01.png",
+      heroImage: "/images/bsc/bsc-hero.png",
       gallery: [
         "/images/projects/gwarinpa-mall/02.png",
         "/images/projects/gwarinpa-mall/03.png",
