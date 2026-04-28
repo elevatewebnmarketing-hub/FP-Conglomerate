@@ -348,8 +348,7 @@ export const defaultSiteContent: SiteContent = {
             "One-on-one sessions, group teachings, and deep exploration of scripture for believers seeking growth, healing, and identity in Christ.",
           content:
             "OBA offers intentional spiritual formation through three streams: personal spiritual counseling for those navigating life's challenges, deep scripture study that unveils the mysteries of the Word, and faith coaching that helps believers walk in their identity in Christ.\n\nSessions are available in-person and virtually. Whether you are seeking healing, understanding of scripture, or simply want to grow deeper in your walk with God, OBA's ministers are available to journey with you.\n\nReach out through the contact page to book a one-on-one session or to join an ongoing group teaching. All enquiries are handled with confidentiality and care.",
-          image:
-            "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=80",
+          image: "/images/oba/spiritual-counseling.png",
         },
       ],
     },
