@@ -301,7 +301,7 @@ export const defaultSiteContent: SiteContent = {
           summary: "How the group builds and scales institutions for long-term relevance.",
           content:
             "Our strategy is to build businesses that solve practical needs while preserving credibility. New initiatives are selected based on social value, durability of demand, and our ability to deliver with excellence over time.",
-          image: "/images/projects/gwarinpa-mall/05.png",
+          image: "/images/fp/group-strategy.png",
         },
       ],
     },
