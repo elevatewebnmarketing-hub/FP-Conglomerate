@@ -819,6 +819,15 @@ export const defaultSiteContent: SiteContent = {
           "Manages financial records, prepares accounts, processes payroll, and ensures accurate and timely financial reporting across all business units. Additional responsibilities include tax compliance, bank reconciliations, budgeting support, and liaison with external auditors and relevant regulatory bodies. A professional accounting qualification (ICAN, ACCA, or equivalent) is preferred.",
       },
       {
+        title: "Film Cast — Actors, Presenters & On-Screen Talent (AGE)",
+        location: "Abuja, Nigeria",
+        type: "Contract",
+        salaryRange: "₦30,000 – ₦500,000 / production",
+        image: "/images/age/movie-audition.png",
+        description:
+          "Anate Grand Empire Solutions is launching its first major film production and is now open for auditions. We are looking for talented individuals — actors, presenters, and on-screen personalities — to be considered for roles in the project. The audition process is open, structured, and transparent: submit your interest via the contact page, attend a scheduled screening, and our production team will make selections based on fit and potential. Venue and full audition details, including wardrobe and styling direction, will be communicated to shortlisted candidates. Whether you are an experienced performer or a fresh talent ready for your first opportunity, we want to hear from you. Use the contact form to express your interest and stay informed on audition dates as they are announced.",
+      },
+      {
         title: "Supervisor",
         location: "Abuja, Nigeria",
         type: "Full-time",
