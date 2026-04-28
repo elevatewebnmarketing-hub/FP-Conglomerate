@@ -495,6 +495,11 @@ export const defaultSiteContent: SiteContent = {
           content:
             "Mogadishu Initiative Response documents realities responsibly and channels resources toward shelter, essentials, and stability for displaced communities.",
           image: "/images/mia/humanitarian/idp-05.png",
+          gallery: [
+            "/images/mia/humanitarian/idp-16.jpg",
+            "/images/mia/humanitarian/idp-17.jpg",
+            "/images/mia/humanitarian/idp-18.jpg",
+          ],
         },
         {
           slug: "social-justice",
@@ -509,6 +514,9 @@ export const defaultSiteContent: SiteContent = {
             "/images/mia/humanitarian/idp-07.png",
             "/images/mia/humanitarian/kogi-13.png",
             "/images/mia/humanitarian/idp-08.png",
+            "/images/mia/humanitarian/idp-19.jpg",
+            "/images/mia/humanitarian/idp-20.jpg",
+            "/images/mia/humanitarian/idp-21.jpg",
           ],
         },
       ],

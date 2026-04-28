@@ -38,6 +38,14 @@ export const idpCampsPageContent = {
           src: "/images/mia/humanitarian/idp-03.png",
           alt: "White canvas shelters on open ground in a North East Nigeria IDP settlement, with trees and structures visible beyond.",
         },
+        {
+          src: "/images/mia/humanitarian/idp-10.jpg",
+          alt: "Field documentation of living conditions in a North East Nigeria IDP camp.",
+        },
+        {
+          src: "/images/mia/humanitarian/idp-11.jpg",
+          alt: "Community members at a North East Nigeria displacement settlement.",
+        },
       ],
     },
     {
@@ -57,6 +65,14 @@ export const idpCampsPageContent = {
           src: "/images/mia/humanitarian/idp-06.png",
           alt: "Elevated perspective across many temporary shelters on sandy terrain in a North West Nigeria IDP camp.",
         },
+        {
+          src: "/images/mia/humanitarian/idp-12.jpg",
+          alt: "Field documentation of displaced families in a North West Nigeria IDP settlement.",
+        },
+        {
+          src: "/images/mia/humanitarian/idp-13.jpg",
+          alt: "Living conditions at a North West Nigeria displacement camp.",
+        },
       ],
     },
     {
@@ -75,6 +91,14 @@ export const idpCampsPageContent = {
         {
           src: "/images/mia/humanitarian/idp-09.png",
           alt: "Wide view of shelter materials and terrain at the edge of a North Central Nigeria IDP settlement.",
+        },
+        {
+          src: "/images/mia/humanitarian/idp-14.jpg",
+          alt: "Field documentation of displaced persons in a North Central Nigeria IDP camp.",
+        },
+        {
+          src: "/images/mia/humanitarian/idp-15.jpg",
+          alt: "Community structures and conditions at a North Central Nigeria displacement settlement.",
         },
       ],
     },
