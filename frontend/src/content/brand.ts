@@ -394,8 +394,7 @@ export const defaultSiteContent: SiteContent = {
             "AGE is casting for an upcoming film production. Submit your interest and get screened for a role.",
           content:
             "Anate Grand Empire Solutions is launching its first major film production and is now open for auditions. We are looking for talented individuals — actors, presenters, and on-screen personalities — to be considered for roles in the project.\n\nThe audition process is open, structured, and transparent: submit your interest via the contact page, attend a scheduled screening, and our production team will make selections based on fit and potential. Venue and full audition details, including wardrobe and styling direction, will be communicated to shortlisted candidates.\n\nWhether you are an experienced performer or a fresh talent ready for your first opportunity, we want to hear from you. Use the contact form to express your interest and stay informed on audition dates as they are announced.",
-          image:
-            "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80",
+          image: "/images/age/movie-audition.png",
         },
         {
           slug: "transport-booking",
