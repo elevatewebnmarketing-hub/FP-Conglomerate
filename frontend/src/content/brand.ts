@@ -315,10 +315,9 @@ export const defaultSiteContent: SiteContent = {
         "Ordained Believers Army (OBA) is a bold spiritual movement manifesting healing power, scriptural revelation, and believer identity.",
       details:
         "Founded in 2026, OBA was established with an audacious conviction: power should not be delayed. The ministry emphasizes healing for all manner of diseases, deep scriptural insight, and practical discipleship that helps believers understand who they are in Christ.",
-      heroImage:
-        "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=1600&q=80",
+      heroImage: "/images/oba/spiritual-counseling.png",
       gallery: [
-        "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1600&q=80",
+        "/images/oba/spiritual-counseling.png",
         "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1600&q=80",
         "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=1600&q=80",
       ],
@@ -361,8 +360,7 @@ export const defaultSiteContent: SiteContent = {
         "AGE delivers practical value across news media, movie production, construction, transport, brand promotion, devices, and general appliances.",
       details:
         "Anate Grand Empire Solutions (AGE) is positioned as a trust-first operating unit that combines creative, technical, and commercial execution. It helps clients access reliable media coverage, production support, construction services, transport coordination, brand promotion support, and durable appliances under one service umbrella. AGE also operates Contriman News Media, its dedicated news and awareness platform.",
-      heroImage:
-        "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80",
+      heroImage: "/images/age/contriman-hero.png",
       gallery: [
         "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80",
         "https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -540,8 +538,7 @@ export const defaultSiteContent: SiteContent = {
       title: "Faith and Ministry Services",
       summary:
         "Word-based teaching, worship gatherings, and healing-focused ministry through Ordained Believers Army (OBA).",
-      image:
-        "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/oba/ministry-expression.png",
     },
     {
       title: "Group Strategy and Operational Support",
@@ -751,8 +748,7 @@ export const defaultSiteContent: SiteContent = {
     heading: "Join Our Team",
     summary:
       "FP Conglomerate and its business units are actively recruiting across several roles. Browse open positions below and send your CV along with a short statement of interest to our official contact email.",
-    heroImage:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/images/age/movie-audition.png",
     roles: [
       {
         title: "Driver",
@@ -846,7 +842,10 @@ export const defaultSiteContent: SiteContent = {
       "/images/mia/humanitarian/kogi-17.png",
       "/images/projects/gwarinpa-mall/01.png",
     ],
-    careers: [],
+    careers: [
+      "/images/fp/group-strategy.png",
+      "/images/mia/mia-hero.png",
+    ],
   },
 };
 

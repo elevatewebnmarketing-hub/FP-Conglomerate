@@ -5,6 +5,9 @@ import MediaAsset from "@/components/MediaAsset";
 export default function HiringSection() {
   const { content } = useSiteContent();
 
+  const featuredRole =
+    content.hiring.roles.find((r) => r.image) ?? content.hiring.roles[0];
+
   return (
     <section className="section-space section-shell">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -25,23 +28,46 @@ export default function HiringSection() {
             View open roles →
           </Link>
         </div>
-        <div className="lg:col-span-6 lg:col-start-7 space-y-4">
-          {content.hiring.roles.map((role) => (
-            <article
-              key={`${role.title}-${role.location}`}
-              className="border border-border p-6 md:p-7"
-            >
-              <h3 className="font-editorial text-2xl">{role.title}</h3>
-              <p className="text-sm text-muted-foreground mt-2">
-                {role.location} · {role.type}
-              </p>
-              <MediaAsset
-                src={role.image || content.galleryItems[0]?.src}
-                alt={role.title}
-                className="w-full h-36 object-cover border border-border mt-4 dark:brightness-75"
-              />
+
+        <div className="lg:col-span-6 lg:col-start-7 lg:flex lg:flex-col">
+          {featuredRole && (
+            <article className="border border-border p-6 md:p-8 lg:flex-1 lg:flex lg:flex-col lg:justify-between">
+              <div>
+                <p className="eyebrow mb-3">Featured opening</p>
+                <h3 className="font-editorial text-2xl md:text-3xl">
+                  {featuredRole.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {featuredRole.location} · {featuredRole.type}
+                </p>
+                {featuredRole.salaryRange && (
+                  <p className="text-sm font-medium text-foreground mt-3">
+                    {featuredRole.salaryRange}
+                  </p>
+                )}
+                {featuredRole.description && (
+                  <p className="text-sm text-muted-foreground mt-5 leading-relaxed line-clamp-3">
+                    {featuredRole.description}
+                  </p>
+                )}
+                <p className="text-sm text-muted-foreground mt-5 border-t border-border pt-5">
+                  To apply, send your CV and a short statement of interest to{" "}
+                  <a
+                    href={`mailto:${content.brand.contactEmail}`}
+                    className="text-accent underline-offset-4 hover:underline"
+                  >
+                    {content.brand.contactEmail}
+                  </a>
+                  .
+                </p>
+              </div>
+              <div className="mt-8">
+                <Link to="/careers" className="text-sm text-accent">
+                  See all open roles →
+                </Link>
+              </div>
             </article>
-          ))}
+          )}
         </div>
       </div>
     </section>
