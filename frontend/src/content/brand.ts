@@ -476,7 +476,7 @@ export const defaultSiteContent: SiteContent = {
         "Mogadishu Initiative Response serves vulnerable communities through sincere aid, practical relief, and justice-focused support.",
       details:
         "Founded in 2026, the initiative was born from a careful desire to support humanity across Africa, with immediate concern for Nigeria. Programs include shelter, education, accommodation support, social justice advocacy, and community recognition initiatives.",
-      heroImage: "/images/mia/humanitarian/kogi-07.png",
+      heroImage: "/images/mia/mia-hero.png",
       gallery: [
         "/images/mia/humanitarian/kogi-08.png",
         "/images/mia/humanitarian/idp-04.png",
