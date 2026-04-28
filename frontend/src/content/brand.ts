@@ -293,7 +293,7 @@ export const defaultSiteContent: SiteContent = {
           summary: "How standards, oversight, and accountability work across all units.",
           content:
             "FP Conglomerate runs a simple governance model: clear mandates, transparent expectations, and regular performance reviews. Each unit executes independently but remains accountable to shared group standards on service, ethics, and client trust.",
-          image: "/images/projects/gwarinpa-mall/01.png",
+          image: "/images/fp/group-governance.png",
         },
         {
           slug: "strategy",
